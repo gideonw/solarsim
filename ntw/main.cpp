@@ -6,13 +6,23 @@
 //  Copyright (c) 2014 Gideon. All rights reserved.
 //
 
+// standard C++ libraries
 #include <iostream>
+#include <stdexcept>
+
+// My Classes
+#include "game/Game.h"
 
 int main(int argc, const char * argv[])
 {
+	try{
+		Game::start();
+	} catch (const std::exception& e){
+		std::cerr << "ERROR: " << e.what() << std::endl;
+		return EXIT_FAILURE;
+	}
 
-	// insert code here...
-	std::cout << "Hello, World!\n";
-    return 0;
+	return EXIT_SUCCESS;
 }
+
 

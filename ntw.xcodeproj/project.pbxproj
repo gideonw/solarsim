@@ -8,26 +8,59 @@
 
 /* Begin PBXBuildFile section */
 		F3A68960193BF24A004E02FC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A6895F193BF24A004E02FC /* main.cpp */; };
-		F3A68962193BF24A004E02FC /* ntw.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = F3A68961193BF24A004E02FC /* ntw.1 */; };
+		F3A68C13193BF550004E02FC /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C12193BF550004E02FC /* glew.c */; };
+		F3A68C15193BF561004E02FC /* libglfw.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A68C14193BF561004E02FC /* libglfw.a */; };
+		F3A68C17193BF627004E02FC /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A68C16193BF627004E02FC /* OpenGL.framework */; };
+		F3A68C19193BF62D004E02FC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A68C18193BF62D004E02FC /* Cocoa.framework */; };
+		F3A68C1A193BF78B004E02FC /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68969193BF462004E02FC /* Bitmap.cpp */; };
+		F3A68C1B193BF78B004E02FC /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A6896B193BF462004E02FC /* Camera.cpp */; };
+		F3A68C1C193BF78B004E02FC /* Program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A6896D193BF462004E02FC /* Program.cpp */; };
+		F3A68C1D193BF78B004E02FC /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A6896F193BF462004E02FC /* Shader.cpp */; };
+		F3A68C1E193BF78B004E02FC /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68971193BF462004E02FC /* Texture.cpp */; };
+		F3A68C22193BF976004E02FC /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C20193BF976004E02FC /* Game.cpp */; };
+		F3A68C2A193BFBCA004E02FC /* fragment-shader.txt in Resources */ = {isa = PBXBuildFile; fileRef = F3A68C25193BFB7D004E02FC /* fragment-shader.txt */; };
+		F3A68C2B193BFBCA004E02FC /* ui-frag-shader.txt in Resources */ = {isa = PBXBuildFile; fileRef = F3A68C26193BFB7D004E02FC /* ui-frag-shader.txt */; };
+		F3A68C2C193BFBCA004E02FC /* ui-vert-shader.txt in Resources */ = {isa = PBXBuildFile; fileRef = F3A68C27193BFB7D004E02FC /* ui-vert-shader.txt */; };
+		F3A68C2D193BFBCA004E02FC /* vertex-shader.txt in Resources */ = {isa = PBXBuildFile; fileRef = F3A68C28193BFB7D004E02FC /* vertex-shader.txt */; };
+		F3A68C30193BFD91004E02FC /* Graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C2E193BFD91004E02FC /* Graphics.cpp */; };
+		F3A68C35193C0F22004E02FC /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C33193C0F22004E02FC /* util.cpp */; };
+		F3A68C38193C1156004E02FC /* Assets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C36193C1156004E02FC /* Assets.cpp */; };
+		F3A68C3A193C1486004E02FC /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A68C39193C1486004E02FC /* IOKit.framework */; };
+		F3A68C3D193C1D1E004E02FC /* Env.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C3B193C1D1E004E02FC /* Env.cpp */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		F3A6895A193BF24A004E02FC /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-				F3A68962193BF24A004E02FC /* ntw.1 in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		F3A6895C193BF24A004E02FC /* ntw */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ntw; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A6895F193BF24A004E02FC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		F3A68961193BF24A004E02FC /* ntw.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ntw.1; sourceTree = "<group>"; };
+		F3A68969193BF462004E02FC /* Bitmap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bitmap.cpp; sourceTree = "<group>"; };
+		F3A6896A193BF462004E02FC /* Bitmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
+		F3A6896B193BF462004E02FC /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		F3A6896C193BF462004E02FC /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		F3A6896D193BF462004E02FC /* Program.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Program.cpp; sourceTree = "<group>"; };
+		F3A6896E193BF462004E02FC /* Program.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Program.h; sourceTree = "<group>"; };
+		F3A6896F193BF462004E02FC /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
+		F3A68970193BF462004E02FC /* Shader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
+		F3A68971193BF462004E02FC /* Texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		F3A68972193BF462004E02FC /* Texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
+		F3A68C12193BF550004E02FC /* glew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = glew.c; path = thirdparty/glew/src/glew.c; sourceTree = "<group>"; };
+		F3A68C14193BF561004E02FC /* libglfw.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw.a; path = thirdparty/glfw/libglfw.a; sourceTree = "<group>"; };
+		F3A68C16193BF627004E02FC /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		F3A68C18193BF62D004E02FC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		F3A68C20193BF976004E02FC /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		F3A68C21193BF976004E02FC /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		F3A68C25193BFB7D004E02FC /* fragment-shader.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "fragment-shader.txt"; sourceTree = "<group>"; };
+		F3A68C26193BFB7D004E02FC /* ui-frag-shader.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "ui-frag-shader.txt"; sourceTree = "<group>"; };
+		F3A68C27193BFB7D004E02FC /* ui-vert-shader.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "ui-vert-shader.txt"; sourceTree = "<group>"; };
+		F3A68C28193BFB7D004E02FC /* vertex-shader.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "vertex-shader.txt"; sourceTree = "<group>"; };
+		F3A68C2E193BFD91004E02FC /* Graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Graphics.cpp; sourceTree = "<group>"; };
+		F3A68C2F193BFD91004E02FC /* Graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graphics.h; sourceTree = "<group>"; };
+		F3A68C33193C0F22004E02FC /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
+		F3A68C34193C0F22004E02FC /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
+		F3A68C36193C1156004E02FC /* Assets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Assets.cpp; sourceTree = "<group>"; };
+		F3A68C37193C1156004E02FC /* Assets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Assets.h; sourceTree = "<group>"; };
+		F3A68C39193C1486004E02FC /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		F3A68C3B193C1D1E004E02FC /* Env.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Env.cpp; sourceTree = "<group>"; };
+		F3A68C3C193C1D1E004E02FC /* Env.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Env.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +68,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3A68C19193BF62D004E02FC /* Cocoa.framework in Frameworks */,
+				F3A68C15193BF561004E02FC /* libglfw.a in Frameworks */,
+				F3A68C17193BF627004E02FC /* OpenGL.framework in Frameworks */,
+				F3A68C3A193C1486004E02FC /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +81,7 @@
 		F3A68953193BF24A004E02FC = {
 			isa = PBXGroup;
 			children = (
+				F3A68C39193C1486004E02FC /* IOKit.framework */,
 				F3A6895E193BF24A004E02FC /* ntw */,
 				F3A6895D193BF24A004E02FC /* Products */,
 			);
@@ -60,10 +98,77 @@
 		F3A6895E193BF24A004E02FC /* ntw */ = {
 			isa = PBXGroup;
 			children = (
+				F3A68C24193BFA5C004E02FC /* resources */,
+				F3A68C1F193BF942004E02FC /* game */,
 				F3A6895F193BF24A004E02FC /* main.cpp */,
-				F3A68961193BF24A004E02FC /* ntw.1 */,
+				F3A68C23193BFA51004E02FC /* includes */,
+				F3A68C33193C0F22004E02FC /* util.cpp */,
+				F3A68C34193C0F22004E02FC /* util.h */,
 			);
 			path = ntw;
+			sourceTree = "<group>";
+		};
+		F3A68968193BF462004E02FC /* tdogl */ = {
+			isa = PBXGroup;
+			children = (
+				F3A68969193BF462004E02FC /* Bitmap.cpp */,
+				F3A6896A193BF462004E02FC /* Bitmap.h */,
+				F3A6896B193BF462004E02FC /* Camera.cpp */,
+				F3A6896C193BF462004E02FC /* Camera.h */,
+				F3A6896D193BF462004E02FC /* Program.cpp */,
+				F3A6896E193BF462004E02FC /* Program.h */,
+				F3A6896F193BF462004E02FC /* Shader.cpp */,
+				F3A68970193BF462004E02FC /* Shader.h */,
+				F3A68971193BF462004E02FC /* Texture.cpp */,
+				F3A68972193BF462004E02FC /* Texture.h */,
+			);
+			path = tdogl;
+			sourceTree = "<group>";
+		};
+		F3A68C11193BF523004E02FC /* thirparty */ = {
+			isa = PBXGroup;
+			children = (
+				F3A68C18193BF62D004E02FC /* Cocoa.framework */,
+				F3A68C16193BF627004E02FC /* OpenGL.framework */,
+				F3A68C14193BF561004E02FC /* libglfw.a */,
+				F3A68C12193BF550004E02FC /* glew.c */,
+			);
+			name = thirparty;
+			sourceTree = "<group>";
+		};
+		F3A68C1F193BF942004E02FC /* game */ = {
+			isa = PBXGroup;
+			children = (
+				F3A68C20193BF976004E02FC /* Game.cpp */,
+				F3A68C21193BF976004E02FC /* Game.h */,
+				F3A68C2E193BFD91004E02FC /* Graphics.cpp */,
+				F3A68C2F193BFD91004E02FC /* Graphics.h */,
+				F3A68C36193C1156004E02FC /* Assets.cpp */,
+				F3A68C37193C1156004E02FC /* Assets.h */,
+				F3A68C3B193C1D1E004E02FC /* Env.cpp */,
+				F3A68C3C193C1D1E004E02FC /* Env.h */,
+			);
+			path = game;
+			sourceTree = "<group>";
+		};
+		F3A68C23193BFA51004E02FC /* includes */ = {
+			isa = PBXGroup;
+			children = (
+				F3A68968193BF462004E02FC /* tdogl */,
+				F3A68C11193BF523004E02FC /* thirparty */,
+			);
+			name = includes;
+			sourceTree = "<group>";
+		};
+		F3A68C24193BFA5C004E02FC /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				F3A68C25193BFB7D004E02FC /* fragment-shader.txt */,
+				F3A68C26193BFB7D004E02FC /* ui-frag-shader.txt */,
+				F3A68C27193BFB7D004E02FC /* ui-vert-shader.txt */,
+				F3A68C28193BFB7D004E02FC /* vertex-shader.txt */,
+			);
+			path = resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -75,7 +180,7 @@
 			buildPhases = (
 				F3A68958193BF24A004E02FC /* Sources */,
 				F3A68959193BF24A004E02FC /* Frameworks */,
-				F3A6895A193BF24A004E02FC /* CopyFiles */,
+				F3A68C29193BFBB8004E02FC /* Resources */,
 			);
 			buildRules = (
 			);
@@ -112,11 +217,36 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		F3A68C29193BFBB8004E02FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3A68C2A193BFBCA004E02FC /* fragment-shader.txt in Resources */,
+				F3A68C2B193BFBCA004E02FC /* ui-frag-shader.txt in Resources */,
+				F3A68C2C193BFBCA004E02FC /* ui-vert-shader.txt in Resources */,
+				F3A68C2D193BFBCA004E02FC /* vertex-shader.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F3A68958193BF24A004E02FC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3A68C1A193BF78B004E02FC /* Bitmap.cpp in Sources */,
+				F3A68C30193BFD91004E02FC /* Graphics.cpp in Sources */,
+				F3A68C1B193BF78B004E02FC /* Camera.cpp in Sources */,
+				F3A68C35193C0F22004E02FC /* util.cpp in Sources */,
+				F3A68C38193C1156004E02FC /* Assets.cpp in Sources */,
+				F3A68C1C193BF78B004E02FC /* Program.cpp in Sources */,
+				F3A68C22193BF976004E02FC /* Game.cpp in Sources */,
+				F3A68C1D193BF78B004E02FC /* Shader.cpp in Sources */,
+				F3A68C1E193BF78B004E02FC /* Texture.cpp in Sources */,
+				F3A68C3D193C1D1E004E02FC /* Env.cpp in Sources */,
+				F3A68C13193BF550004E02FC /* glew.c in Sources */,
 				F3A68960193BF24A004E02FC /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,6 +325,21 @@
 		F3A68966193BF24A004E02FC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/glm,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/glew/include,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/glfw/include,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/stb_image,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/gideon/Projects/ntw/ntw/thirdparty/glfw/include,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/glm,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/glew/include,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/glfw,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -202,6 +347,21 @@
 		F3A68967193BF24A004E02FC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/glew/include,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/glm,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/glfw/include,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/stb_image,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/gideon/Projects/ntw/ntw/thirdparty/glfw/include,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/glm,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/glew/include,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/glfw,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
