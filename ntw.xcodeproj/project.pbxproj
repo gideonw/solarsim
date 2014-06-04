@@ -18,10 +18,10 @@
 		F3A68C1D193BF78B004E02FC /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A6896F193BF462004E02FC /* Shader.cpp */; };
 		F3A68C1E193BF78B004E02FC /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68971193BF462004E02FC /* Texture.cpp */; };
 		F3A68C22193BF976004E02FC /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C20193BF976004E02FC /* Game.cpp */; };
-		F3A68C2A193BFBCA004E02FC /* fragment-shader.txt in Resources */ = {isa = PBXBuildFile; fileRef = F3A68C25193BFB7D004E02FC /* fragment-shader.txt */; };
-		F3A68C2B193BFBCA004E02FC /* ui-frag-shader.txt in Resources */ = {isa = PBXBuildFile; fileRef = F3A68C26193BFB7D004E02FC /* ui-frag-shader.txt */; };
-		F3A68C2C193BFBCA004E02FC /* ui-vert-shader.txt in Resources */ = {isa = PBXBuildFile; fileRef = F3A68C27193BFB7D004E02FC /* ui-vert-shader.txt */; };
-		F3A68C2D193BFBCA004E02FC /* vertex-shader.txt in Resources */ = {isa = PBXBuildFile; fileRef = F3A68C28193BFB7D004E02FC /* vertex-shader.txt */; };
+		F3A68C2A193BFBCA004E02FC /* fragment-shader.frag in Resources */ = {isa = PBXBuildFile; fileRef = F3A68C25193BFB7D004E02FC /* fragment-shader.frag */; };
+		F3A68C2B193BFBCA004E02FC /* ui-frag-shader.frag in Resources */ = {isa = PBXBuildFile; fileRef = F3A68C26193BFB7D004E02FC /* ui-frag-shader.frag */; };
+		F3A68C2C193BFBCA004E02FC /* ui-vert-shader.vs in Resources */ = {isa = PBXBuildFile; fileRef = F3A68C27193BFB7D004E02FC /* ui-vert-shader.vs */; };
+		F3A68C2D193BFBCA004E02FC /* vertex-shader.vs in Resources */ = {isa = PBXBuildFile; fileRef = F3A68C28193BFB7D004E02FC /* vertex-shader.vs */; };
 		F3A68C30193BFD91004E02FC /* Graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C2E193BFD91004E02FC /* Graphics.cpp */; };
 		F3A68C35193C0F22004E02FC /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C33193C0F22004E02FC /* util.cpp */; };
 		F3A68C38193C1156004E02FC /* Assets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C36193C1156004E02FC /* Assets.cpp */; };
@@ -55,10 +55,10 @@
 		F3A68C18193BF62D004E02FC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F3A68C20193BF976004E02FC /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		F3A68C21193BF976004E02FC /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
-		F3A68C25193BFB7D004E02FC /* fragment-shader.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "fragment-shader.txt"; sourceTree = "<group>"; };
-		F3A68C26193BFB7D004E02FC /* ui-frag-shader.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "ui-frag-shader.txt"; sourceTree = "<group>"; };
-		F3A68C27193BFB7D004E02FC /* ui-vert-shader.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "ui-vert-shader.txt"; sourceTree = "<group>"; };
-		F3A68C28193BFB7D004E02FC /* vertex-shader.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "vertex-shader.txt"; sourceTree = "<group>"; };
+		F3A68C25193BFB7D004E02FC /* fragment-shader.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = "fragment-shader.frag"; sourceTree = "<group>"; };
+		F3A68C26193BFB7D004E02FC /* ui-frag-shader.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = "ui-frag-shader.frag"; sourceTree = "<group>"; };
+		F3A68C27193BFB7D004E02FC /* ui-vert-shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = "ui-vert-shader.vs"; sourceTree = "<group>"; };
+		F3A68C28193BFB7D004E02FC /* vertex-shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = "vertex-shader.vs"; sourceTree = "<group>"; };
 		F3A68C2E193BFD91004E02FC /* Graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Graphics.cpp; sourceTree = "<group>"; };
 		F3A68C2F193BFD91004E02FC /* Graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graphics.h; sourceTree = "<group>"; };
 		F3A68C33193C0F22004E02FC /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
@@ -185,10 +185,10 @@
 		F3A68C24193BFA5C004E02FC /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				F3A68C25193BFB7D004E02FC /* fragment-shader.txt */,
-				F3A68C26193BFB7D004E02FC /* ui-frag-shader.txt */,
-				F3A68C27193BFB7D004E02FC /* ui-vert-shader.txt */,
-				F3A68C28193BFB7D004E02FC /* vertex-shader.txt */,
+				F3A68C25193BFB7D004E02FC /* fragment-shader.frag */,
+				F3A68C26193BFB7D004E02FC /* ui-frag-shader.frag */,
+				F3A68C27193BFB7D004E02FC /* ui-vert-shader.vs */,
+				F3A68C28193BFB7D004E02FC /* vertex-shader.vs */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -265,10 +265,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3A68C2A193BFBCA004E02FC /* fragment-shader.txt in Resources */,
-				F3A68C2B193BFBCA004E02FC /* ui-frag-shader.txt in Resources */,
-				F3A68C2C193BFBCA004E02FC /* ui-vert-shader.txt in Resources */,
-				F3A68C2D193BFBCA004E02FC /* vertex-shader.txt in Resources */,
+				F3A68C2A193BFBCA004E02FC /* fragment-shader.frag in Resources */,
+				F3A68C2B193BFBCA004E02FC /* ui-frag-shader.frag in Resources */,
+				F3A68C2C193BFBCA004E02FC /* ui-vert-shader.vs in Resources */,
+				F3A68C2D193BFBCA004E02FC /* vertex-shader.vs in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +435,7 @@
 				F3A68967193BF24A004E02FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
