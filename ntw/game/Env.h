@@ -11,12 +11,15 @@
 
 #include <iostream>
 
+#include "Galaxy.h"
 
 // meant to keep any game variables or data/data structures
 class Env
 {
 public:
 	Env();
+	
+	void initializeEnv();
 	
 	//Variables!!!
 	float gDegreesRotated = 10.0f;
@@ -25,6 +28,8 @@ public:
 	float moveSpeed = 2000.0f;
 	
 	int numStars = 1200000;
+	
+	Galaxy galaxy;
 };
 
 #endif /* defined(__ntw__Env__) */

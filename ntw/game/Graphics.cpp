@@ -10,8 +10,8 @@
 
 Graphics::Graphics()
 {
-	screenSize.x = 800;
-	screenSize.y = 600;
+	screenSize.x = 1024;
+	screenSize.y = 768;
 }
 
 Graphics::Graphics(int _width, int _height):screenSize(_width, _height)
@@ -66,6 +66,7 @@ void Graphics::setOpenGlSettings()
     glDepthFunc(GL_LESS);
 	
 	glPointSize(1.0f);
+	glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 }
 
 void Graphics::setUpCamera()
@@ -124,52 +125,6 @@ void Graphics::render(Env& env, Assets& as) {
 		draw->shaders->stopUsing();
 	}
 	
-	/*
-    // bind the program (the shaders)
-	
-    as.program->use();
-	
-    // set the "camera" uniform
-    as.program->setUniform("camera", camera.matrix());
-	
-    // set the "model" uniform in the vertex shader, based on the gDegreesRotated global
-    as.program->setUniform("model", glm::rotate(glm::mat4(), env.gDegreesRotated, glm::vec3(0,1,0)));
-	
-    // bind the texture and set the "tex" uniform in the fragment shader
-    //glActiveTexture(GL_TEXTURE0);
-    //glBindTexture(GL_TEXTURE_2D, gTexture->object());
-    //gProgram->setUniform("tex", 0); //set to 0 because the texture is bound to GL_TEXTURE0
-	
-    // bind the VAO (the triangle)
-    glBindVertexArray(gVAO);
-    
-    // draw the VAO
-	if(!glfwGetKey('Q')){
-		glDrawArrays(GL_POINTS, 0, env.numStars);
-	} else {
-		glDrawArrays(GL_TRIANGLES, 0, env.numStars);
-	}
-    
-    // unbind the VAO, the program and the texture
-    glBindVertexArray(0);
-    //glBindTexture(GL_TEXTURE_2D, 0);
-    program->stopUsing();
-	
-	
-	///////////////////////////////////////////////////////
-	
-	programUi->use();
-	
-	glBindVertexArray(gVAOUI);
-	
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 6);
-	
-	glBindVertexArray(0);
-	
-	programUi->stopUsing();
-	*/
-	
-	///////////////////////////////////////////////////////
     // swap the display buffers (displays what was just drawn)
     glfwSwapBuffers();
 }

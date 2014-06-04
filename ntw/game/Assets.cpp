@@ -27,12 +27,12 @@ void Assets::loadSquare()
 	
 	asset* tmp = new asset();
 	
-	tmp->shaders = program;
+	tmp->shaders = programUi;
 	tmp->drawType = GL_TRIANGLE_STRIP;
 	
 	// make and bind the VAO
     glGenVertexArrays(1, &(tmp->vao));
-    glBindVertexArray((tmp->vao));
+    glBindVertexArray(tmp->vao);
     
     // make and bind the VBO
     glGenBuffers(1, &(tmp->vbo));
@@ -47,6 +47,9 @@ void Assets::loadSquare()
 		0.9f,	0.7f,	0.0f,
 		0.7f,	0.7f,	0.0f,
 	};
+	//set the draw count for gl_draw arrays
+	tmp->drawCount = 6;
+	
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 	
 	glEnableVertexAttribArray(tmp->shaders->attrib("vert"));
@@ -58,6 +61,43 @@ void Assets::loadSquare()
 
 }
 
+void Assets::loadGalaxy(std::vector<float>* verts)
+{
+	asset* tmp = new asset();
+	
+	tmp->shaders = program;
+	tmp->drawType = GL_POINTS;
+	
+	// make and bind the VAO
+    glGenVertexArrays(1, &(tmp->vao));
+    glBindVertexArray((tmp->vao));
+    
+    // make and bind the VBO
+    glGenBuffers(1, &(tmp->vbo));
+    glBindBuffer(GL_ARRAY_BUFFER, tmp->vbo);
+
+	tmp->drawCount = (GLint)(verts->size()/3);
+	std::cout << tmp->drawCount << std::endl;
+	
+	glBufferData(GL_ARRAY_BUFFER, verts->size() * sizeof(float), &(*verts)[0], GL_STATIC_DRAW);
+	
+    // connect the xyz to the "vert" attribute of the vertex shader
+    glEnableVertexAttribArray(tmp->shaders->attrib("vert"));
+    glVertexAttribPointer(tmp->shaders->attrib("vert"), 3, GL_FLOAT, GL_FALSE, 4*sizeof(GLfloat), NULL);
+	
+    // connect the uv coords to the "vertTexCoord" attribute of the vertex shader
+	
+    glEnableVertexAttribArray(tmp->shaders->attrib("starType"));
+    glVertexAttribPointer(tmp->shaders->attrib("starType"), 1, GL_FLOAT, GL_TRUE,  4*sizeof(GLfloat), (const GLvoid*)(3 * sizeof(GLfloat)));
+	
+    // unbind the VAO
+    glBindVertexArray(0);
+	
+	addAsset(tmp);
+	
+}
+
+/*
 void Assets::loadCloud()
 {
 	std::random_device rnd;
@@ -81,6 +121,7 @@ void Assets::loadCloud()
     glGenBuffers(1, &(tmp->vbo));
     glBindBuffer(GL_ARRAY_BUFFER, tmp->vbo);
 	
+	//todo: start using hte new env galaxy!!!! dont forget tmp!!!!
 	
 	std::vector<float> a;
 	
@@ -165,3 +206,4 @@ void Assets::loadCloud()
 	
 	addAsset(tmp);
 }
+ */

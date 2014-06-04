@@ -47,7 +47,7 @@ public:
 	std::list<asset*>* getAssetList();
 	void addAsset(asset* a);
 	
-	void loadCloud();
+	void loadGalaxy(std::vector<float>* verts);
 	void loadSquare();
 	
 	tdogl::Program* program;

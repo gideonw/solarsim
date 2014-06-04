@@ -27,6 +27,13 @@
 		F3A68C38193C1156004E02FC /* Assets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C36193C1156004E02FC /* Assets.cpp */; };
 		F3A68C3A193C1486004E02FC /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A68C39193C1486004E02FC /* IOKit.framework */; };
 		F3A68C3D193C1D1E004E02FC /* Env.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C3B193C1D1E004E02FC /* Env.cpp */; };
+		F3A68C41193D5CFD004E02FC /* Galaxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C3F193D5CFD004E02FC /* Galaxy.cpp */; };
+		F3A68C44193D5D09004E02FC /* SolarSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C42193D5D09004E02FC /* SolarSystem.cpp */; };
+		F3A68C4A193D5D20004E02FC /* Star.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C48193D5D20004E02FC /* Star.cpp */; };
+		F3A68C4D193D5D38004E02FC /* SolarSystemObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C4B193D5D38004E02FC /* SolarSystemObject.cpp */; };
+		F3A68C50193D5D68004E02FC /* Planet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C4E193D5D68004E02FC /* Planet.cpp */; };
+		F3A68C53193D5D78004E02FC /* Moon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C51193D5D78004E02FC /* Moon.cpp */; };
+		F3A68C56193D6D87004E02FC /* GalacticObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C54193D6D87004E02FC /* GalacticObject.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +68,20 @@
 		F3A68C39193C1486004E02FC /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		F3A68C3B193C1D1E004E02FC /* Env.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Env.cpp; sourceTree = "<group>"; };
 		F3A68C3C193C1D1E004E02FC /* Env.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Env.h; sourceTree = "<group>"; };
+		F3A68C3F193D5CFD004E02FC /* Galaxy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Galaxy.cpp; sourceTree = "<group>"; };
+		F3A68C40193D5CFD004E02FC /* Galaxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Galaxy.h; sourceTree = "<group>"; };
+		F3A68C42193D5D09004E02FC /* SolarSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SolarSystem.cpp; sourceTree = "<group>"; };
+		F3A68C43193D5D09004E02FC /* SolarSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolarSystem.h; sourceTree = "<group>"; };
+		F3A68C48193D5D20004E02FC /* Star.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Star.cpp; sourceTree = "<group>"; };
+		F3A68C49193D5D20004E02FC /* Star.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Star.h; sourceTree = "<group>"; };
+		F3A68C4B193D5D38004E02FC /* SolarSystemObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SolarSystemObject.cpp; sourceTree = "<group>"; };
+		F3A68C4C193D5D38004E02FC /* SolarSystemObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolarSystemObject.h; sourceTree = "<group>"; };
+		F3A68C4E193D5D68004E02FC /* Planet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Planet.cpp; sourceTree = "<group>"; };
+		F3A68C4F193D5D68004E02FC /* Planet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Planet.h; sourceTree = "<group>"; };
+		F3A68C51193D5D78004E02FC /* Moon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Moon.cpp; sourceTree = "<group>"; };
+		F3A68C52193D5D78004E02FC /* Moon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moon.h; sourceTree = "<group>"; };
+		F3A68C54193D6D87004E02FC /* GalacticObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GalacticObject.cpp; sourceTree = "<group>"; };
+		F3A68C55193D6D87004E02FC /* GalacticObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalacticObject.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +160,7 @@
 		F3A68C1F193BF942004E02FC /* game */ = {
 			isa = PBXGroup;
 			children = (
+				F3A68C3E193D5C40004E02FC /* ent */,
 				F3A68C20193BF976004E02FC /* Game.cpp */,
 				F3A68C21193BF976004E02FC /* Game.h */,
 				F3A68C2E193BFD91004E02FC /* Graphics.cpp */,
@@ -169,6 +191,27 @@
 				F3A68C28193BFB7D004E02FC /* vertex-shader.txt */,
 			);
 			path = resources;
+			sourceTree = "<group>";
+		};
+		F3A68C3E193D5C40004E02FC /* ent */ = {
+			isa = PBXGroup;
+			children = (
+				F3A68C3F193D5CFD004E02FC /* Galaxy.cpp */,
+				F3A68C40193D5CFD004E02FC /* Galaxy.h */,
+				F3A68C54193D6D87004E02FC /* GalacticObject.cpp */,
+				F3A68C55193D6D87004E02FC /* GalacticObject.h */,
+				F3A68C42193D5D09004E02FC /* SolarSystem.cpp */,
+				F3A68C43193D5D09004E02FC /* SolarSystem.h */,
+				F3A68C48193D5D20004E02FC /* Star.cpp */,
+				F3A68C49193D5D20004E02FC /* Star.h */,
+				F3A68C4B193D5D38004E02FC /* SolarSystemObject.cpp */,
+				F3A68C4C193D5D38004E02FC /* SolarSystemObject.h */,
+				F3A68C4E193D5D68004E02FC /* Planet.cpp */,
+				F3A68C4F193D5D68004E02FC /* Planet.h */,
+				F3A68C51193D5D78004E02FC /* Moon.cpp */,
+				F3A68C52193D5D78004E02FC /* Moon.h */,
+			);
+			name = ent;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,18 +279,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3A68C53193D5D78004E02FC /* Moon.cpp in Sources */,
 				F3A68C1A193BF78B004E02FC /* Bitmap.cpp in Sources */,
 				F3A68C30193BFD91004E02FC /* Graphics.cpp in Sources */,
 				F3A68C1B193BF78B004E02FC /* Camera.cpp in Sources */,
+				F3A68C4D193D5D38004E02FC /* SolarSystemObject.cpp in Sources */,
 				F3A68C35193C0F22004E02FC /* util.cpp in Sources */,
 				F3A68C38193C1156004E02FC /* Assets.cpp in Sources */,
 				F3A68C1C193BF78B004E02FC /* Program.cpp in Sources */,
 				F3A68C22193BF976004E02FC /* Game.cpp in Sources */,
+				F3A68C56193D6D87004E02FC /* GalacticObject.cpp in Sources */,
+				F3A68C50193D5D68004E02FC /* Planet.cpp in Sources */,
 				F3A68C1D193BF78B004E02FC /* Shader.cpp in Sources */,
 				F3A68C1E193BF78B004E02FC /* Texture.cpp in Sources */,
+				F3A68C4A193D5D20004E02FC /* Star.cpp in Sources */,
 				F3A68C3D193C1D1E004E02FC /* Env.cpp in Sources */,
 				F3A68C13193BF550004E02FC /* glew.c in Sources */,
 				F3A68960193BF24A004E02FC /* main.cpp in Sources */,
+				F3A68C44193D5D09004E02FC /* SolarSystem.cpp in Sources */,
+				F3A68C41193D5CFD004E02FC /* Galaxy.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

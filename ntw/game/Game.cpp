@@ -38,12 +38,14 @@ void Game::start()
     // load vertex and fragment shaders into opengl
     inst->graphics.loadShaders(inst->as);
 	
+	//initialize the environment
+	inst->env.initializeEnv();
+	
     // load the texture
     //LoadTexture();
 	
-    // create buffer and fill it with the points of the triangle
-	
-	inst->as.loadCloud();
+    // Load Assets
+	inst->as.loadGalaxy(inst->env.galaxy.getGalaxyVerticies());
 	
 	inst->as.loadSquare();
 	

@@ -11,3 +11,8 @@
 Env::Env()
 {
 }
+
+void Env::initializeEnv()
+{
+	galaxy.gen();
+}
