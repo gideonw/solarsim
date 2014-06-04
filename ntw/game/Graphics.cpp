@@ -79,14 +79,14 @@ void Graphics::setUpCamera()
 void Graphics::loadShaders(Assets& as)
 {
 	std::vector<tdogl::Shader> shaders;
-    shaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("vertex-shader.txt"), GL_VERTEX_SHADER));
-    shaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("fragment-shader.txt"), GL_FRAGMENT_SHADER));
+    shaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("vertex-shader.vs"), GL_VERTEX_SHADER));
+    shaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("fragment-shader.frag"), GL_FRAGMENT_SHADER));
     as.program = new tdogl::Program(shaders);
 	
 	
 	std::vector<tdogl::Shader> uishaders;
-    uishaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("ui-vert-shader.txt"), GL_VERTEX_SHADER));
-    uishaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("ui-frag-shader.txt"), GL_FRAGMENT_SHADER));
+    uishaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("ui-vert-shader.vs"), GL_VERTEX_SHADER));
+    uishaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("ui-frag-shader.frag"), GL_FRAGMENT_SHADER));
     as.programUi = new tdogl::Program(uishaders);
 }
 
