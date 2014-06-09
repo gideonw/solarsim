@@ -29,6 +29,9 @@ public:
 	
 	int numStars = 1200000;
 	
+	//coords in LY
+	double ly2au = 63400.07;
+	
 	Galaxy galaxy;
 };
 

@@ -31,7 +31,7 @@ void Graphics::openWindow()
     glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3);
     glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 2);
     glfwOpenWindowHint(GLFW_WINDOW_NO_RESIZE, GL_TRUE);
-    if(!glfwOpenWindow((int)screenSize.x, (int)screenSize.y, 8, 8, 8, 8, 24, 0, GLFW_WINDOW))
+    if(!glfwOpenWindow((int)screenSize.x, (int)screenSize.y, 8, 8, 8, 8, 32, 0, GLFW_WINDOW))
         throw std::runtime_error("glfwOpenWindow failed. Can your hardware handle OpenGL 3.2?");
 }
 
@@ -67,6 +67,9 @@ void Graphics::setOpenGlSettings()
 	
 	glPointSize(1.0f);
 	glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
+	
+	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+	glEnable(GL_BLEND);
 }
 
 void Graphics::setUpCamera()
@@ -74,6 +77,7 @@ void Graphics::setUpCamera()
 	// setup gCamera
     camera.setPosition(glm::vec3(0,0,4));
     camera.setViewportAspectRatio(screenSize.x / screenSize.y);
+	camera.setNearAndFarPlanes(camera.nearPlane(), 1000000000000.0f);
 }
 
 void Graphics::loadShaders(Assets& as)

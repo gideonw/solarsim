@@ -40,12 +40,12 @@ void Assets::loadSquare()
 	
 	GLfloat vertexData[] = {
 		//  X     Y     Z
-		0.9f,	0.9f,	0.0f,
-		0.7f,	0.9f,	0.0f,
-		0.7f,	0.7f,	0.0f,
-		0.9f,	0.9f,	0.0f,
-		0.9f,	0.7f,	0.0f,
-		0.7f,	0.7f,	0.0f,
+		1.9f,	1.9f,	0.0f,
+		1.7f,	1.9f,	0.0f,
+		1.7f,	1.7f,	0.0f,
+		1.9f,	1.9f,	0.0f,
+		1.9f,	1.7f,	0.0f,
+		1.7f,	1.7f,	0.0f,
 	};
 	//set the draw count for gl_draw arrays
 	tmp->drawCount = 6;
@@ -77,7 +77,6 @@ void Assets::loadGalaxy(std::vector<float>* verts)
     glBindBuffer(GL_ARRAY_BUFFER, tmp->vbo);
 
 	tmp->drawCount = (GLint)(verts->size()/3);
-	std::cout << tmp->drawCount << std::endl;
 	
 	glBufferData(GL_ARRAY_BUFFER, verts->size() * sizeof(float), &(*verts)[0], GL_STATIC_DRAW);
 	

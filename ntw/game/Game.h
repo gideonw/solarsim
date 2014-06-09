@@ -13,6 +13,7 @@
 #include <GL/glfw.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <ftgl/ftgl.h>
 
 // standard C++ libraries
 #include <cassert>
@@ -20,7 +21,11 @@
 #include <stdexcept>
 #include <cmath>
 #include <list>
+#include <complex>
+#include <random>
 #include <sstream>
+#include <iomanip>
+#include <locale>
 
 // tdogl classes
 #include "../tdogl/Program.h"
@@ -31,6 +36,7 @@
 #include "Graphics.h"
 #include "Env.h"
 #include "Assets.h"
+#include "Input.h"
 
 class Game
 {
@@ -41,7 +47,8 @@ private:
 	Env env;
 	Assets as;
 	Graphics graphics;
-
+	Input* inp;
+	
 	Game();
 	
 public:

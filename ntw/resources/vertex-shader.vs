@@ -18,13 +18,20 @@ void main() {
 	{
 		gl_PointSize = 3.0f;
 	}
-	mat4 window_scale_15 = mat4(
+	mat4 window_scale = mat4(
 							 vec4( 0.15, 0.0, 0.0, 0.0),
 							 vec4( 0.0, 0.15, 0.0, 0.0),
 							 vec4( 0.0, 0.0, 0.15, 0.0),
 							 vec4( 0.0, 0.0, 0.0, 1.0)
 							 );
-	mat4 window_scale = mat4(
+	// 1/20th
+	mat4 window_scale_20 = mat4(
+							 vec4( 0.05, 0.0, 0.0, 0.0),
+							 vec4( 0.0, 0.05, 0.0, 0.0),
+							 vec4( 0.0, 0.0, 0.05, 0.0),
+							 vec4( 0.0, 0.0, 0.0, 1.0)
+							 );
+	mat4 window_scale_1 = mat4(
 							 vec4( 1.0, 0.0, 0.0, 0.0),
 							 vec4( 0.0, 1.0, 0.0, 0.0),
 							 vec4( 0.0, 0.0, 1.0, 0.0),

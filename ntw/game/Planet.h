@@ -11,15 +11,29 @@
 
 #include <iostream>
 #include <list>
+#include <random>
 
 #include "SolarSystemObject.h"
 #include "Moon.h"
 
 class Planet : public SolarSystemObject {
-	int type;
-	std::list<Moon> moons;
+	static int idCounter;
 	
 public:
+	int type;
+	// in KM
+	int radius;
+	//in AU
+	int orbitRadius;
+	int id;
+	
+	//economy sim info (probably exract for interface, or have the sim point to this object)
+	double gdp;
+	unsigned long population;
+	
+public:
+	Planet();
+	void gen(std::mt19937& eng);
 	
 };
 

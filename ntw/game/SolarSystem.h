@@ -16,12 +16,16 @@
 #include "Star.h"
 #include "SolarSystemObject.h"
 #include "GalacticObject.h"
+#include "Planet.h"
 
 class SolarSystem : public GalacticObject {
 	Star* star;
+public://temp pub, need get
 	std::vector<SolarSystemObject*> objects;
 	
 	//inheirits position from galacticObject, this is the center of the system
+	
+	int id;
 	
 public:
 	

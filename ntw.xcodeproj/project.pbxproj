@@ -34,6 +34,14 @@
 		F3A68C50193D5D68004E02FC /* Planet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C4E193D5D68004E02FC /* Planet.cpp */; };
 		F3A68C53193D5D78004E02FC /* Moon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C51193D5D78004E02FC /* Moon.cpp */; };
 		F3A68C56193D6D87004E02FC /* GalacticObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C54193D6D87004E02FC /* GalacticObject.cpp */; };
+		F3D6E7A01941257600851E13 /* ui_system_search.ui in Resources */ = {isa = PBXBuildFile; fileRef = F3D6E79F1941257600851E13 /* ui_system_search.ui */; };
+		F3D6E7A41944507B00851E13 /* uiSystemSearch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3D6E7A21944507B00851E13 /* uiSystemSearch.cpp */; };
+		F3D6E7A71945681300851E13 /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3D6E7A51945681300851E13 /* Input.cpp */; };
+		F3D6E7AB194568BB00851E13 /* KeyEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3D6E7A9194568BA00851E13 /* KeyEvent.cpp */; };
+		F3D6E7AE194568C600851E13 /* MouseEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3D6E7AC194568C600851E13 /* MouseEvent.cpp */; };
+		F3D6E7B019457E7100851E13 /* libftgl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D6E7AF19457E7100851E13 /* libftgl.a */; };
+		F3D6E7B3194585E800851E13 /* Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3D6E7B1194585E800851E13 /* Interface.cpp */; };
+		F3D6E7B61945862400851E13 /* uiWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3D6E7B41945862400851E13 /* uiWindow.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +90,20 @@
 		F3A68C52193D5D78004E02FC /* Moon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moon.h; sourceTree = "<group>"; };
 		F3A68C54193D6D87004E02FC /* GalacticObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GalacticObject.cpp; sourceTree = "<group>"; };
 		F3A68C55193D6D87004E02FC /* GalacticObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalacticObject.h; sourceTree = "<group>"; };
+		F3D6E79F1941257600851E13 /* ui_system_search.ui */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ui_system_search.ui; sourceTree = "<group>"; };
+		F3D6E7A21944507B00851E13 /* uiSystemSearch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uiSystemSearch.cpp; sourceTree = "<group>"; };
+		F3D6E7A31944507B00851E13 /* uiSystemSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uiSystemSearch.h; sourceTree = "<group>"; };
+		F3D6E7A51945681300851E13 /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
+		F3D6E7A61945681300851E13 /* Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Input.h; sourceTree = "<group>"; };
+		F3D6E7A9194568BA00851E13 /* KeyEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyEvent.cpp; sourceTree = "<group>"; };
+		F3D6E7AA194568BB00851E13 /* KeyEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyEvent.h; sourceTree = "<group>"; };
+		F3D6E7AC194568C600851E13 /* MouseEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseEvent.cpp; sourceTree = "<group>"; };
+		F3D6E7AD194568C600851E13 /* MouseEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseEvent.h; sourceTree = "<group>"; };
+		F3D6E7AF19457E7100851E13 /* libftgl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libftgl.a; path = thirdparty/ftgl/libftgl.a; sourceTree = "<group>"; };
+		F3D6E7B1194585E800851E13 /* Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Interface.cpp; sourceTree = "<group>"; };
+		F3D6E7B2194585E800851E13 /* Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interface.h; sourceTree = "<group>"; };
+		F3D6E7B41945862400851E13 /* uiWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uiWindow.cpp; sourceTree = "<group>"; };
+		F3D6E7B51945862400851E13 /* uiWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uiWindow.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +114,7 @@
 				F3A68C19193BF62D004E02FC /* Cocoa.framework in Frameworks */,
 				F3A68C15193BF561004E02FC /* libglfw.a in Frameworks */,
 				F3A68C17193BF627004E02FC /* OpenGL.framework in Frameworks */,
+				F3D6E7B019457E7100851E13 /* libftgl.a in Frameworks */,
 				F3A68C3A193C1486004E02FC /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,7 +125,6 @@
 		F3A68953193BF24A004E02FC = {
 			isa = PBXGroup;
 			children = (
-				F3A68C39193C1486004E02FC /* IOKit.framework */,
 				F3A6895E193BF24A004E02FC /* ntw */,
 				F3A6895D193BF24A004E02FC /* Products */,
 			);
@@ -149,6 +171,8 @@
 		F3A68C11193BF523004E02FC /* thirparty */ = {
 			isa = PBXGroup;
 			children = (
+				F3A68C39193C1486004E02FC /* IOKit.framework */,
+				F3D6E7AF19457E7100851E13 /* libftgl.a */,
 				F3A68C18193BF62D004E02FC /* Cocoa.framework */,
 				F3A68C16193BF627004E02FC /* OpenGL.framework */,
 				F3A68C14193BF561004E02FC /* libglfw.a */,
@@ -160,6 +184,8 @@
 		F3A68C1F193BF942004E02FC /* game */ = {
 			isa = PBXGroup;
 			children = (
+				F3D6E7A8194568A200851E13 /* events */,
+				F3D6E7A11944340C00851E13 /* ui */,
 				F3A68C3E193D5C40004E02FC /* ent */,
 				F3A68C20193BF976004E02FC /* Game.cpp */,
 				F3A68C21193BF976004E02FC /* Game.h */,
@@ -169,6 +195,10 @@
 				F3A68C37193C1156004E02FC /* Assets.h */,
 				F3A68C3B193C1D1E004E02FC /* Env.cpp */,
 				F3A68C3C193C1D1E004E02FC /* Env.h */,
+				F3D6E7A51945681300851E13 /* Input.cpp */,
+				F3D6E7A61945681300851E13 /* Input.h */,
+				F3D6E7B1194585E800851E13 /* Interface.cpp */,
+				F3D6E7B2194585E800851E13 /* Interface.h */,
 			);
 			path = game;
 			sourceTree = "<group>";
@@ -189,6 +219,7 @@
 				F3A68C26193BFB7D004E02FC /* ui-frag-shader.frag */,
 				F3A68C27193BFB7D004E02FC /* ui-vert-shader.vs */,
 				F3A68C28193BFB7D004E02FC /* vertex-shader.vs */,
+				F3D6E79F1941257600851E13 /* ui_system_search.ui */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -212,6 +243,28 @@
 				F3A68C52193D5D78004E02FC /* Moon.h */,
 			);
 			name = ent;
+			sourceTree = "<group>";
+		};
+		F3D6E7A11944340C00851E13 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				F3D6E7A21944507B00851E13 /* uiSystemSearch.cpp */,
+				F3D6E7A31944507B00851E13 /* uiSystemSearch.h */,
+				F3D6E7B41945862400851E13 /* uiWindow.cpp */,
+				F3D6E7B51945862400851E13 /* uiWindow.h */,
+			);
+			name = ui;
+			sourceTree = "<group>";
+		};
+		F3D6E7A8194568A200851E13 /* events */ = {
+			isa = PBXGroup;
+			children = (
+				F3D6E7A9194568BA00851E13 /* KeyEvent.cpp */,
+				F3D6E7AA194568BB00851E13 /* KeyEvent.h */,
+				F3D6E7AC194568C600851E13 /* MouseEvent.cpp */,
+				F3D6E7AD194568C600851E13 /* MouseEvent.h */,
+			);
+			name = events;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +321,7 @@
 				F3A68C2A193BFBCA004E02FC /* fragment-shader.frag in Resources */,
 				F3A68C2B193BFBCA004E02FC /* ui-frag-shader.frag in Resources */,
 				F3A68C2C193BFBCA004E02FC /* ui-vert-shader.vs in Resources */,
+				F3D6E7A01941257600851E13 /* ui_system_search.ui in Resources */,
 				F3A68C2D193BFBCA004E02FC /* vertex-shader.vs in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,16 +336,22 @@
 				F3A68C53193D5D78004E02FC /* Moon.cpp in Sources */,
 				F3A68C1A193BF78B004E02FC /* Bitmap.cpp in Sources */,
 				F3A68C30193BFD91004E02FC /* Graphics.cpp in Sources */,
+				F3D6E7B61945862400851E13 /* uiWindow.cpp in Sources */,
+				F3D6E7A71945681300851E13 /* Input.cpp in Sources */,
 				F3A68C1B193BF78B004E02FC /* Camera.cpp in Sources */,
+				F3D6E7A41944507B00851E13 /* uiSystemSearch.cpp in Sources */,
 				F3A68C4D193D5D38004E02FC /* SolarSystemObject.cpp in Sources */,
 				F3A68C35193C0F22004E02FC /* util.cpp in Sources */,
+				F3D6E7AB194568BB00851E13 /* KeyEvent.cpp in Sources */,
 				F3A68C38193C1156004E02FC /* Assets.cpp in Sources */,
 				F3A68C1C193BF78B004E02FC /* Program.cpp in Sources */,
 				F3A68C22193BF976004E02FC /* Game.cpp in Sources */,
 				F3A68C56193D6D87004E02FC /* GalacticObject.cpp in Sources */,
 				F3A68C50193D5D68004E02FC /* Planet.cpp in Sources */,
 				F3A68C1D193BF78B004E02FC /* Shader.cpp in Sources */,
+				F3D6E7B3194585E800851E13 /* Interface.cpp in Sources */,
 				F3A68C1E193BF78B004E02FC /* Texture.cpp in Sources */,
+				F3D6E7AE194568C600851E13 /* MouseEvent.cpp in Sources */,
 				F3A68C4A193D5D20004E02FC /* Star.cpp in Sources */,
 				F3A68C3D193C1D1E004E02FC /* Env.cpp in Sources */,
 				F3A68C13193BF550004E02FC /* glew.c in Sources */,
@@ -382,6 +442,8 @@
 					/Users/gideon/Projects/ntw/ntw/thirdparty/glew/include,
 					/Users/gideon/Projects/ntw/ntw/thirdparty/glfw/include,
 					/Users/gideon/Projects/ntw/ntw/thirdparty/stb_image,
+					/Users/gideon/Projects/ntw/ntw/thirdparty,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/freetype2,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -389,6 +451,8 @@
 					/Users/gideon/Projects/ntw/ntw/thirdparty/glm,
 					/Users/gideon/Projects/ntw/ntw/thirdparty/glew/include,
 					/Users/gideon/Projects/ntw/ntw/thirdparty/glfw,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/ftgl,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -404,6 +468,8 @@
 					/Users/gideon/Projects/ntw/ntw/thirdparty/glm,
 					/Users/gideon/Projects/ntw/ntw/thirdparty/glfw/include,
 					/Users/gideon/Projects/ntw/ntw/thirdparty/stb_image,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/freetype2,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -411,6 +477,8 @@
 					/Users/gideon/Projects/ntw/ntw/thirdparty/glm,
 					/Users/gideon/Projects/ntw/ntw/thirdparty/glew/include,
 					/Users/gideon/Projects/ntw/ntw/thirdparty/glfw,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/,
+					/Users/gideon/Projects/ntw/ntw/thirdparty/ftgl,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

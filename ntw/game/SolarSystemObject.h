@@ -10,9 +10,13 @@
 #define __ntw__SolarSystemObject__
 
 #include <iostream>
+#include <vector>
 
 class SolarSystemObject {
 
+public:
+	// THings currently orbiting me
+	std::vector<SolarSystemObject*> orbitalBodies;
 };
 
 #endif /* defined(__ntw__SolarSystemObject__) */

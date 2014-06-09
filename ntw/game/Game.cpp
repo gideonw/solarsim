@@ -13,6 +13,7 @@ Game* Game::inst = nullptr;
 
 Game::Game()
 {
+	
 }
 
 void Game::start()
@@ -24,16 +25,20 @@ void Game::start()
     
 	inst->graphics.openWindow();
 	
-    // GLFW settings
-    glfwDisable(GLFW_MOUSE_CURSOR);
-    glfwSetMousePos(0, 0);
-    glfwSetMouseWheel(0);
-	
 	inst->graphics.initGLEW();
 	
 	inst->graphics.setOpenGlSettings();
 	
 	inst->graphics.checkOpenGlVersion();
+	
+	// GLFW settings
+	glfwDisable(GLFW_MOUSE_CURSOR);
+	glfwSetMousePos(0, 0);
+	glfwSetMouseWheel(0);
+	
+	inst->inp = Input::init();
+	
+	inst->inp->setupGLFWHandlers();
     
     // load vertex and fragment shaders into opengl
     inst->graphics.loadShaders(inst->as);
@@ -53,7 +58,6 @@ void Game::start()
 	
 	inst->graphics.setUpCamera();
     
-    
     inst->gameLoop();
 	
     // clean up and exit
@@ -64,6 +68,12 @@ void Game::start()
 void Game::gameLoop()
 {
 	
+	std::random_device rnd;
+	std::mt19937 eng(rnd());
+	std::uniform_int_distribution<> pick_two(0, (int)env.galaxy.systems.size());
+	
+	env.galaxy.printGalaxyStats();
+	
 	// run while the window is open
 	double lastTime = glfwGetTime();
     while(glfwGetWindowParam(GLFW_OPENED)){
@@ -71,9 +81,8 @@ void Game::gameLoop()
         double thisTime = glfwGetTime();
         update(thisTime - lastTime);
         lastTime = thisTime;
-        
+		
         // draw one frame
-        //Render();
 		graphics.render(env, as);
 		
         // check for errors
@@ -104,31 +113,36 @@ void Game::update(float secondsElapsed)
 	
 	
 	if(glfwGetKey('[')){
-		env.moveSpeed += 5.0f;
+		env.moveSpeed += 10.0f;
 		std::cout << env.moveSpeed << std::endl;
 	} else if (glfwGetKey(']')){
-		env.moveSpeed -= 5.0f;
+		env.moveSpeed -= 10.0f;
 		while (env.moveSpeed < 0.0f) {
-			env.moveSpeed = 5.0f;
+			env.moveSpeed = 10.0f;
 		}
 	}
 	
+	if(glfwGetKey('\\')){
+		env.moveSpeed = 0.5f;
+	}
+		
 	//if(glfwGetKey('J'))
 		//LoadCloud();
+
 	
-    if(glfwGetKey('S')){
+    if(inp->getAction(Input::Actions::CAM_BACK)){
         graphics.camera.offsetPosition(secondsElapsed * env.moveSpeed * -graphics.camera.forward());
-    } else if(glfwGetKey('W')){
+    } else if(inp->getAction(Input::Actions::CAM_FORWARD)){
         graphics.camera.offsetPosition(secondsElapsed * env.moveSpeed * graphics.camera.forward());
     }
-    if(glfwGetKey('A')){
+    if(inp->getAction(Input::Actions::CAM_STRAFE_L)){
         graphics.camera.offsetPosition(secondsElapsed * env.moveSpeed * -graphics.camera.right());
-    } else if(glfwGetKey('D')){
+    } else if(inp->getAction(Input::Actions::CAM_STRAFE_R)){
         graphics.camera.offsetPosition(secondsElapsed * env.moveSpeed * graphics.camera.right());
     }
-    if(glfwGetKey('Z')){
+    if(inp->getAction(Input::Actions::CAM_MOVE_UP)){
         graphics.camera.offsetPosition(secondsElapsed * env.moveSpeed * -glm::vec3(0,1,0));
-    } else if(glfwGetKey('X')){
+    } else if(inp->getAction(Input::Actions::CAM_MOVE_DOWN)){
         graphics.camera.offsetPosition(secondsElapsed * env.moveSpeed * glm::vec3(0,1,0));
     }
 	

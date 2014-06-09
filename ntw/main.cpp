@@ -9,12 +9,15 @@
 // standard C++ libraries
 #include <iostream>
 #include <stdexcept>
+#include <locale>
 
 // My Classes
 #include "game/Game.h"
 
 int main(int argc, const char * argv[])
 {
+	std::locale::global( std::locale( "" ) );
+	
 	try{
 		Game::start();
 	} catch (const std::exception& e){

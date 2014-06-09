@@ -14,20 +14,26 @@
 #include <complex>
 #include <random>
 #include <vector>
+#include <locale>
+#include <limits>
 
 #include "GalacticObject.h"
 #include "SolarSystem.h"
 
 
 class Galaxy {
-	std::list<GalacticObject*> systems;
+public: //temp
+	std::vector<GalacticObject*> systems;
 	std::vector<float>* verts;
 	
 public:
 	
 	Galaxy();
 	void gen();
+	void gen2();
 	std::vector<float>* getGalaxyVerticies();
+	
+	void printGalaxyStats();
 };
 
 #endif /* defined(__ntw__Galaxy__) */
