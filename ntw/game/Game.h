@@ -10,7 +10,7 @@
 #define __ntw__Game__
 
 #include <GL/glew.h>
-#include <GL/glfw.h>
+#include <GL/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <ftgl/ftgl.h>
@@ -57,6 +57,8 @@ public:
 	void gameLoop();
 	
 	void update(float secondsElapsed);
+	
+	GLFWwindow* wind;
 	
 };
 

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		F3A68960193BF24A004E02FC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A6895F193BF24A004E02FC /* main.cpp */; };
 		F3A68C13193BF550004E02FC /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C12193BF550004E02FC /* glew.c */; };
-		F3A68C15193BF561004E02FC /* libglfw.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A68C14193BF561004E02FC /* libglfw.a */; };
 		F3A68C17193BF627004E02FC /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A68C16193BF627004E02FC /* OpenGL.framework */; };
 		F3A68C19193BF62D004E02FC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A68C18193BF62D004E02FC /* Cocoa.framework */; };
 		F3A68C1A193BF78B004E02FC /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68969193BF462004E02FC /* Bitmap.cpp */; };
@@ -39,9 +38,9 @@
 		F3D6E7A71945681300851E13 /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3D6E7A51945681300851E13 /* Input.cpp */; };
 		F3D6E7AB194568BB00851E13 /* KeyEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3D6E7A9194568BA00851E13 /* KeyEvent.cpp */; };
 		F3D6E7AE194568C600851E13 /* MouseEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3D6E7AC194568C600851E13 /* MouseEvent.cpp */; };
-		F3D6E7B019457E7100851E13 /* libftgl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D6E7AF19457E7100851E13 /* libftgl.a */; };
 		F3D6E7B3194585E800851E13 /* Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3D6E7B1194585E800851E13 /* Interface.cpp */; };
 		F3D6E7B61945862400851E13 /* uiWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3D6E7B41945862400851E13 /* uiWindow.cpp */; };
+		F3D6E7BF1946E75400851E13 /* libglfw.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D6E7BE1946E75400851E13 /* libglfw.3.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,7 +57,6 @@
 		F3A68971193BF462004E02FC /* Texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
 		F3A68972193BF462004E02FC /* Texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		F3A68C12193BF550004E02FC /* glew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = glew.c; path = thirdparty/glew/src/glew.c; sourceTree = "<group>"; };
-		F3A68C14193BF561004E02FC /* libglfw.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw.a; path = thirdparty/glfw/libglfw.a; sourceTree = "<group>"; };
 		F3A68C16193BF627004E02FC /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		F3A68C18193BF62D004E02FC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F3A68C20193BF976004E02FC /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
@@ -99,11 +97,11 @@
 		F3D6E7AA194568BB00851E13 /* KeyEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyEvent.h; sourceTree = "<group>"; };
 		F3D6E7AC194568C600851E13 /* MouseEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseEvent.cpp; sourceTree = "<group>"; };
 		F3D6E7AD194568C600851E13 /* MouseEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseEvent.h; sourceTree = "<group>"; };
-		F3D6E7AF19457E7100851E13 /* libftgl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libftgl.a; path = thirdparty/ftgl/libftgl.a; sourceTree = "<group>"; };
 		F3D6E7B1194585E800851E13 /* Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Interface.cpp; sourceTree = "<group>"; };
 		F3D6E7B2194585E800851E13 /* Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interface.h; sourceTree = "<group>"; };
 		F3D6E7B41945862400851E13 /* uiWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uiWindow.cpp; sourceTree = "<group>"; };
 		F3D6E7B51945862400851E13 /* uiWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uiWindow.h; sourceTree = "<group>"; };
+		F3D6E7BE1946E75400851E13 /* libglfw.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.0.dylib; path = thirdparty/glfw/libglfw.3.0.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,10 +109,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3D6E7BF1946E75400851E13 /* libglfw.3.0.dylib in Frameworks */,
 				F3A68C19193BF62D004E02FC /* Cocoa.framework in Frameworks */,
-				F3A68C15193BF561004E02FC /* libglfw.a in Frameworks */,
 				F3A68C17193BF627004E02FC /* OpenGL.framework in Frameworks */,
-				F3D6E7B019457E7100851E13 /* libftgl.a in Frameworks */,
 				F3A68C3A193C1486004E02FC /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,11 +168,10 @@
 		F3A68C11193BF523004E02FC /* thirparty */ = {
 			isa = PBXGroup;
 			children = (
+				F3D6E7BE1946E75400851E13 /* libglfw.3.0.dylib */,
 				F3A68C39193C1486004E02FC /* IOKit.framework */,
-				F3D6E7AF19457E7100851E13 /* libftgl.a */,
 				F3A68C18193BF62D004E02FC /* Cocoa.framework */,
 				F3A68C16193BF627004E02FC /* OpenGL.framework */,
-				F3A68C14193BF561004E02FC /* libglfw.a */,
 				F3A68C12193BF550004E02FC /* glew.c */,
 			);
 			name = thirparty;

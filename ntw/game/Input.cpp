@@ -11,16 +11,23 @@
 Input* Input::inst = nullptr;
 
 //sets up the Input module by registering the callback with GLFW
-void GLFWCALL keyboardCallBack_w( int key, int action )
+void keyboardCallBack_w( GLFWwindow* wind, int key, int action, int a, int b )
 {
 	Input::keyboardCallBack(key, action);
 }
 
+void scrollCallBack_w( GLFWwindow* wind, double xoff, int yoff )
+{
+	Input::scrollCallBack(xoff, yoff);
+}
+
 Input::Input()
 {
+	
+	wind = nullptr;
 	//default Key to Action mapping
 	
-	keyMap[PROG_CLOSE]		=	GLFW_KEY_ESC;
+	keyMap[PROG_CLOSE]		=	GLFW_KEY_ESCAPE;
 	keyMap[CAM_FORWARD]		=	'W';
 	keyMap[CAM_BACK]		=	'S';
 	keyMap[CAM_STRAFE_L]	=	'A';
@@ -43,7 +50,7 @@ Input* Input::init()
 void Input::setupGLFWHandlers()
 {
 	//setup the conrols callbacks.
-	glfwSetKeyCallback( keyboardCallBack_w );
+	glfwSetKeyCallback( wind, keyboardCallBack_w );
 }
 
 void Input::keyboardCallBack(int key, int action)
@@ -51,7 +58,27 @@ void Input::keyboardCallBack(int key, int action)
 	//
 }
 
+void Input::scrollCallBack(double xoff, double yoff)
+{
+	inst->xoff += xoff;
+	if(inst->xoff > 100.0)
+		inst->xoff = 0.0;
+	
+	if(inst->xoff < 0.0)
+		inst->xoff = 0.0;
+}
+
+double Input::getScrollWheelPos()
+{
+	return xoff;
+}
+
+void Input::setScrollWheelPos(double pos)
+{
+	xoff = pos;
+}
+
 int Input::getAction( Actions act )
 {
-	return glfwGetKey(keyMap[act]);
+	return glfwGetKey( wind, keyMap[act] );
 }

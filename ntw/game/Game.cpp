@@ -19,47 +19,56 @@ Game::Game()
 void Game::start()
 {
 	inst = new Game();
+	int instep = 0;
 	
 	// initialise GLFW
+	std::cout << instep++ << std::endl;
 	inst->graphics.initGLFW();
-    
+    std::cout << instep++ << std::endl;
 	inst->graphics.openWindow();
-	
-	inst->graphics.initGLEW();
-	
-	inst->graphics.setOpenGlSettings();
-	
-	inst->graphics.checkOpenGlVersion();
-	
-	// GLFW settings
-	glfwDisable(GLFW_MOUSE_CURSOR);
-	glfwSetMousePos(0, 0);
-	glfwSetMouseWheel(0);
-	
+	std::cout << instep++ << std::endl;
+	inst->wind = inst->graphics.wind;
+	std::cout << instep++ << std::endl;
 	inst->inp = Input::init();
+	std::cout << instep++ << std::endl;
+	inst->inp->wind = inst->graphics.wind;
+	std::cout << instep++ << std::endl;
+	inst->graphics.initGLEW();
+	std::cout << instep++ << std::endl;
+	inst->graphics.setOpenGlSettings();
+	std::cout << instep++ << std::endl;
+	inst->graphics.checkOpenGlVersion();
+	std::cout << instep++ << std::endl;
+	// GLFW settings
+	//glfwWindowHint( GLFW_CURSOR_HIDDEN, GL_TRUE );
+	glfwSetInputMode( inst->wind, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetCursorPos( inst->wind, 0, 0 );
+	inst->inp->setScrollWheelPos( 0.0 );
 	
+	
+	std::cout << instep++ << std::endl;
 	inst->inp->setupGLFWHandlers();
-    
+    std::cout << instep++ << std::endl;
     // load vertex and fragment shaders into opengl
     inst->graphics.loadShaders(inst->as);
-	
+	std::cout << instep++ << std::endl;
 	//initialize the environment
 	inst->env.initializeEnv();
-	
+	std::cout << instep++ << std::endl;
     // load the texture
     //LoadTexture();
 	
     // Load Assets
 	inst->as.loadGalaxy(inst->env.galaxy.getGalaxyVerticies());
-	
+	std::cout << instep++ << std::endl;
 	inst->as.loadSquare();
-	
+	std::cout << instep++ << std::endl;
 	//LoadTriangle();
 	
 	inst->graphics.setUpCamera();
-    
+    std::cout << instep++ << std::endl;
     inst->gameLoop();
-	
+	std::cout << instep++ << std::endl;
     // clean up and exit
     glfwTerminate();
 	
@@ -76,7 +85,7 @@ void Game::gameLoop()
 	
 	// run while the window is open
 	double lastTime = glfwGetTime();
-    while(glfwGetWindowParam(GLFW_OPENED)){
+    while(!glfwWindowShouldClose(wind)){
         // update the scene based on the time elapsed since last update
         double thisTime = glfwGetTime();
         update(thisTime - lastTime);
@@ -85,16 +94,18 @@ void Game::gameLoop()
         // draw one frame
 		graphics.render(env, as);
 		
+        glfwPollEvents();
+		
         // check for errors
         GLenum error = glGetError();
         if(error != GL_NO_ERROR)
             std::cerr << "OpenGL Error " << error << ": " << (const char*)gluErrorString(error) << std::endl;
 		
         //exit program if escape key is pressed
-        if(glfwGetKey(GLFW_KEY_ESC))
-            glfwCloseWindow();
+        if(glfwGetKey(wind, GLFW_KEY_ESCAPE))
+            glfwSetWindowShouldClose(wind, GL_TRUE);
     }
-	
+	glfwDestroyWindow(wind);
 }
 
 void Game::update(float secondsElapsed)
@@ -103,26 +114,26 @@ void Game::update(float secondsElapsed)
 	env.gDegreesRotated += secondsElapsed * env.degreesPerSecond;
     while(env.gDegreesRotated > 360.0f) env.gDegreesRotated -= 360.0f;
 	
-	if(glfwGetKey('R')){
+	if(glfwGetKey(wind, 'R')){
 		env.degreesPerSecond = 10.0f;
-	} else if(glfwGetKey('T')){
+	} else if(glfwGetKey(wind, 'T')){
 		env.degreesPerSecond = 0.0f;
 	}
 	
     //move position of camera based on WASD keys, and XZ keys for up and down
 	
 	
-	if(glfwGetKey('[')){
+	if(glfwGetKey(wind, '[')){
 		env.moveSpeed += 10.0f;
 		std::cout << env.moveSpeed << std::endl;
-	} else if (glfwGetKey(']')){
+	} else if (glfwGetKey(wind, ']')){
 		env.moveSpeed -= 10.0f;
 		while (env.moveSpeed < 0.0f) {
 			env.moveSpeed = 10.0f;
 		}
 	}
 	
-	if(glfwGetKey('\\')){
+	if(glfwGetKey(wind, '\\')){
 		env.moveSpeed = 0.5f;
 	}
 		
@@ -148,18 +159,24 @@ void Game::update(float secondsElapsed)
 	
     //rotate camera based on mouse movement
     const float mouseSensitivity = 0.1;
-    int mouseX, mouseY;
-    glfwGetMousePos(&mouseX, &mouseY);
+    double mouseXo, mouseYo;
+    glfwGetCursorPos(wind, &mouseXo, &mouseYo);
+	int mouseX, mouseY;
+	mouseX = std::floor(mouseXo);
+	mouseY = std::floor(mouseYo);
+	
+	//std::cout << "(" << mouseX << "," << mouseY << ")" << std::endl;
+	
     graphics.camera.offsetOrientation(mouseSensitivity * mouseY, mouseSensitivity * mouseX);
-    glfwSetMousePos(0, 0); //reset the mouse, so it doesn't go out of the window
+    glfwSetCursorPos(wind, 0, 0); //reset the mouse, so it doesn't go out of the window
 	
     //increase or decrease field of view based on mouse wheel
     const float zoomSensitivity = -0.2;
-    float fieldOfView = graphics.camera.fieldOfView() + zoomSensitivity * (float)glfwGetMouseWheel();
+    float fieldOfView = graphics.camera.fieldOfView() + zoomSensitivity * (float)(inp->getScrollWheelPos());
     if(fieldOfView < 5.0f) fieldOfView = 5.0f;
     if(fieldOfView > 130.0f) fieldOfView = 130.0f;
     graphics.camera.setFieldOfView(fieldOfView);
-    glfwSetMouseWheel(0);
+    inp->setScrollWheelPos(0);
 
 }
 

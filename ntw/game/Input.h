@@ -14,7 +14,7 @@
 #include <vector>
 #include <map>
 
-#include <GL/glfw.h>
+#include <GL/glfw3.h>
 
 #include "KeyEvent.h"
 #include "MouseEvent.h"
@@ -45,17 +45,26 @@ private:
 	std::map<Actions, int> keyMap;
 	std::map<Actions, std::function<void(int)>> keyEvents;
 	
+	
+	
+	double xoff;
+	
 public:
+	GLFWwindow* wind;
 	static Input* inst;
 	Input();
 	static Input* init( void );
 	void setupGLFWHandlers();
 	
 	static void keyboardCallBack(int key, int action);
+	static void scrollCallBack(double xoff, double yoff);
 	
 	bool bindAction( Actions act, std::function<void(int)> fn );
 
 	int getAction(Actions act);
+	
+	double getScrollWheelPos();
+	void setScrollWheelPos(double pos);
 };
 
 #endif /* defined(__ntw__Input__) */

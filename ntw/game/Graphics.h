@@ -13,7 +13,7 @@
 #include <vector>
 
 #include <GL/glew.h>
-#include <GL/glfw.h>
+#include <GL/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -31,6 +31,7 @@ private:
 	
 public:
 	tdogl::Camera camera;
+	GLFWwindow* wind;
 	
 public:
 	Graphics();

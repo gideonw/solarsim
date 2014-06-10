@@ -8,18 +8,26 @@
 
 #include "Graphics.h"
 
+void error_callback(int error, const char* description)
+{
+    fputs(description, stderr);
+}
+
 Graphics::Graphics()
 {
 	screenSize.x = 1024;
 	screenSize.y = 768;
+	wind = nullptr;
 }
 
 Graphics::Graphics(int _width, int _height):screenSize(_width, _height)
 {
+	wind = nullptr;
 }
 
 void Graphics::initGLFW()
 {
+	glfwSetErrorCallback(error_callback);
 	if(!glfwInit())
         throw std::runtime_error("glfwInit failed");
 }
@@ -27,20 +35,37 @@ void Graphics::initGLFW()
 void Graphics::openWindow()
 {
     // open a window with GLFW
-    glfwOpenWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3);
-    glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 2);
-    glfwOpenWindowHint(GLFW_WINDOW_NO_RESIZE, GL_TRUE);
-    if(!glfwOpenWindow((int)screenSize.x, (int)screenSize.y, 8, 8, 8, 8, 32, 0, GLFW_WINDOW))
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+    glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	
+	glfwWindowHint(GLFW_RED_BITS, 8);
+	glfwWindowHint(GLFW_GREEN_BITS, 8);
+	glfwWindowHint(GLFW_BLUE_BITS, 8);
+	glfwWindowHint(GLFW_ALPHA_BITS, 8);
+	glfwWindowHint(GLFW_DEPTH_BITS, 32);
+	glfwWindowHint(GLFW_STENCIL_BITS, 0);
+	
+	wind = glfwCreateWindow((int)screenSize.x, (int)screenSize.y, "NTW", NULL, NULL);
+	
+    if(wind == nullptr)
         throw std::runtime_error("glfwOpenWindow failed. Can your hardware handle OpenGL 3.2?");
+	
+	glfwMakeContextCurrent(wind);
 }
 
 void Graphics::initGLEW()
 {
 	// initialise GLEW
     glewExperimental = GL_TRUE; //stops glew crashing on OSX :-/
-    if(glewInit() != GLEW_OK)
+	int error = glewInit();
+    if(error != GLEW_OK)
+	{
+		std::cerr << error << std::endl;
         throw std::runtime_error("glewInit failed");
+	}
     
     // GLEW throws some errors, so discard all the errors so far
     while(glGetError() != GL_NO_ERROR) {}
@@ -119,7 +144,6 @@ void Graphics::render(Env& env, Assets& as) {
 		
 		////////// Shader Generic operations
 		
-		
 		glBindVertexArray(draw->vao);
 		
 		glDrawArrays(draw->drawType, draw->drawStart, draw->drawCount);
@@ -130,6 +154,6 @@ void Graphics::render(Env& env, Assets& as) {
 	}
 	
     // swap the display buffers (displays what was just drawn)
-    glfwSwapBuffers();
+    glfwSwapBuffers(wind);
 }
 
