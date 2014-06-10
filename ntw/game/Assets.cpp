@@ -40,11 +40,11 @@ void Assets::loadSquare()
 	
 	GLfloat vertexData[] = {
 		//  X     Y     Z
-		1.9f,	1.9f,	0.0f,
-		1.7f,	1.9f,	0.0f,
+		100.9f,	100.9f,	0.0f,
+		1.7f,	100.9f,	0.0f,
 		1.7f,	1.7f,	0.0f,
-		1.9f,	1.9f,	0.0f,
-		1.9f,	1.7f,	0.0f,
+		100.9f,	100.9f,	0.0f,
+		100.9f,	1.7f,	0.0f,
 		1.7f,	1.7f,	0.0f,
 	};
 	//set the draw count for gl_draw arrays

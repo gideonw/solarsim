@@ -119,6 +119,32 @@ void Graphics::loadShaders(Assets& as)
     as.programUi = new tdogl::Program(uishaders);
 }
 
+void Graphics::test_awe()
+{
+	using namespace Awesomium;
+	
+	WebConfig config;
+	core = WebCore::Initialize(config);
+	
+	view = core->CreateWebView(512, 512);
+	WebURL url(WSLit("http://www.google.com"));
+	view->LoadURL(url);
+	
+	// finish loading the page
+	while (view->IsLoading())
+		core->Update();
+	
+	BitmapSurface* surface = (BitmapSurface*)view->surface();
+	
+	// Make sure our surface is not NULL-- it may be NULL if the WebView
+	// process has crashed.
+	if (surface != 0) {
+		// Save our BitmapSurface to a JPEG image in the current
+		// working directory.
+		surface->
+	}
+}
+
 void Graphics::render(Env& env, Assets& as) {
     // clear everything
     glClearColor(0, 0, 0, 1); // black

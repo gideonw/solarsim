@@ -67,6 +67,11 @@ void Game::start()
 	
 	inst->graphics.setUpCamera();
     std::cout << instep++ << std::endl;
+	
+	
+	inst->graphics.test_awe();
+	
+	
     inst->gameLoop();
 	std::cout << instep++ << std::endl;
     // clean up and exit
