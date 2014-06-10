@@ -141,7 +141,7 @@ void Graphics::test_awe()
 	if (surface != 0) {
 		// Save our BitmapSurface to a JPEG image in the current
 		// working directory.
-		surface->
+		surface->SaveToJPEG(WSLit("./result.jpg"));
 	}
 }
 
