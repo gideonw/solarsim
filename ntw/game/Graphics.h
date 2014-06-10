@@ -13,9 +13,12 @@
 #include <vector>
 
 #include <GL/glew.h>
-#include <GL/glfw.h>
+#include <GL/glfw2.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <Awesomium/WebCore.h>
+#include <Awesomium/BitmapSurface.h>
+#include <Awesomium/STLHelpers.h>
 
 #include "../tdogl/Camera.h"
 #include "../tdogl/Program.h"
@@ -31,7 +34,8 @@ private:
 	
 public:
 	tdogl::Camera camera;
-	
+	Awesomium::WebCore* web_core;
+	Awesomium::WebView* view;
 public:
 	Graphics();
 	Graphics(int width, int height);
@@ -45,7 +49,11 @@ public:
 	void loadShaders(Assets& as);
 	void setUpCamera();
 	
+	void testLoadAwe();
+	
 	void render(Env& env, Assets& as);
+	
+	void exit();
 };
 
 
