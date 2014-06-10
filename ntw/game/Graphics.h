@@ -13,7 +13,7 @@
 #include <vector>
 
 #include <GL/glew.h>
-#include <GL/glfw2.h>
+#include <GL/glfw.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <Awesomium/WebCore.h>
