@@ -127,12 +127,23 @@ void Graphics::test_awe()
 	core = WebCore::Initialize(config);
 	
 	view = core->CreateWebView(512, 512);
-	WebURL url(WSLit("http://www.google.com"));
+	view->SetTransparent(true);
+	WebURL url(WSLit("data:text/html,<html><body><div style=\"font-color: rgba(0.5, 0.5, 0.5, 1.0)\"><h1>Hello World</h1></div><script type=\"text/javascript\">document.write(\"You are running Awesomium \" + awesomium.version);</script></body></html>"));
 	view->LoadURL(url);
 	
 	// finish loading the page
 	while (view->IsLoading())
 		core->Update();
+	
+	
+	glGenTextures(1, &texture);
+	awe_up();
+}
+
+void Graphics::awe_up()
+{
+	using namespace Awesomium;
+	core->Update();
 	
 	BitmapSurface* surface = (BitmapSurface*)view->surface();
 	
@@ -141,9 +152,25 @@ void Graphics::test_awe()
 	if (surface != 0) {
 		// Save our BitmapSurface to a JPEG image in the current
 		// working directory.
-		surface->SaveToJPEG(WSLit("./result.jpg"));
+		if(surface->is_dirty()){
+			int w = surface->width();
+			int h = surface->height();
+			
+			unsigned char *buffer = new unsigned char[w * h * 4];
+			surface->CopyTo(buffer, w * 4, 4, false, true);
+			
+			glBindTexture(GL_TEXTURE_2D, texture);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+			//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, buffer);
+			glBindTexture(GL_TEXTURE_2D, 0);
+			delete[] buffer;
+		}
 	}
 }
+
 
 void Graphics::render(Env& env, Assets& as) {
     // clear everything
@@ -166,6 +193,12 @@ void Graphics::render(Env& env, Assets& as) {
 			
 			// set the "model" uniform in the vertex shader, based on the gDegreesRotated global
 			as.program->setUniform("model", glm::rotate(glm::mat4(), env.gDegreesRotated, glm::vec3(0,1,0)));
+		} else if (as.programUi == draw->shaders)
+		{
+			awe_up();
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, texture);
+			draw->shaders->setUniform("tex", 0);
 		}
 		
 		////////// Shader Generic operations
@@ -175,6 +208,8 @@ void Graphics::render(Env& env, Assets& as) {
 		glDrawArrays(draw->drawType, draw->drawStart, draw->drawCount);
 		
 		glBindVertexArray(0);
+		
+		glBindTexture(GL_TEXTURE_2D, 0);
 		
 		draw->shaders->stopUsing();
 	}

@@ -39,13 +39,13 @@ void Assets::loadSquare()
     glBindBuffer(GL_ARRAY_BUFFER, tmp->vbo);
 	
 	GLfloat vertexData[] = {
-		//  X     Y     Z
-		100.9f,	100.9f,	0.0f,
-		1.7f,	100.9f,	0.0f,
-		1.7f,	1.7f,	0.0f,
-		100.9f,	100.9f,	0.0f,
-		100.9f,	1.7f,	0.0f,
-		1.7f,	1.7f,	0.0f,
+		//  X     Y     Z		U		V
+		512.0f,	512.0f,	0.0f,	1.0f,	1.0f,
+		0.0f,	512.0f,	0.0f,	0.0f,	1.0f,
+		0.0f,	0.0f,	0.0f,	0.0f,	0.0f,
+		512.0f,	512.0f,	0.0f,	1.0f,	1.0f,
+		512.0f,	0.0f,	0.0f,	1.0f,	0.0f,
+		0.0f,	0.0f,	0.0f,	0.0f,	0.0f
 	};
 	//set the draw count for gl_draw arrays
 	tmp->drawCount = 6;
@@ -53,7 +53,10 @@ void Assets::loadSquare()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 	
 	glEnableVertexAttribArray(tmp->shaders->attrib("vert"));
-	glVertexAttribPointer(tmp->shaders->attrib("vert"), 3, GL_FLOAT, GL_FALSE, 0, NULL);
+	glVertexAttribPointer(tmp->shaders->attrib("vert"), 3, GL_FLOAT, GL_FALSE, 5*sizeof(GLfloat), NULL);
+	
+	glEnableVertexAttribArray(tmp->shaders->attrib("vertTexCoord"));
+	glVertexAttribPointer(tmp->shaders->attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE,  5*sizeof(GLfloat), (const GLvoid*)(3 * sizeof(GLfloat)));
 	
     glBindVertexArray(0);
 	

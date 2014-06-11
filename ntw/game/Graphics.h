@@ -11,6 +11,8 @@
 
 #include <iostream>
 #include <vector>
+#include <chrono>
+#include <thread>
 
 #include <GL/glew.h>
 #include <GL/glfw3.h>
@@ -53,8 +55,11 @@ public:
 	void render(Env& env, Assets& as);
 	
 	void test_awe();
+	void awe_up();
 	Awesomium::WebView* view;
 	Awesomium::WebCore* core;
+	GLuint texture;
+	
 };
 
 
