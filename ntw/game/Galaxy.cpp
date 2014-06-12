@@ -85,6 +85,7 @@ void Galaxy::printGalaxyStats()
 	
 	std::cout
 	<< std::fixed << std::endl
+	<< "Gal Seed: \t" << seed << std::endl
 	<< "SS Count: \t" << cnt << std::endl
 	<< "Max GDP: \t" << max_gdp << std::endl
 	<< "Min GDP: \t" << min_gdp << std::endl
@@ -268,7 +269,8 @@ void Galaxy::gen2()
 void Galaxy::gen()
 {
 	std::random_device rnd;
-	std::mt19937 eng(rnd());
+	seed = rnd();
+	std::mt19937 eng(seed);
 	std::uniform_real_distribution<float> xz_dist(-5000, 5000);
 	std::uniform_real_distribution<float> y_dist(-2000, 2000);
 	std::normal_distribution<> y_dist2(0, 1000);

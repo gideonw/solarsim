@@ -25,6 +25,9 @@ class Galaxy {
 public: //temp
 	std::vector<GalacticObject*> systems;
 	std::vector<float>* verts;
+
+private:
+	unsigned int seed;
 	
 public:
 	

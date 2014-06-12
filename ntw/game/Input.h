@@ -45,8 +45,6 @@ private:
 	std::map<Actions, int> keyMap;
 	std::map<Actions, std::function<void(int)>> keyEvents;
 	
-	
-	
 	double xoff;
 	
 public:
@@ -58,6 +56,7 @@ public:
 	
 	static void keyboardCallBack(int key, int action);
 	static void scrollCallBack(double xoff, double yoff);
+	static void cursorPosCB(double x, double y);
 	
 	bool bindAction( Actions act, std::function<void(int)> fn );
 
@@ -65,6 +64,19 @@ public:
 	
 	double getScrollWheelPos();
 	void setScrollWheelPos(double pos);
+	
+	//cursor
+	volatile double xp;
+	volatile double yp;
+	
+	void getCursorPos(double* xo, double* yo);
+	void setCursorPos(double xi, double yi);
+	
+	//register the region and give them an identifier
+	unsigned int registerRegion(double x1, double y1, double x2, double y2, std::function<void(int,double,double)> func);
+	
+	void unregisterRegion(unsigned int id);
+	
 };
 
 #endif /* defined(__ntw__Input__) */

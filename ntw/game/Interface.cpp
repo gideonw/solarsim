@@ -23,6 +23,12 @@ void Interface::loadUiWindows(Assets& as)
 	nui->loadViewIntoAsset();
 	windows.push_back(nui);
 	
+	//load menu
+	WebURL url2(WSLit("file:////Users/gideon/Projects/ntw/ntw/resources/ui/menu.html"));
+	nui = new uiWindow(url2, as.loadUiAsset(), core);
+	nui->loadViewIntoAsset();
+	windows.push_back(nui);
+	
 }
 
 void Interface::update()

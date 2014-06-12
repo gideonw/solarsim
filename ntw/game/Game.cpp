@@ -183,7 +183,7 @@ void Game::update(float secondsElapsed)
     //rotate camera based on mouse movement
     const float mouseSensitivity = 0.1;
     double mouseXo, mouseYo;
-    glfwGetCursorPos(wind, &mouseXo, &mouseYo);
+    inp->getCursorPos(&mouseXo, &mouseYo);
 	int mouseX, mouseY;
 	mouseX = std::floor(mouseXo);
 	mouseY = std::floor(mouseYo);
@@ -191,7 +191,7 @@ void Game::update(float secondsElapsed)
 	//std::cout << "(" << mouseX << "," << mouseY << ")" << std::endl;
 	
     graphics.camera.offsetOrientation(mouseSensitivity * mouseY, mouseSensitivity * mouseX);
-    glfwSetCursorPos(wind, 0, 0); //reset the mouse, so it doesn't go out of the window
+    inp->setCursorPos(0, 0); //reset the mouse, so it doesn't go out of the window
 	
     //increase or decrease field of view based on mouse wheel
     const float zoomSensitivity = -0.2;
