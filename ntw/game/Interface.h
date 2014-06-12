@@ -14,12 +14,21 @@
 
 
 #include "uiWindow.h"
+#include <Awesomium/WebCore.h>
+#include <Awesomium/STLHelpers.h>
+#include <Awesomium/BitmapSurface.h>
+
+using namespace Awesomium;
 
 
 class Interface {
-	std::vector<uiWindow> windows;
-	
+	std::vector<uiWindow*> windows;
+	WebCore* core;
 public:
+	Interface();
+	
+	void update();
+	void loadUiWindows( Assets& as );
 	
 };
 

@@ -126,9 +126,9 @@ void Graphics::test_awe()
 	WebConfig config;
 	core = WebCore::Initialize(config);
 	
-	view = core->CreateWebView(512, 512);
+	view = core->CreateWebView(256, 200);
 	view->SetTransparent(true);
-	WebURL url(WSLit("data:text/html,<html><body><div style=\"font-color: rgba(0.5, 0.5, 0.5, 1.0)\"><h1>Hello World</h1></div><script type=\"text/javascript\">document.write(\"You are running Awesomium \" + awesomium.version);</script></body></html>"));
+	WebURL url(WSLit("file:////Users/gideon/Projects/ntw/ntw/resources/ui/search.html"));
 	view->LoadURL(url);
 	
 	// finish loading the page
@@ -195,9 +195,8 @@ void Graphics::render(Env& env, Assets& as) {
 			as.program->setUniform("model", glm::rotate(glm::mat4(), env.gDegreesRotated, glm::vec3(0,1,0)));
 		} else if (as.programUi == draw->shaders)
 		{
-			awe_up();
 			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, texture);
+			glBindTexture(GL_TEXTURE_2D, draw->texture);
 			draw->shaders->setUniform("tex", 0);
 		}
 		

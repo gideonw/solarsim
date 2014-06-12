@@ -15,18 +15,22 @@
 #include <random>
 
 #include <GL/glew.h>
+#include <glm/glm.hpp>
 
 #include "../tdogl/Program.h"
 
 struct asset {
     tdogl::Program* shaders;
+	GLuint texture;
     GLuint vbo;
     GLuint vao;
     GLenum drawType;
     GLint drawStart;
     GLint drawCount;
+	glm::mat4 transform;
 	asset() :
 		shaders(nullptr),
+		texture(0),
 		vbo(0),
 		vao(0),
 		drawType(GL_POINTS),
@@ -48,7 +52,9 @@ public:
 	void addAsset(asset* a);
 	
 	void loadGalaxy(std::vector<float>* verts);
-	void loadSquare();
+	
+	asset* loadUiAsset();
+	asset* loadUiAsset(GLfloat h, GLfloat w);
 	
 	tdogl::Program* program;
 	tdogl::Program* programUi;

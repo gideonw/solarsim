@@ -9,6 +9,12 @@
 
 #include "Game.h"
 
+void print_step(int& step, std::string s)
+{
+	step++;
+	std::cout << step << " - " << s << std::endl;
+}
+
 Game* Game::inst = nullptr;
 
 Game::Game()
@@ -22,58 +28,63 @@ void Game::start()
 	int instep = 0;
 	
 	// initialise GLFW
-	std::cout << instep++ << std::endl;
+	
+	print_step(instep, "Init GLFW");
 	inst->graphics.initGLFW();
-    std::cout << instep++ << std::endl;
+	
+    print_step(instep, "Open Window");
 	inst->graphics.openWindow();
-	std::cout << instep++ << std::endl;
+	
+	print_step(instep, "Send Window Handler to Graphics");
 	inst->wind = inst->graphics.wind;
-	std::cout << instep++ << std::endl;
+	
+	print_step(instep, "Init Input");
 	inst->inp = Input::init();
-	std::cout << instep++ << std::endl;
+	
+	print_step(instep, "Send Input to Graphics");
 	inst->inp->wind = inst->graphics.wind;
-	std::cout << instep++ << std::endl;
+	
+	print_step(instep, "Init GLEW");
 	inst->graphics.initGLEW();
-	std::cout << instep++ << std::endl;
+	
+	print_step(instep, "Set OpenGL Settings");
 	inst->graphics.setOpenGlSettings();
-	std::cout << instep++ << std::endl;
+	
+	print_step(instep, "Check OpenGL Version");
 	inst->graphics.checkOpenGlVersion();
-	std::cout << instep++ << std::endl;
+	
+	print_step(instep, "GLFW Settings");
 	// GLFW settings
 	//glfwWindowHint( GLFW_CURSOR_HIDDEN, GL_TRUE );
 	glfwSetInputMode( inst->wind, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	glfwSetCursorPos( inst->wind, 0, 0 );
 	inst->inp->setScrollWheelPos( 0.0 );
 	
-	
-	std::cout << instep++ << std::endl;
+	print_step(instep, "Setup GLFWHandlers");
 	inst->inp->setupGLFWHandlers();
-    std::cout << instep++ << std::endl;
+	
+    print_step(instep, "Load Shaders");
     // load vertex and fragment shaders into opengl
     inst->graphics.loadShaders(inst->as);
-	std::cout << instep++ << std::endl;
+	
+	print_step(instep, "Initialize Env");
 	//initialize the environment
 	inst->env.initializeEnv();
-	std::cout << instep++ << std::endl;
-    // load the texture
-    //LoadTexture();
 	
+	print_step(instep, "Load Galaxy");
     // Load Assets
 	inst->as.loadGalaxy(inst->env.galaxy.getGalaxyVerticies());
-	std::cout << instep++ << std::endl;
-	inst->as.loadSquare();
-	std::cout << instep++ << std::endl;
-	//LoadTriangle();
 	
+	print_step(instep, "Load UI Windows");
+	inst->ui.loadUiWindows(inst->as);
+	
+	print_step(instep, "Setup Camera");
 	inst->graphics.setUpCamera();
-    std::cout << instep++ << std::endl;
 	
-	
-	inst->graphics.test_awe();
-	
-	
+    print_step(instep, "Game Loop");
     inst->gameLoop();
-	std::cout << instep++ << std::endl;
+	
+	print_step(instep, "End");
     // clean up and exit
     glfwTerminate();
 	
@@ -93,8 +104,14 @@ void Game::gameLoop()
     while(!glfwWindowShouldClose(wind)){
         // update the scene based on the time elapsed since last update
         double thisTime = glfwGetTime();
+		
         update(thisTime - lastTime);
         lastTime = thisTime;
+		// check for errors
+        GLenum error = glGetError();
+        if(error != GL_NO_ERROR)
+            std::cerr << "OpenGL Error Update " << error << ": " << (const char*)gluErrorString(error) << std::endl;
+		
 		
         // draw one frame
 		graphics.render(env, as);
@@ -102,9 +119,9 @@ void Game::gameLoop()
         glfwPollEvents();
 		
         // check for errors
-        GLenum error = glGetError();
+        error = glGetError();
         if(error != GL_NO_ERROR)
-            std::cerr << "OpenGL Error " << error << ": " << (const char*)gluErrorString(error) << std::endl;
+            std::cerr << "OpenGL Error Render" << error << ": " << (const char*)gluErrorString(error) << std::endl;
 		
         //exit program if escape key is pressed
         if(glfwGetKey(wind, GLFW_KEY_ESCAPE))
@@ -115,6 +132,7 @@ void Game::gameLoop()
 
 void Game::update(float secondsElapsed)
 {
+	ui.update();
 	
 	env.gDegreesRotated += secondsElapsed * env.degreesPerSecond;
     while(env.gDegreesRotated > 360.0f) env.gDegreesRotated -= 360.0f;

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<style>
+			@font-face
+			{
+				font-family: fff;
+				background-color: rgba(0,0,0,0.0);
+				src: url("file:////Users/gideon/Projects/ntw/ntw/resources/ui/menlo-webfont.woff");
+			}
+			html {
+				height: 100%;
+			}
+			body {
+				height: 100%;
+				margin: 0;
+				background-repeat: no-repeat;
+				background-attachment: fixed;
+				background: transparent;
+			}
+		
+			div.select {
+				width: 212px;
+				height: 200px;
+				padding: 0px;
+				border: 0px solid black;
+				margin: 10px;
+				background-color: rgba(100,100,100,0.5);
+				overflow-y:scroll;
+				border-top-right-radius: 4px;
+				border-bottom-right-radius: 4px;
+			}
+			div.option {
+				font-family:fff;
+				padding: 0px;
+				border: 1px solid black;
+				margin: 0px;
+				width: 200px;
+				cursor: pointer;
+				background-color: rgba(200,200,200,1.0);
+			}
+			div.select::-webkit-scrollbar {
+				width: 10px;
+				background-color: rgba(200,200,200,0.5);
+				border-top-right-radius: 10px;
+				border-bottom-right-radius: 10px;
+			}
+
+			div.select::-webkit-scrollbar-track {
+				-webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3); 
+				border-radius: 10px;
+			}
+
+			div.select::-webkit-scrollbar-thumb {
+				border-radius: 10px;
+				-webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.5);
+				background-color: rgba(255,255,255,1.0);
+			}
+
+		</style>
+		<script>
+			$(function() {
+				var l = $('.option');
+				$.each( l, function(index, item){
+					item.onclick = function() {alert('Click!');};
+					item.onmouseover = function() {item.style.backgroundColor = 'rgba(255,255,255,0.2)'; };
+					item.onmouseout = function() {item.style.backgroundColor = 'rgba(200,200,200,0.5)'; };
+				});
+			});
+		</script>
+	</head>
+<body>
+
+<div class="select">
+	<div class="option"> Sys 1</div>
+	<div class="option"> Sys 1</div>
+	<div class="option"> Sys 1</div>
+	<div class="option"> Sys 1</div>
+	<div class="option"> Sys 1</div>
+	<div class="option"> Sys 1</div>
+	<div class="option"> Sys 1</div>
+	<div class="option"> Sys 1</div>
+	<div class="option"> Sys 1</div>
+	<div class="option"> Sys 1</div>
+	<div class="option"> Sys 1</div>
+	<div class="option"> Sys 1</div>
+</div>
+
+</body>
+</html>

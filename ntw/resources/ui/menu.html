@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<style>
+			html {
+				height: 100%;
+			}
+			body {
+				height: 100%;
+				margin: 20px;
+				background-repeat: no-repeat;
+				background-attachment: fixed;
+				background: background: linear-gradient(to bottom right, red , blue);
+			}
+			div.left_border {
+				margin: 20px;
+				border-left: 1px dashed black;
+				padding-left:2px;
+				
+			}
+			
+			div.menu_button {
+				cursor: pointer;
+				width: 200px;
+				font-size: 2em;
+				-webkit-transition: all .1s ease-in-out;
+			}
+			div.menu_button:hover {
+				-webkit-transform: scale(1.1);
+				-webkit-transform: translate(10px,0px);
+				
+			}
+		</style>
+		<script>
+			$(function() {
+				var l = $('.option');
+				$.each( l, function(index, item){
+					item.onclick = function() {alert('Click!');};
+					item.onmouseover = function() {item.style.backgroundColor = 'rgba(255,255,255,0.2)'; };
+					item.onmouseout = function() {item.style.backgroundColor = 'rgba(200,200,200,0.5)'; };
+				});
+			});
+		</script>
+	</head>
+<body>
+
+<h1> Nebula Trade Winds </h1>
+<div class="left_border">
+	<div class="menu_button">New Game</div>
+	<div class="menu_button">Continue Game</div>
+	<div class="menu_button">Options</div>
+	<div class="menu_button">Exit</div>
+</div>
+
+</body>
+</html>

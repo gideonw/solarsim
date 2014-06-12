@@ -22,9 +22,13 @@ std::list<asset*>* Assets::getAssetList()
 	return &assets;
 }
 
-void Assets::loadSquare()
+asset* Assets::loadUiAsset()
 {
-	
+	return loadUiAsset(512.0f, 512.0f);
+}
+
+asset* Assets::loadUiAsset(GLfloat h, GLfloat w)
+{
 	asset* tmp = new asset();
 	
 	tmp->shaders = programUi;
@@ -40,11 +44,11 @@ void Assets::loadSquare()
 	
 	GLfloat vertexData[] = {
 		//  X     Y     Z		U		V
-		512.0f,	512.0f,	0.0f,	1.0f,	1.0f,
-		0.0f,	512.0f,	0.0f,	0.0f,	1.0f,
+		h,		w,		0.0f,	1.0f,	1.0f,
+		0.0f,	w,		0.0f,	0.0f,	1.0f,
 		0.0f,	0.0f,	0.0f,	0.0f,	0.0f,
-		512.0f,	512.0f,	0.0f,	1.0f,	1.0f,
-		512.0f,	0.0f,	0.0f,	1.0f,	0.0f,
+		h,		w,		0.0f,	1.0f,	1.0f,
+		h,		0.0f,	0.0f,	1.0f,	0.0f,
 		0.0f,	0.0f,	0.0f,	0.0f,	0.0f
 	};
 	//set the draw count for gl_draw arrays
@@ -61,7 +65,7 @@ void Assets::loadSquare()
     glBindVertexArray(0);
 	
 	addAsset(tmp);
-
+	return tmp;
 }
 
 void Assets::loadGalaxy(std::vector<float>* verts)
@@ -100,6 +104,49 @@ void Assets::loadGalaxy(std::vector<float>* verts)
 }
 
 /*
+ void Assets::loadSquare()
+ {
+ 
+ asset* tmp = new asset();
+ 
+ tmp->shaders = programUi;
+ tmp->drawType = GL_TRIANGLE_STRIP;
+ 
+ // make and bind the VAO
+ glGenVertexArrays(1, &(tmp->vao));
+ glBindVertexArray(tmp->vao);
+ 
+ // make and bind the VBO
+ glGenBuffers(1, &(tmp->vbo));
+ glBindBuffer(GL_ARRAY_BUFFER, tmp->vbo);
+ 
+ GLfloat vertexData[] = {
+ //  X     Y     Z		U		V
+ 512.0f,	512.0f,	0.0f,	1.0f,	1.0f,
+ 0.0f,	512.0f,	0.0f,	0.0f,	1.0f,
+ 0.0f,	0.0f,	0.0f,	0.0f,	0.0f,
+ 512.0f,	512.0f,	0.0f,	1.0f,	1.0f,
+ 512.0f,	0.0f,	0.0f,	1.0f,	0.0f,
+ 0.0f,	0.0f,	0.0f,	0.0f,	0.0f
+ };
+ //set the draw count for gl_draw arrays
+ tmp->drawCount = 6;
+ 
+ glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
+ 
+ glEnableVertexAttribArray(tmp->shaders->attrib("vert"));
+ glVertexAttribPointer(tmp->shaders->attrib("vert"), 3, GL_FLOAT, GL_FALSE, 5*sizeof(GLfloat), NULL);
+ 
+ glEnableVertexAttribArray(tmp->shaders->attrib("vertTexCoord"));
+ glVertexAttribPointer(tmp->shaders->attrib("vertTexCoord"), 2, GL_FLOAT, GL_TRUE,  5*sizeof(GLfloat), (const GLvoid*)(3 * sizeof(GLfloat)));
+ 
+ glBindVertexArray(0);
+ 
+ addAsset(tmp);
+ 
+ }
+
+ 
 void Assets::loadCloud()
 {
 	std::random_device rnd;

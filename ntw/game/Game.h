@@ -37,6 +37,7 @@
 #include "Env.h"
 #include "Assets.h"
 #include "Input.h"
+#include "Interface.h"
 
 class Game
 {
@@ -47,6 +48,7 @@ private:
 	Env env;
 	Assets as;
 	Graphics graphics;
+	Interface ui;
 	Input* inp;
 	
 	Game();
