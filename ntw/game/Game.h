@@ -26,6 +26,7 @@
 #include <sstream>
 #include <iomanip>
 #include <locale>
+#include <functional>
 
 // tdogl classes
 #include "../tdogl/Program.h"
@@ -59,6 +60,8 @@ public:
 	void gameLoop();
 	
 	void update(float secondsElapsed);
+	
+	void updateCamera(double x, double y);
 	
 	GLFWwindow* wind;
 	

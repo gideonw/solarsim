@@ -12,7 +12,7 @@
 #include <iostream>
 #include <vector>
 
-
+#include <glm/glm.hpp>
 #include "uiWindow.h"
 #include <Awesomium/WebCore.h>
 #include <Awesomium/STLHelpers.h>
@@ -24,11 +24,14 @@ using namespace Awesomium;
 class Interface {
 	std::vector<uiWindow*> windows;
 	WebCore* core;
+	WebView* lastFocus;
 public:
 	Interface();
 	
 	void update();
 	void loadUiWindows( Assets& as );
+	
+	bool handleCursor( double x, double y );
 	
 };
 

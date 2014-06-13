@@ -54,7 +54,7 @@ public:
 	void loadGalaxy(std::vector<float>* verts);
 	
 	asset* loadUiAsset();
-	asset* loadUiAsset(GLfloat h, GLfloat w);
+	asset* loadUiAsset(glm::vec2 orig, GLfloat h, GLfloat w);
 	
 	tdogl::Program* program;
 	tdogl::Program* programUi;

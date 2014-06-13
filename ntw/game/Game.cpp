@@ -9,6 +9,15 @@
 
 #include "Game.h"
 
+void print_mat(glm::mat4 m)
+{
+	std::cout
+	<< m[0][0] << "\t" << m[0][1] << "\t" << m[0][2] << "\t" << m[0][3]<< std::endl
+	<< m[1][0] << "\t" << m[1][1] << "\t" << m[1][2] << "\t" << m[1][3]<< std::endl
+	<< m[2][0] << "\t" << m[2][1] << "\t" << m[2][2] << "\t" << m[2][3]<< std::endl
+	<< m[3][0] << "\t" << m[3][1] << "\t" << m[3][2] << "\t" << m[3][3]<< std::endl;
+}
+
 void print_step(int& step, std::string s)
 {
 	step++;
@@ -40,6 +49,8 @@ void Game::start()
 	
 	print_step(instep, "Init Input");
 	inst->inp = Input::init();
+	inst->inp->interface = &(inst->ui);
+	inst->inp->cursor = std::bind(&Game::updateCamera, inst, std::placeholders::_1, std::placeholders::_2);
 	
 	print_step(instep, "Send Input to Graphics");
 	inst->inp->wind = inst->graphics.wind;
@@ -55,9 +66,8 @@ void Game::start()
 	
 	print_step(instep, "GLFW Settings");
 	// GLFW settings
-	//glfwWindowHint( GLFW_CURSOR_HIDDEN, GL_TRUE );
-	glfwSetInputMode( inst->wind, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-	glfwSetCursorPos( inst->wind, 0, 0 );
+	inst->inp->showCursor();
+	inst->inp->setCursorPos(0, 0);
 	inst->inp->setScrollWheelPos( 0.0 );
 	
 	print_step(instep, "Setup GLFWHandlers");
@@ -180,18 +190,38 @@ void Game::update(float secondsElapsed)
         graphics.camera.offsetPosition(secondsElapsed * env.moveSpeed * glm::vec3(0,1,0));
     }
 	
+	if(inp->getAction(Input::Actions::CAM_TOGGLE_LOOK))
+	{
+		if(inp->cursorMode != GLFW_CURSOR_DISABLED){
+			inp->disableCursor();
+		} else {
+			inp->setCursorPos(0, 0);
+			inp->showCursor();
+		}
+	}
+	
+}
+
+void Game::updateCamera( double x, double y)
+{
+
+	
+	
+	
     //rotate camera based on mouse movement
     const float mouseSensitivity = 0.1;
-    double mouseXo, mouseYo;
-    inp->getCursorPos(&mouseXo, &mouseYo);
+    //double mouseXo, mouseYo;
+    //inp->getCursorPos(&mouseXo, &mouseYo);
 	int mouseX, mouseY;
-	mouseX = std::floor(mouseXo);
-	mouseY = std::floor(mouseYo);
+	mouseX = std::floor(x);
+	mouseY = std::floor(y);
 	
 	//std::cout << "(" << mouseX << "," << mouseY << ")" << std::endl;
-	
-    graphics.camera.offsetOrientation(mouseSensitivity * mouseY, mouseSensitivity * mouseX);
-    inp->setCursorPos(0, 0); //reset the mouse, so it doesn't go out of the window
+	if(inp->getCursorMode() == GLFW_CURSOR_DISABLED)
+	{
+		graphics.camera.offsetOrientation(mouseSensitivity * mouseY, mouseSensitivity * mouseX);
+		inp->setCursorPos(0, 0); //reset the mouse, so it doesn't go out of the window
+	}
 	
     //increase or decrease field of view based on mouse wheel
     const float zoomSensitivity = -0.2;

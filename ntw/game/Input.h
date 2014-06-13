@@ -13,11 +13,17 @@
 #include <functional>
 #include <vector>
 #include <map>
+#include <deque>
+
+#include "Interface.h"
 
 #include <GL/glfw3.h>
 
 #include "KeyEvent.h"
 #include "MouseEvent.h"
+
+
+
 
 class Input {
 public:
@@ -32,6 +38,7 @@ public:
 		CAM_ZOOM_IN		= 5,
 		CAM_MOVE_UP		= 6,
 		CAM_MOVE_DOWN	= 7,
+		CAM_TOGGLE_LOOK = 8,
 		
 		//OPENGL
 		//RELOAD_SHADER	= 70,
@@ -44,10 +51,17 @@ private:
 
 	std::map<Actions, int> keyMap;
 	std::map<Actions, std::function<void(int)>> keyEvents;
-	
+		
 	double xoff;
 	
 public:
+	//pointer to interface for mouse handling
+	Interface* interface;
+	bool uiHasFocus;
+	unsigned int cursorMode;
+	
+	std::function<void(double, double)> cursor;
+	
 	GLFWwindow* wind;
 	static Input* inst;
 	Input();
@@ -72,11 +86,10 @@ public:
 	void getCursorPos(double* xo, double* yo);
 	void setCursorPos(double xi, double yi);
 	
-	//register the region and give them an identifier
-	unsigned int registerRegion(double x1, double y1, double x2, double y2, std::function<void(int,double,double)> func);
-	
-	void unregisterRegion(unsigned int id);
-	
+	void disableCursor();
+	void hideCursor();
+	void showCursor();
+	unsigned int getCursorMode();
 };
 
 #endif /* defined(__ntw__Input__) */

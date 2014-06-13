@@ -24,12 +24,13 @@ void scrollCallBack_w( GLFWwindow* wind, double xoff, int yoff )
 void cursorPosCallBack_w( GLFWwindow* wind, double x, double y )
 {
 	//std::cout << x << "," << y << std::endl;
+	x *= 2;
+	y *= 2;
 	Input::cursorPosCB( x, y );
 }
 
 Input::Input()
 {
-	
 	wind = nullptr;
 	//default Key to Action mapping
 	
@@ -40,6 +41,7 @@ Input::Input()
 	keyMap[CAM_STRAFE_R]	=	'D';
 	keyMap[CAM_MOVE_UP]		=	'Z';
 	keyMap[CAM_MOVE_DOWN]	=	'X';
+	keyMap[CAM_TOGGLE_LOOK]	=	'C';
 
 	//later:: load from file
 }
@@ -60,9 +62,22 @@ void Input::setupGLFWHandlers()
 
 void Input::cursorPosCB(double x, double y)
 {
-	//
-	inst->xp = x;
-	inst->yp = y;
+	if (inst->cursorMode != GLFW_CURSOR_DISABLED && inst->interface->handleCursor(x, y)) {
+		//cursor handled in ui, set focus
+		inst->uiHasFocus = true;
+	} else {
+		//pass to the cursor to the game, but it doesn't have to use it
+		inst->uiHasFocus = false;
+		inst->xp = x;
+		inst->yp = y;
+		inst->cursor(x,y);
+		//std::cout << x << "," << y << std::endl;
+	}
+}
+
+unsigned int Input::getCursorMode()
+{
+	return cursorMode;
 }
 
 void Input::getCursorPos(double* xo, double* yo)
@@ -73,9 +88,28 @@ void Input::getCursorPos(double* xo, double* yo)
 
 void Input::setCursorPos(double xi, double yi)
 {
+	std::cout << "cursor: " << xi << "," << yi << std::endl;
 	xp = xi;
 	yp = yi;
 	glfwSetCursorPos(wind, xp, yp);
+}
+
+void Input::disableCursor()
+{
+	cursorMode = GLFW_CURSOR_DISABLED;
+	glfwSetInputMode( inst->wind, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+}
+
+void Input::hideCursor()
+{
+	cursorMode = GLFW_CURSOR_HIDDEN;
+	glfwSetInputMode( inst->wind, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+}
+
+void Input::showCursor()
+{
+	cursorMode = GLFW_CURSOR_NORMAL;
+	glfwSetInputMode( inst->wind, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 }
 
 void Input::keyboardCallBack(int key, int action)

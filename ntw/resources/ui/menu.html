@@ -8,22 +8,28 @@
 			}
 			body {
 				height: 100%;
-				margin: 20px;
+				margin: 0px;
 				background-repeat: no-repeat;
 				background-attachment: fixed;
-				background: background: linear-gradient(to bottom right, red , blue);
+				background: transparent;
 			}
 			div.left_border {
 				margin: 20px;
 				border-left: 1px dashed black;
 				padding-left:2px;
-				
 			}
-			
+
+			div.menu {
+				width: 290px;
+				height: 200px;
+				background-color: rgba(100,100,100,0.95);
+				border-radius: 30px;
+				padding:10px;
+			}
 			div.menu_button {
 				cursor: pointer;
 				width: 200px;
-				font-size: 2em;
+				font-size: 1.5em;
 				-webkit-transition: all .1s ease-in-out;
 			}
 			div.menu_button:hover {
@@ -44,14 +50,18 @@
 		</script>
 	</head>
 <body>
-
-<h1> Nebula Trade Winds </h1>
-<div class="left_border">
-	<div class="menu_button">New Game</div>
-	<div class="menu_button">Continue Game</div>
-	<div class="menu_button">Options</div>
-	<div class="menu_button">Exit</div>
+<div class="menu2">
+<div class="menu">
+	<h1> Nebula Trade Winds </h1>
+	<div class="left_border">
+		<div class="menu_button">New Game</div>
+		<div class="menu_button">Continue Game</div>
+		<div class="menu_button">Options</div>
+		<div class="menu_button">Exit</div>
+	</div>
 </div>
+</div>
+
 
 </body>
 </html>

@@ -9,12 +9,14 @@
 #include "uiWindow.h"
 
 
-uiWindow::uiWindow(WebURL _url, asset* _asset, WebCore* core):url(_url),ui_asset(_asset)
+uiWindow::uiWindow(WebURL _url, Assets& _asset, WebCore* core, region& r):
+	url(_url),
+	reg(r)
 {
-	view = core->CreateWebView(256, 200);
+	ui_asset = _asset.loadUiAsset(r.origin, r.x2-r.x1, r.y2-r.y1);
+	view = core->CreateWebView(r.x2-r.x1, r.y2-r.y1);
 	view->SetTransparent(true);
-	
-	//WebURL url(WSLit("file:////Users/gideon/Projects/ntw/ntw/resources/ui/search.html"));
+
 	view->LoadURL(url);
 	while (view->IsLoading())
 		core->Update();
@@ -33,7 +35,7 @@ void uiWindow::loadViewIntoAsset()
 			int h = getSurface()->height();
 			
 			unsigned char *buffer = new unsigned char[w * h * 4];
-			getSurface()->CopyTo(buffer, w * 4, 4, false, true);
+			getSurface()->CopyTo(buffer, w * 4, 4, false, false);
 			
 			glBindTexture(GL_TEXTURE_2D, ui_asset->texture);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -54,7 +56,7 @@ void uiWindow::reloadTexture()
 		int h = getSurface()->height();
 		
 		unsigned char *buffer = new unsigned char[w * h * 4];
-		getSurface()->CopyTo(buffer, w * 4, 4, false, true);
+		getSurface()->CopyTo(buffer, w * 4, 4, false, false);
 		
 		glBindTexture(GL_TEXTURE_2D, ui_asset->texture);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);

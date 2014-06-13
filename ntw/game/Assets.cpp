@@ -24,10 +24,10 @@ std::list<asset*>* Assets::getAssetList()
 
 asset* Assets::loadUiAsset()
 {
-	return loadUiAsset(512.0f, 512.0f);
+	return loadUiAsset(glm::vec2(0.0,0.0), 512.0f, 512.0f);
 }
 
-asset* Assets::loadUiAsset(GLfloat h, GLfloat w)
+asset* Assets::loadUiAsset(glm::vec2 orig, GLfloat h, GLfloat w)
 {
 	asset* tmp = new asset();
 	
@@ -41,15 +41,29 @@ asset* Assets::loadUiAsset(GLfloat h, GLfloat w)
     // make and bind the VBO
     glGenBuffers(1, &(tmp->vbo));
     glBindBuffer(GL_ARRAY_BUFFER, tmp->vbo);
+	/*
+	GLfloat vertexData[] = {
+		//  X			Y				Z		U		V
+		
+		
+		
+		orig.x + 0.0f,	orig.y + 0.0f,	0.0f,	0.0f,	0.0f,
+		orig.x + h,		orig.y + 0.0f,	0.0f,	1.0f,	0.0f,
+		orig.x + h,		orig.y + w,		0.0f,	1.0f,	1.0f,
+		orig.x + h,		orig.y + w,		0.0f,	1.0f,	1.0f,
+		orig.x + 0.0f,	orig.y + 0.0f,	0.0f,	0.0f,	0.0f,
+		orig.x + 0.0f,	orig.y + w,		0.0f,	0.0f,	1.0f,
+		orig.x + h,		orig.y + w,		0.0f,	1.0f,	1.0f,
+	};*/
 	
 	GLfloat vertexData[] = {
-		//  X     Y     Z		U		V
-		h,		w,		0.0f,	1.0f,	1.0f,
-		0.0f,	w,		0.0f,	0.0f,	1.0f,
-		0.0f,	0.0f,	0.0f,	0.0f,	0.0f,
-		h,		w,		0.0f,	1.0f,	1.0f,
-		h,		0.0f,	0.0f,	1.0f,	0.0f,
-		0.0f,	0.0f,	0.0f,	0.0f,	0.0f
+		//  X			Y				Z		U		V
+		orig.x + h,		orig.y + w,		0.0f,	1.0f,	1.0f,
+		orig.x + 0.0f,	orig.y + w,		0.0f,	0.0f,	1.0f,
+		orig.x + 0.0f,	orig.y + 0.0f,	0.0f,	0.0f,	0.0f,
+		orig.x + h,		orig.y + w,		0.0f,	1.0f,	1.0f,
+		orig.x + h,		orig.y + 0.0f,	0.0f,	1.0f,	0.0f,
+		orig.x + 0.0f,	orig.y + 0.0f,	0.0f,	0.0f,	0.0f
 	};
 	//set the draw count for gl_draw arrays
 	tmp->drawCount = 6;
