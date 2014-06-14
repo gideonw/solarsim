@@ -27,7 +27,7 @@ void Interface::loadUiWindows(Assets& as)
 	
 	//load menu
 	WebURL url2(WSLit("file:////Users/gideon/Projects/ntw/ntw/resources/ui/menu.html"));
-	region r2(glm::vec2(512.0, 368.0), 0, 0, 310, 220);
+	region r2(glm::vec2(512.0, 368.0), 0, 0, 350, 220);
 	nui = new uiWindow(url2, as, core, r2);
 	nui->loadViewIntoAsset();
 	windows.push_back(nui);
@@ -42,11 +42,43 @@ bool Interface::handleCursor(double x, double y)
 		{
 			win->view->InjectMouseMove( std::floor(x-win->reg.origin.x) , std::floor(y-win->reg.origin.y) );
 			win->view->Focus();
+			lastFocus = win->view;
 			return true;
 		}
 	}
 	if(lastFocus != nullptr)
 		lastFocus->Unfocus();
+	return false;
+}
+
+bool Interface::passKeyToFocus( int key, int scanCode, int action, int mods )
+{
+	if(lastFocus != nullptr)
+	{
+		WebKeyboardEvent e;
+		e.text[0] = (wchar16)key;
+		
+		e.type = WebKeyboardEvent::kTypeKeyDown;
+		lastFocus->InjectKeyboardEvent(e);
+		
+		e.type = WebKeyboardEvent::kTypeKeyUp;
+		lastFocus->InjectKeyboardEvent(e);
+		return true;
+	}
+	return false;
+}
+
+bool Interface::passMouseButtonToFocus( int button, int action, int mods )
+{
+	if(lastFocus != nullptr)
+	{
+		if(action == 1)
+			lastFocus->InjectMouseDown(Awesomium::MouseButton::kMouseButton_Left);
+		else
+			lastFocus->InjectMouseUp(Awesomium::MouseButton::kMouseButton_Left);
+
+		return true;
+	}
 	return false;
 }
 

@@ -33,6 +33,9 @@ public:
 	
 	bool handleCursor( double x, double y );
 	
+	bool passKeyToFocus( int key, int scanCode, int action, int mods );
+	
+	bool passMouseButtonToFocus( int button, int action, int mods );
 };
 
 #endif /* defined(__ntw__Interface__) */

@@ -68,7 +68,8 @@ public:
 	static Input* init( void );
 	void setupGLFWHandlers();
 	
-	static void keyboardCallBack(int key, int action);
+	static void keyboardCallBack( int key, int scanCode, int action, int mods );
+	static void mouseButtonCallBack( int key, int action, int mods );
 	static void scrollCallBack(double xoff, double yoff);
 	static void cursorPosCB(double x, double y);
 	

@@ -11,14 +11,19 @@
 Input* Input::inst = nullptr;
 
 //sets up the Input module by registering the callback with GLFW
-void keyboardCallBack_w( GLFWwindow* wind, int key, int action, int a, int b )
+void keyboardCallBack_w( GLFWwindow* wind, int key, int scanCode, int action, int mods )
 {
-	Input::keyboardCallBack(key, action);
+	Input::keyboardCallBack( key, scanCode, action, mods );
+}
+
+void mouseButtonCallBack_w( GLFWwindow* wind, int button, int action, int mods )
+{
+	Input::mouseButtonCallBack( button, action, mods );
 }
 
 void scrollCallBack_w( GLFWwindow* wind, double xoff, int yoff )
 {
-	Input::scrollCallBack(xoff, yoff);
+	Input::scrollCallBack( xoff, yoff );
 }
 
 void cursorPosCallBack_w( GLFWwindow* wind, double x, double y )
@@ -58,6 +63,8 @@ void Input::setupGLFWHandlers()
 	//setup the conrols callbacks.
 	glfwSetKeyCallback( wind, keyboardCallBack_w );
 	glfwSetCursorPosCallback( wind, cursorPosCallBack_w );
+	glfwSetMouseButtonCallback( wind, mouseButtonCallBack_w );
+	glfwSetKeyCallback( wind, keyboardCallBack_w );
 }
 
 void Input::cursorPosCB(double x, double y)
@@ -112,9 +119,22 @@ void Input::showCursor()
 	glfwSetInputMode( inst->wind, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 }
 
-void Input::keyboardCallBack(int key, int action)
+void Input::keyboardCallBack( int key, int scanCode, int action, int mods )
 {
-	//
+	std::cout << "kb_cb" << std::endl;
+	if(inst->interface->passKeyToFocus( key, scanCode, action, mods ))
+	{
+		std::cout << "pass key - " << (char)key << std::endl;
+	}
+}
+
+void Input::mouseButtonCallBack( int button, int action, int mods )
+{
+	
+	if(inst->interface->passMouseButtonToFocus( button, action, mods ))
+	{
+		
+	}
 }
 
 void Input::scrollCallBack(double xoff, double yoff)
