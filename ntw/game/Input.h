@@ -22,9 +22,6 @@
 #include "KeyEvent.h"
 #include "MouseEvent.h"
 
-
-
-
 class Input {
 public:
 	enum Actions
@@ -51,7 +48,9 @@ private:
 
 	std::map<Actions, int> keyMap;
 	std::map<Actions, std::function<void(int)>> keyEvents;
-		
+	
+	char keyPresses[GLFW_KEY_LAST+1];
+	
 	double xoff;
 	
 public:

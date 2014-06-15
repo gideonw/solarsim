@@ -22,9 +22,8 @@
 			div.menu {
 				width: 290px;
 				height: 200px;
-				background-color: rgba(100,100,100,0.95);
-				border-radius: 30px;
-				padding:10px;
+				background-color: rgba(214,219,224,0.95);
+				padding:2px;
 			}
 			div.menu_button {
 				cursor: pointer;
@@ -39,25 +38,22 @@
 			}
 		</style>
 		<script>
-			$(function() {
-				var l = $('.option');
-				$.each( l, function(index, item){
-					item.onclick = function() {alert('Click!');};
-					item.onmouseover = function() {item.style.backgroundColor = 'rgba(255,255,255,0.2)'; };
-					item.onmouseout = function() {item.style.backgroundColor = 'rgba(200,200,200,0.5)'; };
-				});
-			});
+			function rotate()
+			{
+				rotateClicked = true;
+				$("input[name='text']").val("true");
+			}
 		</script>
 	</head>
 <body>
 <div class="menu2">
 <div class="menu">
-	<h1> Nebula Trade Winds </h1>
 	<div class="left_border">
-		<div class="menu_button">New Game</div>
+		<div class="menu_button" onclick="rotate()">Rotate</div>
 		<div class="menu_button">Continue Game</div>
 		<div class="menu_button">Options</div>
 		<div class="menu_button">Exit</div>
+		<input type="text" name="text" />
 	</div>
 </div>
 </div>

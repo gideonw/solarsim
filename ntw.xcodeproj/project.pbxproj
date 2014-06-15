@@ -45,6 +45,7 @@
 		F3D6E80C1948522A00851E13 /* version in Resources */ = {isa = PBXBuildFile; fileRef = F3D6E80B1948522A00851E13 /* version */; };
 		F3D6E80E1949A91B00851E13 /* search.html in Resources */ = {isa = PBXBuildFile; fileRef = F3D6E80D1949A91B00851E13 /* search.html */; };
 		F3D6E8101949A92900851E13 /* menu.html in Resources */ = {isa = PBXBuildFile; fileRef = F3D6E80F1949A92800851E13 /* menu.html */; };
+		F3EDB6C0194CD61500466455 /* dev.html in Resources */ = {isa = PBXBuildFile; fileRef = F3EDB6BF194CD61500466455 /* dev.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +111,7 @@
 		F3D6E80B1948522A00851E13 /* version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = version; sourceTree = "<group>"; };
 		F3D6E80D1949A91B00851E13 /* search.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = search.html; sourceTree = "<group>"; };
 		F3D6E80F1949A92800851E13 /* menu.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = menu.html; sourceTree = "<group>"; };
+		F3EDB6BF194CD61500466455 /* dev.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = dev.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +279,7 @@
 		F3D6E80A1948520B00851E13 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				F3EDB6BF194CD61500466455 /* dev.html */,
 				F3D6E80F1949A92800851E13 /* menu.html */,
 				F3D6E80D1949A91B00851E13 /* search.html */,
 				F3D6E80B1948522A00851E13 /* version */,
@@ -340,6 +343,7 @@
 				F3A68C2A193BFBCA004E02FC /* fragment-shader.frag in Resources */,
 				F3A68C2B193BFBCA004E02FC /* ui-frag-shader.frag in Resources */,
 				F3A68C2C193BFBCA004E02FC /* ui-vert-shader.vs in Resources */,
+				F3EDB6C0194CD61500466455 /* dev.html in Resources */,
 				F3D6E80C1948522A00851E13 /* version in Resources */,
 				F3D6E7A01941257600851E13 /* ui_system_search.ui in Resources */,
 				F3A68C2D193BFBCA004E02FC /* vertex-shader.vs in Resources */,

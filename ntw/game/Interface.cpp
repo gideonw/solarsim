@@ -32,6 +32,13 @@ void Interface::loadUiWindows(Assets& as)
 	nui->loadViewIntoAsset();
 	windows.push_back(nui);
 	
+	//load menu
+	WebURL url3(WSLit("file:////Users/gideon/Projects/ntw/ntw/resources/ui/dev.html"));
+	region r3(glm::vec2(2048-350, 0.0), 0, 0, 350, 220);
+	nui = new uiWindow(url3, as, core, r3);
+	nui->loadViewIntoAsset();
+	windows.push_back(nui);
+	
 }
 
 bool Interface::handleCursor(double x, double y)
@@ -58,11 +65,11 @@ bool Interface::passKeyToFocus( int key, int scanCode, int action, int mods )
 		WebKeyboardEvent e;
 		e.text[0] = (wchar16)key;
 		
-		e.type = WebKeyboardEvent::kTypeKeyDown;
+		e.type = WebKeyboardEvent::kTypeChar;
 		lastFocus->InjectKeyboardEvent(e);
 		
-		e.type = WebKeyboardEvent::kTypeKeyUp;
-		lastFocus->InjectKeyboardEvent(e);
+		//e.type = WebKeyboardEvent::kTypeKeyUp;
+		//lastFocus->InjectKeyboardEvent(e);
 		return true;
 	}
 	return false;

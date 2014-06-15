@@ -121,16 +121,18 @@ void Input::showCursor()
 
 void Input::keyboardCallBack( int key, int scanCode, int action, int mods )
 {
-	std::cout << "kb_cb" << std::endl;
-	if(inst->interface->passKeyToFocus( key, scanCode, action, mods ))
+	//if they didn't use the key then we will pass it to everyone else
+	//TODO: certain keys we want to pass to the game ragardless and never send
+	//		to the ui
+	if(inst->uiHasFocus && !inst->interface->passKeyToFocus( key, scanCode, action, mods ))
 	{
-		std::cout << "pass key - " << (char)key << std::endl;
+		//this means that we didn't use the key in the interface so mark it as pressed
+		
 	}
 }
 
 void Input::mouseButtonCallBack( int button, int action, int mods )
 {
-	
 	if(inst->interface->passMouseButtonToFocus( button, action, mods ))
 	{
 		
@@ -159,5 +161,7 @@ void Input::setScrollWheelPos(double pos)
 
 int Input::getAction( Actions act )
 {
+	if(uiHasFocus)
+		return GLFW_RELEASE;
 	return glfwGetKey( wind, keyMap[act] );
 }
