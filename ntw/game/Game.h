@@ -54,6 +54,8 @@ private:
 	Interface ui;
 	Input* inp;
 	
+	volatile float secondsElapsed;
+	
 	Game();
 	
 public:
@@ -61,12 +63,24 @@ public:
 	
 	void gameLoop();
 	
-	void update(float secondsElapsed);
+	void update();
 	
 	void updateCamera(double x, double y);
 	
+	void setupEvents();
+	
 	void enableCamLook();
 	void disableCamLook();
+	
+	void moveCamForward();
+	void moveCamForwardStop();
+	void moveCamBack();
+	
+	void moveCamStrafeRight();
+	void moveCamStrafeLeft();
+	
+	void moveCamUp();
+	void moveCamDown();
 	
 	GLFWwindow* wind;
 	

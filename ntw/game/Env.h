@@ -35,6 +35,10 @@ public:
 	Galaxy galaxy;
 	
 	bool camLook = false;
+	float moveCamForward = 0.0f;
+	float moveCamBack = 0.0f;
+	float moveCamStrafe_L = 0.0f;
+	float moveCamStrafe_R = 0.0f;
 };
 
 #endif /* defined(__ntw__Env__) */

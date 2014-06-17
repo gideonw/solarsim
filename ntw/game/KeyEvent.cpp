@@ -8,6 +8,11 @@
 
 #include "KeyEvent.h"
 
+void KeyEvent::setFunction(std::function<void ()> _func)
+{
+	func = _func;
+}
+
 void KeyEvent::setAction( Action a )
 {
 	action = a;

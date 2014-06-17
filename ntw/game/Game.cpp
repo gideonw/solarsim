@@ -52,19 +52,8 @@ void Game::start()
 	inst->inp->interface = &(inst->ui);
 	inst->inp->cursor = std::bind(&Game::updateCamera, inst, std::placeholders::_1, std::placeholders::_2);
 	
-	
-	MouseButtonEvent fe;
-	fe.setFunction(std::bind(&Game::enableCamLook, inst));
-	fe.setBinding(Binding::CAM_LOOK_MBTN);
-	fe.setAction(Action::PRESSED);
-	inst->inp->bindMouseAction(fe);
-	
-	MouseButtonEvent fd;
-	fd.setFunction(std::bind(&Game::disableCamLook, inst));
-	fd.setBinding(Binding::CAM_LOOK_MBTN);
-	fd.setAction(Action::RELEASED);
-	inst->inp->bindMouseAction(fd);
-	
+	print_step(instep, "Bind Events");
+	inst->setupEvents();
 	
 	print_step(instep, "Send Input to Graphics");
 	inst->inp->wind = inst->graphics.wind;
@@ -83,6 +72,8 @@ void Game::start()
 	inst->inp->showCursor();
 	inst->inp->setCursorPos(0, 0);
 	inst->inp->setScrollWheelPos( 0.0 );
+	
+	glfwSetInputMode( inst->wind, GLFW_STICKY_KEYS, GL_FALSE);
 	
 	print_step(instep, "Setup GLFWHandlers");
 	inst->inp->setupGLFWHandlers();
@@ -114,6 +105,55 @@ void Game::start()
 	
 }
 
+void Game::setupEvents()
+{
+	MouseButtonEvent fe;
+	fe.setFunction(std::bind(&Game::enableCamLook, inst));
+	fe.setBinding(Binding::CAM_LOOK_MBTN);
+	fe.setAction(Action::PRESSED);
+	inst->inp->bindMouseAction(fe);
+	
+	MouseButtonEvent fd;
+	fd.setFunction(std::bind(&Game::disableCamLook, inst));
+	fd.setBinding(Binding::CAM_LOOK_MBTN);
+	fd.setAction(Action::RELEASED);
+	inst->inp->bindMouseAction(fd);
+	
+	/*
+	this wont work since hte key doesn't seem to constintly be active
+	 what needs to happen:
+		Input handler needs to send the key out until we recieve a key released
+		Input handler needs to allow for more than one key pressed (ie no break)
+		Cannot have the secondsElapsed in the cam functions
+
+	KeyEvent k1;
+	k1.setFunction(std::bind(&Game::moveCamForward, inst));
+	k1.setBinding(Binding::CAM_FORWARD);
+	k1.setAction(Action::PRESSED);
+	inst->inp->bindKeyAction(k1);
+	k1.setFunction(std::bind(&Game::moveCamForwardStop, inst));
+	k1.setAction(Action::RELEASED);
+	inst->inp->bindKeyAction(k1);
+	
+	KeyEvent k2;
+	k2.setFunction(std::bind(&Game::moveCamBack, inst));
+	k2.setBinding(Binding::CAM_BACK);
+	k2.setAction(Action::PRESSED);
+	inst->inp->bindKeyAction(k2);
+	
+	KeyEvent k3;
+	k3.setFunction(std::bind(&Game::moveCamStrafeLeft, inst));
+	k3.setBinding(Binding::CAM_STRAFE_L);
+	k3.setAction(Action::PRESSED);
+	inst->inp->bindKeyAction(k3);
+
+	k3.setFunction(std::bind(&Game::moveCamStrafeRight, inst));
+	k3.setBinding(Binding::CAM_STRAFE_R);
+	k3.setAction(Action::PRESSED);
+	inst->inp->bindKeyAction(k3);
+	 */
+}
+
 void Game::gameLoop()
 {
 	
@@ -129,7 +169,9 @@ void Game::gameLoop()
         // update the scene based on the time elapsed since last update
         double thisTime = glfwGetTime();
 		
-        update(thisTime - lastTime);
+		secondsElapsed = thisTime - lastTime;
+		
+        update();
 		
         lastTime = thisTime;
 		
@@ -156,7 +198,7 @@ void Game::gameLoop()
 	glfwDestroyWindow(wind);
 }
 
-void Game::update(float secondsElapsed)
+void Game::update()
 {
 	ui.update();
 	
@@ -170,7 +212,7 @@ void Game::update(float secondsElapsed)
 	}
 	
     //move position of camera based on WASD keys, and XZ keys for up and down
-	
+	graphics.camera.offsetPosition(env.moveCamForward * secondsElapsed * env.moveSpeed * graphics.camera.forward());
 	
 	if(glfwGetKey(wind, '[')){
 		env.moveSpeed += 10.0f;

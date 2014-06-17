@@ -40,13 +40,28 @@ Input::Input()
 	//default Key to Action mapping
 	
 	keyMap[PROG_CLOSE]		=	GLFW_KEY_ESCAPE;
+	keyToBindingMap[GLFW_KEY_ESCAPE] =	PROG_CLOSE;
+	
 	keyMap[CAM_FORWARD]		=	'W';
+	keyToBindingMap[(int)'W'] = CAM_FORWARD;
+	
 	keyMap[CAM_BACK]		=	'S';
+	keyToBindingMap[(int)'S'] = CAM_BACK;
+	
 	keyMap[CAM_STRAFE_L]	=	'A';
+	keyToBindingMap[(int)'A'] = CAM_STRAFE_L;
+	
 	keyMap[CAM_STRAFE_R]	=	'D';
+	keyToBindingMap[(int)'D'] = CAM_STRAFE_R;
+	
 	keyMap[CAM_MOVE_UP]		=	'Z';
+	keyToBindingMap[(int)'Z'] = CAM_MOVE_UP;
+	
 	keyMap[CAM_MOVE_DOWN]	=	'X';
+	keyToBindingMap[(int)'X'] = CAM_MOVE_DOWN;
+	
 	keyMap[CAM_TOGGLE_LOOK]	=	'C';
+	keyToBindingMap[(int)'C'] = CAM_TOGGLE_LOOK;
 	
 	mouseMap[CAM_LOOK_MBTN] =	GLFW_MOUSE_BUTTON_RIGHT;
 	mouseToBindingMap[GLFW_MOUSE_BUTTON_RIGHT] = CAM_LOOK_MBTN;
@@ -133,6 +148,8 @@ void Input::keyboardCallBack( int key, int scanCode, int action, int mods )
 	}
 	Action a = (action == GLFW_PRESS) ? Action::PRESSED : Action::RELEASED;
 	
+	std::cout << "'" << key << "' '" << inst->keyToBindingMap[key] << "'" << std::endl;
+	
 	for (auto var : inst->keyInputEvents)
 	{
 		if(var.test(inst->keyToBindingMap[key], a))
@@ -145,7 +162,7 @@ void Input::keyboardCallBack( int key, int scanCode, int action, int mods )
 
 void Input::mouseButtonCallBack( int button, int action, int mods )
 {
-	std::cout << button << std::endl;
+	//std::cout << button << std::endl;
 	if( inst->interface->passMouseButtonToFocus( button, action, mods ) )
 	{
 		
