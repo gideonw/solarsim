@@ -19,35 +19,22 @@
 
 #include <GL/glfw3.h>
 
+#include "MouseButtonEvent.h"
 #include "KeyEvent.h"
-#include "MouseEvent.h"
+#include "InputEnum.h"
 
 class Input {
 public:
-	enum Actions
-	{
-		//CAMERA
-		CAM_STRAFE_L	= 0,
-		CAM_STRAFE_R	= 1,
-		CAM_FORWARD		= 2,
-		CAM_BACK		= 3,
-		CAM_ZOOM_OUT	= 4,
-		CAM_ZOOM_IN		= 5,
-		CAM_MOVE_UP		= 6,
-		CAM_MOVE_DOWN	= 7,
-		CAM_TOGGLE_LOOK = 8,
-		
-		//OPENGL
-		//RELOAD_SHADER	= 70,
-		
-		//PROGRAM
-		PROG_CLOSE		= 9999
-	};
-
+	
 private:
 
-	std::map<Actions, int> keyMap;
-	std::map<Actions, std::function<void(int)>> keyEvents;
+	std::map<Binding, int> keyMap;
+	std::map<int, Binding> keyToBindingMap;
+	std::deque<KeyEvent> keyInputEvents;
+	
+	std::map<Binding, int> mouseMap;
+	std::map<int, Binding> mouseToBindingMap;
+	std::deque<MouseButtonEvent> mouseInputEvents;
 	
 	char keyPresses[GLFW_KEY_LAST+1];
 	
@@ -72,9 +59,10 @@ public:
 	static void scrollCallBack(double xoff, double yoff);
 	static void cursorPosCB(double x, double y);
 	
-	bool bindAction( Actions act, std::function<void(int)> fn );
+	void bindMouseAction( MouseButtonEvent fn );
+	void bindKeyAction( KeyEvent fn );
 
-	int getAction(Actions act);
+	int getAction( Binding act );
 	
 	double getScrollWheelPos();
 	void setScrollWheelPos(double pos);

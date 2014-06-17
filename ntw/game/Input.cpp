@@ -47,6 +47,9 @@ Input::Input()
 	keyMap[CAM_MOVE_UP]		=	'Z';
 	keyMap[CAM_MOVE_DOWN]	=	'X';
 	keyMap[CAM_TOGGLE_LOOK]	=	'C';
+	
+	mouseMap[CAM_LOOK_MBTN] =	GLFW_MOUSE_BUTTON_RIGHT;
+	mouseToBindingMap[GLFW_MOUSE_BUTTON_RIGHT] = CAM_LOOK_MBTN;
 
 	//later:: load from file
 }
@@ -95,7 +98,6 @@ void Input::getCursorPos(double* xo, double* yo)
 
 void Input::setCursorPos(double xi, double yi)
 {
-	std::cout << "cursor: " << xi << "," << yi << std::endl;
 	xp = xi;
 	yp = yi;
 	glfwSetCursorPos(wind, xp, yp);
@@ -129,14 +131,45 @@ void Input::keyboardCallBack( int key, int scanCode, int action, int mods )
 		//this means that we didn't use the key in the interface so mark it as pressed
 		
 	}
+	Action a = (action == GLFW_PRESS) ? Action::PRESSED : Action::RELEASED;
+	
+	for (auto var : inst->keyInputEvents)
+	{
+		if(var.test(inst->keyToBindingMap[key], a))
+		{
+			var.process();
+			break;
+		}
+	}
 }
 
 void Input::mouseButtonCallBack( int button, int action, int mods )
 {
-	if(inst->interface->passMouseButtonToFocus( button, action, mods ))
+	std::cout << button << std::endl;
+	if( inst->interface->passMouseButtonToFocus( button, action, mods ) )
 	{
 		
 	}
+	Action a = (action == GLFW_PRESS) ? Action::PRESSED : Action::RELEASED;
+
+	for (auto var : inst->mouseInputEvents)
+	{
+		if(var.test(inst->mouseToBindingMap[button], a))
+		{
+			var.process();
+			break;
+		}
+	}
+}
+
+void Input::bindMouseAction( MouseButtonEvent fn )
+{
+	mouseInputEvents.push_back(fn);
+}
+
+void Input::bindKeyAction( KeyEvent fn )
+{
+	keyInputEvents.push_back(fn);
 }
 
 void Input::scrollCallBack(double xoff, double yoff)
@@ -159,7 +192,7 @@ void Input::setScrollWheelPos(double pos)
 	xoff = pos;
 }
 
-int Input::getAction( Actions act )
+int Input::getAction( Binding act )
 {
 	if(uiHasFocus)
 		return GLFW_RELEASE;

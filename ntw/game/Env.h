@@ -33,6 +33,8 @@ public:
 	double ly2au = 63400.07;
 	
 	Galaxy galaxy;
+	
+	bool camLook = false;
 };
 
 #endif /* defined(__ntw__Env__) */

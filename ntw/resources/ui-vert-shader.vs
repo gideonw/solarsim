@@ -1,4 +1,4 @@
-#version 150
+#version 330
 
 in vec3 vert;
 in vec2 vertTexCoord;

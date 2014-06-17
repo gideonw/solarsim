@@ -39,6 +39,8 @@
 #include "Assets.h"
 #include "Input.h"
 #include "Interface.h"
+#include "InputEnum.h"
+#include "MouseButtonEvent.h"
 
 class Game
 {
@@ -62,6 +64,9 @@ public:
 	void update(float secondsElapsed);
 	
 	void updateCamera(double x, double y);
+	
+	void enableCamLook();
+	void disableCamLook();
 	
 	GLFWwindow* wind;
 	

@@ -1,21 +1,20 @@
 //
-//  KeyEvent.h
+//  MouseButtonEvent.h
 //  ntw
 //
-//  Created by Gideon on 6/8/14.
+//  Created by Gideon on 6/16/14.
 //  Copyright (c) 2014 Gideon. All rights reserved.
 //
 
-#ifndef __ntw__KeyEvent__
-#define __ntw__KeyEvent__
+#ifndef __ntw__MouseButtonEvent__
+#define __ntw__MouseButtonEvent__
 
 #include <iostream>
 #include <functional>
 
 #include "InputEnum.h"
 
-//TODO:: add Modifiers
-class KeyEvent {
+class MouseButtonEvent {
 	Binding gameAction;
 	Action action;
 	std::function< void( ) > func;
@@ -27,4 +26,4 @@ public:
 	void process	( );
 };
 
-#endif /* defined(__ntw__KeyEvent__) */
+#endif /* defined(__ntw__MouseButtonEvent__) */

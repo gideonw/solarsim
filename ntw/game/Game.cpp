@@ -52,6 +52,20 @@ void Game::start()
 	inst->inp->interface = &(inst->ui);
 	inst->inp->cursor = std::bind(&Game::updateCamera, inst, std::placeholders::_1, std::placeholders::_2);
 	
+	
+	MouseButtonEvent fe;
+	fe.setFunction(std::bind(&Game::enableCamLook, inst));
+	fe.setBinding(Binding::CAM_LOOK_MBTN);
+	fe.setAction(Action::PRESSED);
+	inst->inp->bindMouseAction(fe);
+	
+	MouseButtonEvent fd;
+	fd.setFunction(std::bind(&Game::disableCamLook, inst));
+	fd.setBinding(Binding::CAM_LOOK_MBTN);
+	fd.setAction(Action::RELEASED);
+	inst->inp->bindMouseAction(fd);
+	
+	
 	print_step(instep, "Send Input to Graphics");
 	inst->inp->wind = inst->graphics.wind;
 	
@@ -116,12 +130,14 @@ void Game::gameLoop()
         double thisTime = glfwGetTime();
 		
         update(thisTime - lastTime);
+		
         lastTime = thisTime;
+		
+		
 		// check for errors
         GLenum error = glGetError();
         if(error != GL_NO_ERROR)
             std::cerr << "OpenGL Error Update " << error << ": " << (const char*)gluErrorString(error) << std::endl;
-		
 		
         // draw one frame
 		graphics.render(env, as);
@@ -174,40 +190,38 @@ void Game::update(float secondsElapsed)
 		//LoadCloud();
 
 	
-    if(inp->getAction(Input::Actions::CAM_BACK)){
+    if(inp->getAction(Binding::CAM_BACK)){
         graphics.camera.offsetPosition(secondsElapsed * env.moveSpeed * -graphics.camera.forward());
-    } else if(inp->getAction(Input::Actions::CAM_FORWARD)){
+    } else if(inp->getAction(Binding::CAM_FORWARD)){
         graphics.camera.offsetPosition(secondsElapsed * env.moveSpeed * graphics.camera.forward());
     }
-    if(inp->getAction(Input::Actions::CAM_STRAFE_L)){
+    if(inp->getAction(Binding::CAM_STRAFE_L)){
         graphics.camera.offsetPosition(secondsElapsed * env.moveSpeed * -graphics.camera.right());
-    } else if(inp->getAction(Input::Actions::CAM_STRAFE_R)){
+    } else if(inp->getAction(Binding::CAM_STRAFE_R)){
         graphics.camera.offsetPosition(secondsElapsed * env.moveSpeed * graphics.camera.right());
     }
-    if(inp->getAction(Input::Actions::CAM_MOVE_UP)){
+    if(inp->getAction(Binding::CAM_MOVE_UP)){
         graphics.camera.offsetPosition(secondsElapsed * env.moveSpeed * -glm::vec3(0,1,0));
-    } else if(inp->getAction(Input::Actions::CAM_MOVE_DOWN)){
+    } else if(inp->getAction(Binding::CAM_MOVE_DOWN)){
         graphics.camera.offsetPosition(secondsElapsed * env.moveSpeed * glm::vec3(0,1,0));
     }
-	
-	if(inp->getAction(Input::Actions::CAM_TOGGLE_LOOK))
-	{
-		if(inp->cursorMode != GLFW_CURSOR_DISABLED){
-			inp->disableCursor();
-		} else {
-			inp->setCursorPos(0, 0);
-			inp->showCursor();
-		}
-	}
-	
 }
 
-void Game::updateCamera( double x, double y)
+void Game::enableCamLook( )
 {
+	env.camLook = true;
+	inp->disableCursor();
+}
 
-	
-	
-	
+void Game::disableCamLook( )
+{
+	env.camLook = false;
+	inp->setCursorPos(0, 0);
+	inp->showCursor();
+}
+
+void Game::updateCamera( double x, double y )
+{
     //rotate camera based on mouse movement
     const float mouseSensitivity = 0.1;
     //double mouseXo, mouseYo;
@@ -217,7 +231,7 @@ void Game::updateCamera( double x, double y)
 	mouseY = std::floor(y);
 	
 	//std::cout << "(" << mouseX << "," << mouseY << ")" << std::endl;
-	if(inp->getCursorMode() == GLFW_CURSOR_DISABLED)
+	if(env.camLook)
 	{
 		graphics.camera.offsetOrientation(mouseSensitivity * mouseY, mouseSensitivity * mouseX);
 		inp->setCursorPos(0, 0); //reset the mouse, so it doesn't go out of the window

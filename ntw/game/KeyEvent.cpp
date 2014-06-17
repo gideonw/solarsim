@@ -8,14 +8,21 @@
 
 #include "KeyEvent.h"
 
-KeyEvent::KeyEvent( int _key, std::function< void () > _runEvent )
-	:key( _key ),runEvent(_runEvent)
+void KeyEvent::setAction( Action a )
 {
-	
+	action = a;
+}
+void KeyEvent::setBinding( Binding b )
+{
+	gameAction = b;
 }
 
-void KeyEvent::test( int test_key )
+bool KeyEvent::test(Binding b, Action a)
 {
-	if(test_key == key)
-		runEvent();
+	return (action == a && gameAction == b);
+}
+
+void KeyEvent::process( )
+{
+	func();
 }

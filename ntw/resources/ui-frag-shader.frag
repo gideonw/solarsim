@@ -1,4 +1,4 @@
-#version 150
+#version 330
 
 uniform sampler2D tex; //this is the texture
 in vec2 fragTexCoord; //this is the texture coord
