@@ -82,7 +82,7 @@ asset* Assets::loadUiAsset(glm::vec2 orig, GLfloat h, GLfloat w)
 	return tmp;
 }
 
-void Assets::loadGalaxy(std::vector<float>* verts)
+void Assets::loadGalaxy(std::deque<float>* verts)
 {
 	asset* tmp = new asset();
 	

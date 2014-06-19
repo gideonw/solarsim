@@ -148,7 +148,7 @@ void Input::keyboardCallBack( int key, int scanCode, int action, int mods )
 	}
 	Action a = (action == GLFW_PRESS) ? Action::PRESSED : Action::RELEASED;
 	
-	std::cout << "'" << key << "' '" << inst->keyToBindingMap[key] << "'" << std::endl;
+	//std::cout << "'" << key << "' '" << inst->keyToBindingMap[key] << "'" << std::endl;
 	
 	for (auto var : inst->keyInputEvents)
 	{

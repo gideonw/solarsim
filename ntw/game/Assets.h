@@ -13,6 +13,7 @@
 #include <list>
 #include <complex>
 #include <random>
+#include <deque>
 
 #include <GL/glew.h>
 #include <glm/glm.hpp>
@@ -51,7 +52,7 @@ public:
 	std::list<asset*>* getAssetList();
 	void addAsset(asset* a);
 	
-	void loadGalaxy(std::vector<float>* verts);
+	void loadGalaxy(std::deque<float>* verts);
 	
 	asset* loadUiAsset();
 	asset* loadUiAsset(glm::vec2 orig, GLfloat h, GLfloat w);

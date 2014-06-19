@@ -8,10 +8,14 @@
 
 #include "SolarSystem.h"
 
+int SolarSystem::nextId = 0;
+
 SolarSystem::SolarSystem()
 {
 	star = nullptr;
 	objects = {};
+	id = nextId;
+	nextId++;
 }
 
 void SolarSystem::gen(std::mt19937 &eng)

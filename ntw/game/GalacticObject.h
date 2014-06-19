@@ -12,14 +12,15 @@
 #include <iostream>
 #include <glm/glm.hpp>
 
+#include "Obj.h"
+
 enum GOTypes {
 	SS = 0,
 	NEBULA = 1
 	};
 
-class GalacticObject {
+class GalacticObject : public Obj {
 public:
-	glm::vec3 position;
 	GOTypes goType;
 };
 

@@ -16,27 +16,34 @@
 #include <vector>
 #include <locale>
 #include <limits>
+#include <chrono>
+#include <deque>
+
+#include <glm/glm.hpp>
 
 #include "GalacticObject.h"
 #include "SolarSystem.h"
 
+#include "Octree.h"
 
 class Galaxy {
 public: //temp
-	std::vector<GalacticObject*> systems;
-	std::vector<float>* verts;
+	std::deque<GalacticObject*> systems;
+	std::deque<float>* verts;
 
 private:
 	unsigned int seed;
 	
 public:
-	
+
 	Galaxy();
 	void gen();
 	void gen2();
-	std::vector<float>* getGalaxyVerticies();
+	std::deque<float>* getGalaxyVerticies();
 	
 	void printGalaxyStats();
+	void makeGraph();
+	Octree* oct;
 };
 
 #endif /* defined(__ntw__Galaxy__) */

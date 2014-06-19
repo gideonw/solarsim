@@ -25,6 +25,7 @@ public://temp pub, need get
 	
 	//inheirits position from galacticObject, this is the center of the system
 	
+	static int nextId;
 	int id;
 	
 public:

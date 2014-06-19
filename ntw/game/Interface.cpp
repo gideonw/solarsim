@@ -94,7 +94,7 @@ void Interface::update()
 	for(auto uiw : windows)
 	{
 		JSValue v = uiw->view->ExecuteJavascriptWithResult(WSLit("rotateClicked"), WSLit(""));
-		std::cout << v.ToBoolean() << std::endl;
+		//std::cout << v.ToBoolean() << std::endl;
 		
 		BitmapSurface* surf = (BitmapSurface*)uiw->getSurface();
 		if(surf == 0)

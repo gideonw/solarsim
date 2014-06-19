@@ -14,6 +14,14 @@ Galaxy::Galaxy()
 	verts = nullptr;
 }
 
+void Galaxy::makeGraph()
+{
+	oct = new Octree(150000);
+	for (int i = 0; i < systems.size(); i++) {
+		oct->root->insert(systems[i]);
+	}
+}
+
 void Galaxy::printGalaxyStats()
 {
 	double max = 0.0;
@@ -96,7 +104,49 @@ void Galaxy::printGalaxyStats()
 	
 	std::cout	<< "Max Dist: \t" << max << std::endl
 				<< "Min Dist: \t" << min << std::endl;
+	//////////////////////////////////////////////////
+	/*
+	typedef std::chrono::steady_clock::time_point time_p;
+	typedef std::chrono::duration<int,std::milli> millisecs_t ;
+	typedef std::chrono::duration<int,std::micro> microsecs_t ;
+	namespace chro = std::chrono;
 	
+	time_p start = chro::steady_clock::now();
+	
+	makeGraph();
+	
+	time_p end = chro::steady_clock::now();
+    millisecs_t duration( chro::duration_cast<millisecs_t>(end-start) ) ;
+	
+    std::cout << duration.count() << " ms.\n" ;
+	
+	start = chro::steady_clock::now() ;
+	for(int i = 0; i < 1; i++)
+	{
+		std::deque<Obj*> res;
+		Obj* r = oct->root->nearest_neighbor(systems[i]);
+	}
+	
+	end = chro::steady_clock::now();
+    microsecs_t duration2( chro::duration_cast<microsecs_t>(end-start) ) ;
+	
+    std::cout << duration2.count() << " micros.\n" ;
+	
+	start = chro::steady_clock::now() ;
+	for(int i = 0; i < 10; i++)
+	{
+		//std::cout << "3 Nearest to " << ((SolarSystem*)systems[i*100])->id << std::endl;
+		std::deque<Obj*> res;
+		oct->root->nearest_neighbors(systems[i*100], 3, res);
+		//for_each(res.begin(), res.end(), [](Obj* o) { std::cout << "\t " << ((SolarSystem*)o)->id << std::endl;});
+	}
+	
+	end = chro::steady_clock::now();
+	duration2 = chro::duration_cast<microsecs_t>(end-start);
+	
+    std::cout << duration2.count() << " micros.\n" ;
+	//std::cout << glm::distance(r->position, systems[0]->position) << std::endl;
+	 */
 }
 
 void Galaxy::gen2()
@@ -269,7 +319,7 @@ void Galaxy::gen2()
 void Galaxy::gen()
 {
 	std::random_device rnd;
-	seed = rnd();
+	seed = 0;
 	std::mt19937 eng(seed);
 	std::uniform_real_distribution<float> xz_dist(-5000, 5000);
 	std::uniform_real_distribution<float> y_dist(-2000, 2000);
@@ -303,7 +353,7 @@ void Galaxy::gen()
 			double y = 0;
 			double z = radius * exp(ct * paramExp).real() * sin(t + d);
 			
-			int star_count = 250 * exp(-0.25*(t+10.0));//old:500, new:250
+			int star_count = 75 * exp(-0.15*(t+10.0));//old:500, new:250 (75, 0.17)
 			int y_off = 1200 * exp(-0.2*(t+10.0));
 			
 			
@@ -357,12 +407,12 @@ void Galaxy::gen()
 	}
 }
 
-std::vector<float>* Galaxy::getGalaxyVerticies()
+std::deque<float>* Galaxy::getGalaxyVerticies()
 {
 	if(verts != nullptr)
 		return verts;
 	else
-		verts = new std::vector<float>();
+		verts = new std::deque<float>();
 	
 	for (auto go : systems)
 	{
