@@ -17,7 +17,7 @@ Node::Node(glm::vec3 _center, glm::vec3 size)
 
 bool Node::is_leaf_w_data() const
 {
-	return children[0] == nullptr && data != nullptr;
+	return is_leaf() && data != nullptr;
 }
 
 bool Node::is_leaf() const
@@ -33,9 +33,9 @@ bool Node::is_leaf() const
 void Node::insert(Obj* ins)
 {
 	if (is_leaf()) {
-		if(data == nullptr)
+		if(data == nullptr) {
 			data = ins;
-		else {
+		} else {
 			//split and insert
 			split();
 			split_and_ins(get_instert_octant(ins->position), ins);
@@ -165,9 +165,99 @@ void Node::nearest_neighbors(Obj *o, int minCount, std::deque<Obj *> &results)
 	
 }
 
+void Node::node_count(int &count)
+{
+	count++;
+	for(int i = 0; i < 8; i++)
+	{
+		if(children[i] != nullptr){
+			children[i]->node_count(count);
+		}
+	}
+}
 
+void Node::leaf_count(int &count)
+{
+	if (is_leaf_w_data()) {
+		count++;
+	} else {
+		for(int i = 0; i < 8; i++)
+		{
+			if(children[i] != nullptr){
+				children[i]->leaf_count(count);
+			}
+		}
+	}
+}
 
-
-
-
+void Node::accum_verts(std::vector<glm::vec3>& v, std::vector<unsigned int>& inds )
+{
+	glm::vec3 hd = halfDimension;
+	glm::vec3 v1( center.x - hd.x, center.y + hd.y, center.z + hd.z );
+	glm::vec3 v2( center.x + hd.x, center.y + hd.y, center.z + hd.z );
+	glm::vec3 v3( center.x + hd.x, center.y + hd.y, center.z - hd.z );
+	glm::vec3 v4( center.x - hd.x, center.y + hd.y, center.z - hd.z );
+	
+	glm::vec3 v5( center.x - hd.x, center.y - hd.y, center.z + hd.z );
+	glm::vec3 v6( center.x + hd.x, center.y - hd.y, center.z + hd.z );
+	glm::vec3 v7( center.x + hd.x, center.y - hd.y, center.z - hd.z );
+	glm::vec3 v8( center.x - hd.x, center.y - hd.y, center.z - hd.z );
+	
+	unsigned int first = v.size();
+	//verts
+	v.push_back(v1);
+	v.push_back(v2);
+	v.push_back(v3);
+	v.push_back(v4);
+	v.push_back(v5);
+	v.push_back(v6);
+	v.push_back(v7);
+	v.push_back(v8);
+	
+	//top
+	inds.push_back(first);
+	inds.push_back(first+1);
+	
+	inds.push_back(first+1);
+	inds.push_back(first+2);
+	
+	inds.push_back(first+2);
+	inds.push_back(first+3);
+	
+	inds.push_back(first+3);
+	inds.push_back(first);
+	
+	//bottom
+	inds.push_back(first+4);
+	inds.push_back(first+5);
+	
+	inds.push_back(first+5);
+	inds.push_back(first+6);
+	
+	inds.push_back(first+6);
+	inds.push_back(first+7);
+	
+	inds.push_back(first+7);
+	inds.push_back(first+4);
+	
+	//sides
+	inds.push_back(first);
+	inds.push_back(first+4);
+	
+	inds.push_back(first+1);
+	inds.push_back(first+5);
+	
+	inds.push_back(first+2);
+	inds.push_back(first+6);
+	
+	inds.push_back(first+3);
+	inds.push_back(first+7);
+	
+	for(int i = 0; i < 8; i++)
+	{
+		if(children[i] != nullptr){
+			children[i]->accum_verts(v, inds);
+		}
+	}
+}
 

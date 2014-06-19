@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <deque>
+#include <vector>
 #include <algorithm>
 
 #include <glm/glm.hpp>
@@ -40,6 +41,9 @@ public:
 	//bad algo, there is a real one out there taht will be faster
 	Obj* nearest_neighbor( Obj* o );
 	void nearest_neighbors(Obj* o, int minCount, std::deque<Obj*>& results);
+	void node_count(int& count);
+	void leaf_count(int& count);
+	void accum_verts(std::vector<glm::vec3>& v, std::vector<unsigned int>& inds );
 };
 
 #endif /* defined(__ntw__Node__) */

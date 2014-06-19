@@ -109,68 +109,20 @@ void Graphics::loadShaders(Assets& as)
 {
 	std::vector<tdogl::Shader> shaders;
     shaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("vertex-shader.vs"), GL_VERTEX_SHADER));
-    shaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("fragment-shader.frag"), GL_FRAGMENT_SHADER));
+    shaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("fragment-shader.fs"), GL_FRAGMENT_SHADER));
     as.program = new tdogl::Program(shaders);
 	
 	
 	std::vector<tdogl::Shader> uishaders;
     uishaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("ui-vert-shader.vs"), GL_VERTEX_SHADER));
-    uishaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("ui-frag-shader.frag"), GL_FRAGMENT_SHADER));
+    uishaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("ui-frag-shader.fs"), GL_FRAGMENT_SHADER));
     as.programUi = new tdogl::Program(uishaders);
+	
+	std::vector<tdogl::Shader> otshaders;
+    otshaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("octree-debug.vs"), GL_VERTEX_SHADER));
+    otshaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("octree-debug.fs"), GL_FRAGMENT_SHADER));
+    as.programOt = new tdogl::Program(otshaders);
 }
-
-void Graphics::test_awe()
-{
-	using namespace Awesomium;
-	
-	WebConfig config;
-	core = WebCore::Initialize(config);
-	
-	view = core->CreateWebView(256, 200);
-	view->SetTransparent(true);
-	WebURL url(WSLit("file:////Users/gideon/Projects/ntw/ntw/resources/ui/search.html"));
-	view->LoadURL(url);
-	
-	// finish loading the page
-	while (view->IsLoading())
-		core->Update();
-	
-	
-	glGenTextures(1, &texture);
-	awe_up();
-}
-
-void Graphics::awe_up()
-{
-	using namespace Awesomium;
-	core->Update();
-	
-	BitmapSurface* surface = (BitmapSurface*)view->surface();
-	
-	// Make sure our surface is not NULL-- it may be NULL if the WebView
-	// process has crashed.
-	if (surface != 0) {
-		// Save our BitmapSurface to a JPEG image in the current
-		// working directory.
-		if(surface->is_dirty()){
-			int w = surface->width();
-			int h = surface->height();
-			
-			unsigned char *buffer = new unsigned char[w * h * 4];
-			surface->CopyTo(buffer, w * 4, 4, false, true);
-			
-			glBindTexture(GL_TEXTURE_2D, texture);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-			//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-			//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, buffer);
-			glBindTexture(GL_TEXTURE_2D, 0);
-			delete[] buffer;
-		}
-	}
-}
-
 
 void Graphics::render(Env& env, Assets& as) {
     // clear everything
@@ -198,6 +150,26 @@ void Graphics::render(Env& env, Assets& as) {
 			glActiveTexture(GL_TEXTURE0);
 			glBindTexture(GL_TEXTURE_2D, draw->texture);
 			draw->shaders->setUniform("tex", 0);
+		} else if (as.programOt == draw->shaders)
+		{
+			// set the "camera" uniform
+			as.programOt->setUniform("camera", camera.matrix());
+			
+			// set the "model" uniform in the vertex shader, based on the gDegreesRotated global
+			as.programOt->setUniform("model", glm::rotate(glm::mat4(), env.gDegreesRotated, glm::vec3(0,1,0)));
+			
+			glBindVertexArray(draw->vao);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, draw->vio);
+			
+			glDrawElements(draw->drawType, draw->drawCount, GL_UNSIGNED_INT, 0);
+			
+			glBindVertexArray(0);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+			
+			draw->shaders->stopUsing();
+			
+			continue;
+			
 		}
 		
 		////////// Shader Generic operations

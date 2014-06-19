@@ -89,6 +89,10 @@ void Game::start()
 	print_step(instep, "Load Galaxy");
     // Load Assets
 	inst->as.loadGalaxy(inst->env.galaxy.getGalaxyVerticies());
+	std::vector<glm::vec3> v;
+	std::vector<unsigned int> inds;
+	inst->env.galaxy.oct->root->accum_verts(v, inds);
+	inst->as.loadOctree(v, inds);
 	
 	print_step(instep, "Load UI Windows");
 	inst->ui.loadUiWindows(inst->as);

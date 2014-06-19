@@ -16,7 +16,7 @@ Galaxy::Galaxy()
 
 void Galaxy::makeGraph()
 {
-	oct = new Octree(150000);
+	oct = new Octree(75000);
 	for (int i = 0; i < systems.size(); i++) {
 		oct->root->insert(systems[i]);
 	}
@@ -117,8 +117,11 @@ void Galaxy::printGalaxyStats()
 	
 	time_p end = chro::steady_clock::now();
     millisecs_t duration( chro::duration_cast<millisecs_t>(end-start) ) ;
-	
-    std::cout << duration.count() << " ms.\n" ;
+	int lcnt = 0;
+	oct->root->leaf_count(lcnt);
+	int ncnt = 0;
+	oct->root->node_count(ncnt);
+    std::cout << duration.count() << " ms.\n\t Leafs: \t " << lcnt << std::endl << "\t Nodes: \t"  << ncnt << std::endl;
 	
 	start = chro::steady_clock::now() ;
 	for(int i = 0; i < 1; i++)
@@ -146,6 +149,8 @@ void Galaxy::printGalaxyStats()
 	
     std::cout << duration2.count() << " micros.\n" ;
 	//std::cout << glm::distance(r->position, systems[0]->position) << std::endl;
+	std::cout <<  (ncnt * sizeof(float) * 3 * 16) * ((float)std::mega::den / (float)std::mega::num) << "MB" << std::endl;
+	//size of octree debug lines, its tiny just draw all of them
 	 */
 }
 
@@ -319,7 +324,7 @@ void Galaxy::gen2()
 void Galaxy::gen()
 {
 	std::random_device rnd;
-	seed = 0;
+	seed = rnd();
 	std::mt19937 eng(seed);
 	std::uniform_real_distribution<float> xz_dist(-5000, 5000);
 	std::uniform_real_distribution<float> y_dist(-2000, 2000);
@@ -353,7 +358,7 @@ void Galaxy::gen()
 			double y = 0;
 			double z = radius * exp(ct * paramExp).real() * sin(t + d);
 			
-			int star_count = 75 * exp(-0.15*(t+10.0));//old:500, new:250 (75, 0.17)
+			int star_count = 250 * exp(-0.25*(t+10.0));//old:500, new:250 (75, 0.17)
 			int y_off = 1200 * exp(-0.2*(t+10.0));
 			
 			
@@ -405,14 +410,15 @@ void Galaxy::gen()
 			}
 		}
 	}
+	makeGraph();
 }
 
-std::deque<float>* Galaxy::getGalaxyVerticies()
+std::vector<float>* Galaxy::getGalaxyVerticies()
 {
 	if(verts != nullptr)
 		return verts;
 	else
-		verts = new std::deque<float>();
+		verts = new std::vector<float>();
 	
 	for (auto go : systems)
 	{

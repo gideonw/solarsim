@@ -27,7 +27,7 @@ void Interface::loadUiWindows(Assets& as)
 	
 	//load menu
 	WebURL url2(WSLit("file:////Users/gideon/Projects/ntw/ntw/resources/ui/menu.html"));
-	region r2(glm::vec2(512.0, 368.0), 0, 0, 350, 220);
+	region r2(glm::vec2(0.0, 768.0), 0, 0, 350, 220);
 	nui = new uiWindow(url2, as, core, r2);
 	nui->loadViewIntoAsset();
 	windows.push_back(nui);
@@ -38,7 +38,6 @@ void Interface::loadUiWindows(Assets& as)
 	nui = new uiWindow(url3, as, core, r3);
 	nui->loadViewIntoAsset();
 	windows.push_back(nui);
-	
 }
 
 bool Interface::handleCursor(double x, double y)

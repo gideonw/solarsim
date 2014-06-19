@@ -25,6 +25,7 @@ struct asset {
 	GLuint texture;
     GLuint vbo;
     GLuint vao;
+	GLuint vio;
     GLenum drawType;
     GLint drawStart;
     GLint drawCount;
@@ -34,6 +35,7 @@ struct asset {
 		texture(0),
 		vbo(0),
 		vao(0),
+		vio(0),
 		drawType(GL_POINTS),
 		drawStart(0),
 		drawCount(0)
@@ -52,13 +54,15 @@ public:
 	std::list<asset*>* getAssetList();
 	void addAsset(asset* a);
 	
-	void loadGalaxy(std::deque<float>* verts);
+	void loadGalaxy(std::vector<float>* verts);
+	void loadOctree(std::vector<glm::vec3>& v, std::vector<unsigned int>& inds);
 	
 	asset* loadUiAsset();
 	asset* loadUiAsset(glm::vec2 orig, GLfloat h, GLfloat w);
 	
 	tdogl::Program* program;
 	tdogl::Program* programUi;
+	tdogl::Program* programOt;
 	
 };
 

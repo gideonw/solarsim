@@ -19,10 +19,6 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include <Awesomium/WebCore.h>
-#include <Awesomium/STLHelpers.h>
-#include <Awesomium/BitmapSurface.h>
-
 #include "../tdogl/Camera.h"
 #include "../tdogl/Program.h"
 
@@ -53,12 +49,6 @@ public:
 	void setUpCamera();
 	
 	void render(Env& env, Assets& as);
-	
-	void test_awe();
-	void awe_up();
-	Awesomium::WebView* view;
-	Awesomium::WebCore* core;
-	GLuint texture;
 	
 };
 

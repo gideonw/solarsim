@@ -28,8 +28,8 @@
 
 class Galaxy {
 public: //temp
-	std::deque<GalacticObject*> systems;
-	std::deque<float>* verts;
+	std::vector<GalacticObject*> systems;
+	std::vector<float>* verts;
 
 private:
 	unsigned int seed;
@@ -39,7 +39,7 @@ public:
 	Galaxy();
 	void gen();
 	void gen2();
-	std::deque<float>* getGalaxyVerticies();
+	std::vector<float>* getGalaxyVerticies();
 	
 	void printGalaxyStats();
 	void makeGraph();
