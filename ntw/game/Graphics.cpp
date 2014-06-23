@@ -122,6 +122,11 @@ void Graphics::loadShaders(Assets& as)
     otshaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("octree-debug.vs"), GL_VERTEX_SHADER));
     otshaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("octree-debug.fs"), GL_FRAGMENT_SHADER));
     as.programOt = new tdogl::Program(otshaders);
+	
+	std::vector<tdogl::Shader> plshaders;
+    plshaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("planet-vert.vs"), GL_VERTEX_SHADER));
+    plshaders.push_back(tdogl::Shader::shaderFromFile(ResourcePath("planet-frag.fs"), GL_FRAGMENT_SHADER));
+    as.programPl = new tdogl::Program(plshaders);
 }
 
 void Graphics::render(Env& env, Assets& as) {
@@ -171,6 +176,12 @@ void Graphics::render(Env& env, Assets& as) {
 			continue;
 			
 		}
+		
+		//use instanced drawing for the stars, then gather a list of the indicies of the ones to draw as stars and the ones to draw as spheres, only change it if the number of stars within a certain distance changes.
+		
+		//draw stars:: 1, 3, 5
+		//draw sphere: 2, 4, 6, 7
+		//move, use a range cube in front of the camera location. (look into frustrum culling method from videos)
 		
 		////////// Shader Generic operations
 		

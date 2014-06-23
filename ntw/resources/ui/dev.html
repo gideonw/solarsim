@@ -3,59 +3,175 @@
 	<head>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<style>
-			html {
-				height: 100%;
-			}
-			body {
-				height: 100%;
-				margin: 0px;
-				background-repeat: no-repeat;
-				background-attachment: fixed;
-				background: transparent;
-			}
-			div.left_border {
-				margin: 20px;
-				border-left: 1px solid black;
-				padding-left:2px;
-			}
-
-			div.menu {
-				width: 290px;
-				height: 200px;
-				background-color: rgba(214,219,224,0.95);
-				padding:2px;
-			}
-			div.menu_button {
-				cursor: pointer;
-				width: 200px;
-				font-size: 1.5em;
-				-webkit-transition: all .1s ease-in-out;
-			}
-			div.menu_button:hover {
-				-webkit-transform: scale(1.1);
-				-webkit-transform: translate(10px,0px);
-				
-			}
+		html {
+			height: 100%;
+		}
+		body {
+			height: 100%;
+			margin: 0px;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background: transparent;
+		}
+		div.left_border {
+			margin: 20px;
+			border-left: 1px solid black;
+			padding-left:2px;
+		}
+		
+		div.menu2 {
+			padding: 2px;
+			margin: 0px;
+		}
+		
+		div.menu {
+			width: 290px;
+			height: 200px;
+			background-color: rgba(214,219,224,0.95);
+			padding:2px;
+			margin-left: 4px;
+		}
+	
+		div.menu_button {
+			cursor: pointer;
+			width: 200px;
+			font-size: 1.5em;
+			-webkit-transition: all .1s ease-in-out;
+		}
+		div.menu_button:hover {
+			-webkit-transform: scale(1.1);
+			-webkit-transform: translate(10px,0px);
+			
+		}
+	
+		div.menu_row {
+			text-align: justify;
+		}
+		div.menu_row > div.menu_label {
+			width: 130px;
+			display: inline-block;
+			vertical-align: top;
+		}
+		div.menu_row > div.menu_item {
+			width: 100px;
+			display: inline-block;
+			vertical-align: top;
+		}
+		div.menu_row:after {
+			content: "";
+			width: 10%;
+			display: inline-block;
+		}
+		div.menu_label {
+			font-size: 1.2em;
+			height: 1.2em;
+		}
+		div.menu-item {
+			height: 1.2em;
+		}
+	
+		.onoffswitch {
+			position: relative;
+			width: 68px;
+			-webkit-user-select:none;
+			position: absolute;
+		}
+		
+		.onoffswitch-checkbox {
+			display: none;
+		}
+		
+		.onoffswitch-label {
+			display: block; overflow: hidden; cursor: pointer;
+			border: 2px solid #999999; border-radius: 0px;
+		}
+		
+		.onoffswitch-inner {
+			display: block; width: 200%; margin-left: -100%;
+			-moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+			-o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+		}
+		
+		.onoffswitch-inner:before, .onoffswitch-inner:after {
+			display: block; float: left; width: 50%; height: 12px; padding: 0; line-height: 12px;
+			font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+			-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+		}
+		
+		.onoffswitch-inner:before {
+			content: "true";
+			padding-left: 10px;
+			background-color: #2FCCFF; color: #FFFFFF;
+		}
+		
+		.onoffswitch-inner:after {
+			content: "false";
+			padding-right: 10px;
+			background-color: #EEEEEE; color: #999999;
+			text-align: right;
+		}
+		
+		.onoffswitch-switch {
+			display: block; width: 14px; margin: -1px;
+			background: #464746;
+			border: 2px solid #999999; border-radius: 0px;
+			position: absolute; top: 0; bottom: 0; right: 52px;
+			-moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+			-o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s;
+		}
+		
+		.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+			margin-left: 0;
+		}
+		
+		.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+			right: 0px; 
+		}
 		</style>
+		
 		<script>
-			function rotate()
-			{
-				rotateClicked = true;
-				$("input[name='text']").val("true");
-			}
+		function rotate()
+		{
+			return $("#rotate_onoff").prop("checked");
+		};
+		function octree_debug()
+		{
+			return $("#octree_onoff").prop("checked");
+		};
 		</script>
+		
 	</head>
 <body>
 <div class="menu2">
-<div class="menu">
-	<div class="left_border">
-		<div class="menu_button" onclick="rotate()">Rotate</div>
-		<div class="menu_button">Regenerate</div>
-		<div class="menu_button">Test It</div>
-		<div class="menu_button">Exit</div>
-		<input type="text" name="text" />
+	<div class="menu">
+		
+		<div class="menu_row">
+			<div class="menu_label">Rotate</div>
+			<div class="menu_item">
+				<div class="onoffswitch">
+					<input type="checkbox" name="rotate_onoff" class="onoffswitch-checkbox" id="rotate_onoff" />
+					<label class="onoffswitch-label" for="rotate_onoff">
+						<span class="onoffswitch-inner"></span>
+						<span class="onoffswitch-switch"></span>
+					</label>
+				</div>
+			</div>
+		</div>
+		
+		<div class="menu_row">
+			<div class="menu_label">Octree Debug</div>
+			<div class="menu_item">
+				<div class="onoffswitch">
+					<input type="checkbox" name="octree_onoff" class="onoffswitch-checkbox" id="octree_onoff" />
+					<label class="onoffswitch-label" for="octree_onoff">
+						<span class="onoffswitch-inner"></span>
+						<span class="onoffswitch-switch"></span>
+					</label>
+				</div>
+			</div>
+		</div>
+		
 	</div>
-</div>
 </div>
 
 

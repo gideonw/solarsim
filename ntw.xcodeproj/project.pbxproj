@@ -12,6 +12,12 @@
 		F315F58D195257BA007B2D95 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F315F58B195257BA007B2D95 /* Node.cpp */; };
 		F315F59019536B73007B2D95 /* octree-debug.vs in Sources */ = {isa = PBXBuildFile; fileRef = F315F58F19536B73007B2D95 /* octree-debug.vs */; };
 		F315F59219536BEA007B2D95 /* octree-debug.fs in Sources */ = {isa = PBXBuildFile; fileRef = F315F59119536BEA007B2D95 /* octree-debug.fs */; };
+		F315F59A19540BEA007B2D95 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F315F59919540BEA007B2D95 /* XCTest.framework */; };
+		F315F5A019540BEB007B2D95 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F315F59E19540BEA007B2D95 /* InfoPlist.strings */; };
+		F315F5A219540BEB007B2D95 /* ntw_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = F315F5A119540BEB007B2D95 /* ntw_Tests.m */; };
+		F344933A19581F0C00D4F76F /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F344933819581F0C00D4F76F /* Player.cpp */; };
+		F344933D1958200700D4F76F /* planet-vert.vs in Sources */ = {isa = PBXBuildFile; fileRef = F344933C1958200700D4F76F /* planet-vert.vs */; };
+		F344933F1958202E00D4F76F /* planet-frag.fs in Sources */ = {isa = PBXBuildFile; fileRef = F344933E1958202E00D4F76F /* planet-frag.fs */; };
 		F34D5E52194FF06E00FE8995 /* MouseButtonEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34D5E50194FF06E00FE8995 /* MouseButtonEvent.cpp */; };
 		F3A68960193BF24A004E02FC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A6895F193BF24A004E02FC /* main.cpp */; };
 		F3A68C13193BF550004E02FC /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C12193BF550004E02FC /* glew.c */; };
@@ -38,7 +44,6 @@
 		F3A68C50193D5D68004E02FC /* Planet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C4E193D5D68004E02FC /* Planet.cpp */; };
 		F3A68C53193D5D78004E02FC /* Moon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C51193D5D78004E02FC /* Moon.cpp */; };
 		F3A68C56193D6D87004E02FC /* GalacticObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C54193D6D87004E02FC /* GalacticObject.cpp */; };
-		F3D6E7A01941257600851E13 /* ui_system_search.ui in Resources */ = {isa = PBXBuildFile; fileRef = F3D6E79F1941257600851E13 /* ui_system_search.ui */; };
 		F3D6E7A41944507B00851E13 /* uiSystemSearch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3D6E7A21944507B00851E13 /* uiSystemSearch.cpp */; };
 		F3D6E7A71945681300851E13 /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3D6E7A51945681300851E13 /* Input.cpp */; };
 		F3D6E7AB194568BB00851E13 /* KeyEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3D6E7A9194568BA00851E13 /* KeyEvent.cpp */; };
@@ -53,6 +58,16 @@
 		F3EDB6C0194CD61500466455 /* dev.html in Resources */ = {isa = PBXBuildFile; fileRef = F3EDB6BF194CD61500466455 /* dev.html */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		F315F5A419540BEB007B2D95 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F3A68954193BF24A004E02FC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F3A6895B193BF24A004E02FC;
+			remoteInfo = ntw;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		F315F5851952549B007B2D95 /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
 		F315F5861952549B007B2D95 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
@@ -63,6 +78,16 @@
 		F315F58E19525C12007B2D95 /* Obj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Obj.h; sourceTree = "<group>"; };
 		F315F58F19536B73007B2D95 /* octree-debug.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "octree-debug.vs"; sourceTree = "<group>"; };
 		F315F59119536BEA007B2D95 /* octree-debug.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "octree-debug.fs"; sourceTree = "<group>"; };
+		F315F59719540BEA007B2D95 /* ntw Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ntw Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F315F59919540BEA007B2D95 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F315F59D19540BEA007B2D95 /* ntw Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ntw Tests-Info.plist"; sourceTree = "<group>"; };
+		F315F59F19540BEA007B2D95 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F315F5A119540BEB007B2D95 /* ntw_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ntw_Tests.m; sourceTree = "<group>"; };
+		F315F5A319540BEB007B2D95 /* ntw Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ntw Tests-Prefix.pch"; sourceTree = "<group>"; };
+		F344933819581F0C00D4F76F /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		F344933919581F0C00D4F76F /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		F344933C1958200700D4F76F /* planet-vert.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "planet-vert.vs"; sourceTree = "<group>"; };
+		F344933E1958202E00D4F76F /* planet-frag.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "planet-frag.fs"; sourceTree = "<group>"; };
 		F34D5E50194FF06E00FE8995 /* MouseButtonEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseButtonEvent.cpp; sourceTree = "<group>"; };
 		F34D5E51194FF06E00FE8995 /* MouseButtonEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseButtonEvent.h; sourceTree = "<group>"; };
 		F34D5E56194FF43000FE8995 /* InputEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputEnum.h; sourceTree = "<group>"; };
@@ -108,7 +133,6 @@
 		F3A68C52193D5D78004E02FC /* Moon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moon.h; sourceTree = "<group>"; };
 		F3A68C54193D6D87004E02FC /* GalacticObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GalacticObject.cpp; sourceTree = "<group>"; };
 		F3A68C55193D6D87004E02FC /* GalacticObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalacticObject.h; sourceTree = "<group>"; };
-		F3D6E79F1941257600851E13 /* ui_system_search.ui */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ui_system_search.ui; sourceTree = "<group>"; };
 		F3D6E7A21944507B00851E13 /* uiSystemSearch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uiSystemSearch.cpp; sourceTree = "<group>"; };
 		F3D6E7A31944507B00851E13 /* uiSystemSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uiSystemSearch.h; sourceTree = "<group>"; };
 		F3D6E7A51945681300851E13 /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
@@ -130,6 +154,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F315F59419540BEA007B2D95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F315F59A19540BEA007B2D95 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F3A68959193BF24A004E02FC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -159,10 +191,54 @@
 			path = ntw/util;
 			sourceTree = SOURCE_ROOT;
 		};
+		F315F59819540BEA007B2D95 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F315F59919540BEA007B2D95 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F315F59B19540BEA007B2D95 /* ntw Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F315F5A119540BEB007B2D95 /* ntw_Tests.m */,
+				F315F59C19540BEA007B2D95 /* Supporting Files */,
+			);
+			path = "ntw Tests";
+			sourceTree = "<group>";
+		};
+		F315F59C19540BEA007B2D95 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F315F59D19540BEA007B2D95 /* ntw Tests-Info.plist */,
+				F315F59E19540BEA007B2D95 /* InfoPlist.strings */,
+				F315F5A319540BEB007B2D95 /* ntw Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F344933B19581F9E00D4F76F /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				F3A68C25193BFB7D004E02FC /* fragment-shader.fs */,
+				F3A68C26193BFB7D004E02FC /* ui-frag-shader.fs */,
+				F3A68C27193BFB7D004E02FC /* ui-vert-shader.vs */,
+				F3A68C28193BFB7D004E02FC /* vertex-shader.vs */,
+				F315F58F19536B73007B2D95 /* octree-debug.vs */,
+				F315F59119536BEA007B2D95 /* octree-debug.fs */,
+				F344933C1958200700D4F76F /* planet-vert.vs */,
+				F344933E1958202E00D4F76F /* planet-frag.fs */,
+			);
+			name = shaders;
+			sourceTree = "<group>";
+		};
 		F3A68953193BF24A004E02FC = {
 			isa = PBXGroup;
 			children = (
 				F3A6895E193BF24A004E02FC /* ntw */,
+				F315F59B19540BEA007B2D95 /* ntw Tests */,
+				F315F59819540BEA007B2D95 /* Frameworks */,
 				F3A6895D193BF24A004E02FC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -171,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				F3A6895C193BF24A004E02FC /* ntw */,
+				F315F59719540BEA007B2D95 /* ntw Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -178,6 +255,7 @@
 		F3A6895E193BF24A004E02FC /* ntw */ = {
 			isa = PBXGroup;
 			children = (
+				F315F58419525478007B2D95 /* util */,
 				F3A68C24193BFA5C004E02FC /* resources */,
 				F3A68C1F193BF942004E02FC /* game */,
 				F3A6895F193BF24A004E02FC /* main.cpp */,
@@ -235,6 +313,8 @@
 				F3D6E7A61945681300851E13 /* Input.h */,
 				F3D6E7B1194585E800851E13 /* Interface.cpp */,
 				F3D6E7B2194585E800851E13 /* Interface.h */,
+				F344933819581F0C00D4F76F /* Player.cpp */,
+				F344933919581F0C00D4F76F /* Player.h */,
 			);
 			path = game;
 			sourceTree = "<group>";
@@ -251,15 +331,8 @@
 		F3A68C24193BFA5C004E02FC /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				F315F58419525478007B2D95 /* util */,
+				F344933B19581F9E00D4F76F /* shaders */,
 				F3D6E80A1948520B00851E13 /* ui */,
-				F3A68C25193BFB7D004E02FC /* fragment-shader.fs */,
-				F3A68C26193BFB7D004E02FC /* ui-frag-shader.fs */,
-				F3A68C27193BFB7D004E02FC /* ui-vert-shader.vs */,
-				F3A68C28193BFB7D004E02FC /* vertex-shader.vs */,
-				F315F58F19536B73007B2D95 /* octree-debug.vs */,
-				F315F59119536BEA007B2D95 /* octree-debug.fs */,
-				F3D6E79F1941257600851E13 /* ui_system_search.ui */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -324,6 +397,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		F315F59619540BEA007B2D95 /* ntw Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F315F5A619540BEB007B2D95 /* Build configuration list for PBXNativeTarget "ntw Tests" */;
+			buildPhases = (
+				F315F59319540BEA007B2D95 /* Sources */,
+				F315F59419540BEA007B2D95 /* Frameworks */,
+				F315F59519540BEA007B2D95 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F315F5A519540BEB007B2D95 /* PBXTargetDependency */,
+			);
+			name = "ntw Tests";
+			productName = "ntw Tests";
+			productReference = F315F59719540BEA007B2D95 /* ntw Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F3A6895B193BF24A004E02FC /* ntw */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3A68965193BF24A004E02FC /* Build configuration list for PBXNativeTarget "ntw" */;
@@ -349,6 +440,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Gideon;
+				TargetAttributes = {
+					F315F59619540BEA007B2D95 = {
+						TestTargetID = F3A6895B193BF24A004E02FC;
+					};
+				};
 			};
 			buildConfigurationList = F3A68957193BF24A004E02FC /* Build configuration list for PBXProject "ntw" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -363,11 +459,20 @@
 			projectRoot = "";
 			targets = (
 				F3A6895B193BF24A004E02FC /* ntw */,
+				F315F59619540BEA007B2D95 /* ntw Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F315F59519540BEA007B2D95 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F315F5A019540BEB007B2D95 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F3A68C29193BFBB8004E02FC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -379,7 +484,6 @@
 				F3A68C2C193BFBCA004E02FC /* ui-vert-shader.vs in Resources */,
 				F3EDB6C0194CD61500466455 /* dev.html in Resources */,
 				F3D6E80C1948522A00851E13 /* version in Resources */,
-				F3D6E7A01941257600851E13 /* ui_system_search.ui in Resources */,
 				F3A68C2D193BFBCA004E02FC /* vertex-shader.vs in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,6 +491,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F315F59319540BEA007B2D95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F315F5A219540BEB007B2D95 /* ntw_Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F3A68958193BF24A004E02FC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -408,11 +520,14 @@
 				F3A68C1C193BF78B004E02FC /* Program.cpp in Sources */,
 				F3A68C22193BF976004E02FC /* Game.cpp in Sources */,
 				F315F59219536BEA007B2D95 /* octree-debug.fs in Sources */,
+				F344933A19581F0C00D4F76F /* Player.cpp in Sources */,
 				F3A68C56193D6D87004E02FC /* GalacticObject.cpp in Sources */,
 				F3A68C50193D5D68004E02FC /* Planet.cpp in Sources */,
 				F3A68C1D193BF78B004E02FC /* Shader.cpp in Sources */,
+				F344933F1958202E00D4F76F /* planet-frag.fs in Sources */,
 				F3D6E7B3194585E800851E13 /* Interface.cpp in Sources */,
 				F3A68C1E193BF78B004E02FC /* Texture.cpp in Sources */,
+				F344933D1958200700D4F76F /* planet-vert.vs in Sources */,
 				F3D6E7AE194568C600851E13 /* MouseEvent.cpp in Sources */,
 				F3A68C4A193D5D20004E02FC /* Star.cpp in Sources */,
 				F3A68C3D193C1D1E004E02FC /* Env.cpp in Sources */,
@@ -426,7 +541,62 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		F315F5A519540BEB007B2D95 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F3A6895B193BF24A004E02FC /* ntw */;
+			targetProxy = F315F5A419540BEB007B2D95 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F315F59E19540BEA007B2D95 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F315F59F19540BEA007B2D95 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		F315F5A719540BEB007B2D95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ntw Tests/ntw Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ntw Tests/ntw Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		F315F5A819540BEB007B2D95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ntw Tests/ntw Tests-Prefix.pch";
+				INFOPLIST_FILE = "ntw Tests/ntw Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		F3A68963193BF24A004E02FC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -560,6 +730,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F315F5A619540BEB007B2D95 /* Build configuration list for PBXNativeTarget "ntw Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F315F5A719540BEB007B2D95 /* Debug */,
+				F315F5A819540BEB007B2D95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F3A68957193BF24A004E02FC /* Build configuration list for PBXProject "ntw" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

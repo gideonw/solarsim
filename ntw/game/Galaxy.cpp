@@ -338,7 +338,7 @@ void Galaxy::gen()
 	
 	std::vector<float> a;
 	
-	int numArms = 2;
+	int numArms = 3;
 	
 	double rotateStep = (2 * 3.14156) / numArms;
 	
@@ -358,7 +358,7 @@ void Galaxy::gen()
 			double y = 0;
 			double z = radius * exp(ct * paramExp).real() * sin(t + d);
 			
-			int star_count = 250 * exp(-0.25*(t+10.0));//old:500, new:250 (75, 0.17)
+			int star_count = 75 * exp(-0.25*(t+10.0));//old:500, new:250 (75, 0.17)
 			int y_off = 1200 * exp(-0.2*(t+10.0));
 			
 			
