@@ -10,14 +10,14 @@
 		F315F5871952549B007B2D95 /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F315F5851952549B007B2D95 /* util.cpp */; };
 		F315F58A195254C6007B2D95 /* Octree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F315F588195254C6007B2D95 /* Octree.cpp */; };
 		F315F58D195257BA007B2D95 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F315F58B195257BA007B2D95 /* Node.cpp */; };
-		F315F59019536B73007B2D95 /* octree-debug.vs in Sources */ = {isa = PBXBuildFile; fileRef = F315F58F19536B73007B2D95 /* octree-debug.vs */; };
-		F315F59219536BEA007B2D95 /* octree-debug.fs in Sources */ = {isa = PBXBuildFile; fileRef = F315F59119536BEA007B2D95 /* octree-debug.fs */; };
 		F315F59A19540BEA007B2D95 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F315F59919540BEA007B2D95 /* XCTest.framework */; };
 		F315F5A019540BEB007B2D95 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F315F59E19540BEA007B2D95 /* InfoPlist.strings */; };
 		F315F5A219540BEB007B2D95 /* ntw_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = F315F5A119540BEB007B2D95 /* ntw_Tests.m */; };
+		F3395E821958F46000953A5A /* octree-debug.vs in Resources */ = {isa = PBXBuildFile; fileRef = F315F58F19536B73007B2D95 /* octree-debug.vs */; };
+		F3395E831958F46000953A5A /* octree-debug.fs in Resources */ = {isa = PBXBuildFile; fileRef = F315F59119536BEA007B2D95 /* octree-debug.fs */; };
+		F3395E841958F46000953A5A /* planet-vert.vs in Resources */ = {isa = PBXBuildFile; fileRef = F344933C1958200700D4F76F /* planet-vert.vs */; };
+		F3395E851958F46000953A5A /* planet-frag.fs in Resources */ = {isa = PBXBuildFile; fileRef = F344933E1958202E00D4F76F /* planet-frag.fs */; };
 		F344933A19581F0C00D4F76F /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F344933819581F0C00D4F76F /* Player.cpp */; };
-		F344933D1958200700D4F76F /* planet-vert.vs in Sources */ = {isa = PBXBuildFile; fileRef = F344933C1958200700D4F76F /* planet-vert.vs */; };
-		F344933F1958202E00D4F76F /* planet-frag.fs in Sources */ = {isa = PBXBuildFile; fileRef = F344933E1958202E00D4F76F /* planet-frag.fs */; };
 		F34D5E52194FF06E00FE8995 /* MouseButtonEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F34D5E50194FF06E00FE8995 /* MouseButtonEvent.cpp */; };
 		F3A68960193BF24A004E02FC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3A6895F193BF24A004E02FC /* main.cpp */; };
 		F3A68C13193BF550004E02FC /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = F3A68C12193BF550004E02FC /* glew.c */; };
@@ -477,6 +477,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3395E821958F46000953A5A /* octree-debug.vs in Resources */,
+				F3395E831958F46000953A5A /* octree-debug.fs in Resources */,
+				F3395E841958F46000953A5A /* planet-vert.vs in Resources */,
+				F3395E851958F46000953A5A /* planet-frag.fs in Resources */,
 				F3D6E80E1949A91B00851E13 /* search.html in Resources */,
 				F3D6E8101949A92900851E13 /* menu.html in Resources */,
 				F3A68C2A193BFBCA004E02FC /* fragment-shader.fs in Resources */,
@@ -519,21 +523,17 @@
 				F3A68C38193C1156004E02FC /* Assets.cpp in Sources */,
 				F3A68C1C193BF78B004E02FC /* Program.cpp in Sources */,
 				F3A68C22193BF976004E02FC /* Game.cpp in Sources */,
-				F315F59219536BEA007B2D95 /* octree-debug.fs in Sources */,
 				F344933A19581F0C00D4F76F /* Player.cpp in Sources */,
 				F3A68C56193D6D87004E02FC /* GalacticObject.cpp in Sources */,
 				F3A68C50193D5D68004E02FC /* Planet.cpp in Sources */,
 				F3A68C1D193BF78B004E02FC /* Shader.cpp in Sources */,
-				F344933F1958202E00D4F76F /* planet-frag.fs in Sources */,
 				F3D6E7B3194585E800851E13 /* Interface.cpp in Sources */,
 				F3A68C1E193BF78B004E02FC /* Texture.cpp in Sources */,
-				F344933D1958200700D4F76F /* planet-vert.vs in Sources */,
 				F3D6E7AE194568C600851E13 /* MouseEvent.cpp in Sources */,
 				F3A68C4A193D5D20004E02FC /* Star.cpp in Sources */,
 				F3A68C3D193C1D1E004E02FC /* Env.cpp in Sources */,
 				F3A68C13193BF550004E02FC /* glew.c in Sources */,
 				F3A68960193BF24A004E02FC /* main.cpp in Sources */,
-				F315F59019536B73007B2D95 /* octree-debug.vs in Sources */,
 				F3A68C44193D5D09004E02FC /* SolarSystem.cpp in Sources */,
 				F3A68C41193D5CFD004E02FC /* Galaxy.cpp in Sources */,
 			);

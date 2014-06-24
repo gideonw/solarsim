@@ -84,7 +84,7 @@ int Node::get_instert_octant(const glm::vec3& point) const {
 	return oct;
 }
 
-void Node::get_points_inside_box(const glm::vec3& bmin, const glm::vec3& bmax, std::deque<Obj*>& results) {
+void Node::get_points_inside_box(const glm::vec3& bmin, const glm::vec3& bmax, std::vector<Obj*>& results) {
 	// If we're at a leaf node, just see if the current data point is inside
 	// the query bounding box
 	if(is_leaf()) {
@@ -123,7 +123,7 @@ Obj* Node::nearest_neighbor(Obj* o)
 	bmin += o->position;
 	bmax += o->position;
 	
-	std::deque<Obj*> res;
+	std::vector<Obj*> res;
 	do {
 		res.clear();
 		get_points_inside_box(bmin, bmax, res);
@@ -135,13 +135,13 @@ Obj* Node::nearest_neighbor(Obj* o)
 		return d1 < d2;
 	});
 	//remove myself
-	res.pop_front();
+	res.erase(res.begin());
 
 	return res[0];
 }
 
 
-void Node::nearest_neighbors(Obj *o, int minCount, std::deque<Obj *> &results)
+void Node::nearest_neighbors(Obj *o, int minCount, std::vector<Obj *> &results)
 {
 	glm::vec3 bmin(0,0,0);
 	glm::vec3 bmax(0,0,0);
@@ -161,7 +161,7 @@ void Node::nearest_neighbors(Obj *o, int minCount, std::deque<Obj *> &results)
 		return d1 < d2;
 	});
 	//remove myself
-	results.pop_front();
+	results.erase(results.begin());
 	
 }
 

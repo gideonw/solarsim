@@ -11,7 +11,6 @@
 
 Galaxy::Galaxy()
 {
-	verts = nullptr;
 }
 
 void Galaxy::makeGraph()
@@ -358,7 +357,7 @@ void Galaxy::gen()
 			double y = 0;
 			double z = radius * exp(ct * paramExp).real() * sin(t + d);
 			
-			int star_count = 75 * exp(-0.25*(t+10.0));//old:500, new:250 (75, 0.17)
+			int star_count = 75 * exp(-0.17*(t+10.0));//old:500, new:250 (75, 0.17)
 			int y_off = 1200 * exp(-0.2*(t+10.0));
 			
 			
@@ -413,23 +412,22 @@ void Galaxy::gen()
 	makeGraph();
 }
 
-std::vector<float>* Galaxy::getGalaxyVerticies()
+void Galaxy::getGalaxyVerticies(std::vector<glm::vec4>& v, std::vector<unsigned int>& inds)
 {
-	if(verts != nullptr)
-		return verts;
-	else
-		verts = new std::vector<float>();
-	
 	for (auto go : systems)
 	{
+		glm::vec4 t;
+		t.x = go->position.x;
+		t.y = go->position.y;
+		t.z = go->position.z;
 		//3 dereference instead of one
-		verts->push_back(go->position.x);
-		verts->push_back(go->position.y);
-		verts->push_back(go->position.z);
+
 		if(go->goType == GOTypes::SS)
-			verts->push_back((float)((SolarSystem*)go)->getStarType());
+			t.w = (float)((SolarSystem*)go)->getStarType();
 		else
-			verts->push_back(0.0f);
+			t.w = (0.0f);
+		
+		v.push_back(t);
+		inds.push_back(((SolarSystem*)go)->id);
 	}
-	return verts;
 }

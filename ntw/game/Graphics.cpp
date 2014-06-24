@@ -135,6 +135,10 @@ void Graphics::render(Env& env, Assets& as) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
 	///////////////////////////////////////////////////////
+	std::vector<Obj *> results;
+	env.galaxy.oct->root->get_points_inside_box(camera.position()+glm::vec3(0,0,0), camera.position()+glm::vec3(100,100,100), results);
+	
+	std::cout << results.size() << std::endl;
 	
 	std::list<asset*>* drawUs = as.getAssetList();
 	
@@ -144,12 +148,25 @@ void Graphics::render(Env& env, Assets& as) {
 		
 		////////// Shader specific attributes
 		if (as.program == draw->shaders) {
-			
+
 			// set the "camera" uniform
 			as.program->setUniform("camera", camera.matrix());
 			
 			// set the "model" uniform in the vertex shader, based on the gDegreesRotated global
 			as.program->setUniform("model", glm::rotate(glm::mat4(), env.gDegreesRotated, glm::vec3(0,1,0)));
+			
+			glBindVertexArray(draw->vao);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, draw->vio);
+			
+			glDrawElements(draw->drawType, draw->drawCount, GL_UNSIGNED_INT, 0);
+			
+			glBindVertexArray(0);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+			
+			draw->shaders->stopUsing();
+			
+			continue;
+
 		} else if (as.programUi == draw->shaders)
 		{
 			glActiveTexture(GL_TEXTURE0);
@@ -172,6 +189,51 @@ void Graphics::render(Env& env, Assets& as) {
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 			
 			draw->shaders->stopUsing();
+			
+			continue;
+			
+		} else if (as.programPl == draw->shaders)
+		{
+			// set the "camera" uniform
+			as.programPl->setUniform("camera", camera.matrix());
+			
+			as.programPl->setUniform("wire", 0.0f);
+			
+			// set the "model" uniform in the vertex shader, based on the gDegreesRotated global
+			as.programPl->setUniform("model", glm::rotate(glm::mat4(), env.gDegreesRotated, glm::vec3(0,1,0)));
+			
+			glBindVertexArray(draw->vao);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, draw->vio);
+			
+			glDrawElements(draw->drawType, draw->drawCount, GL_UNSIGNED_INT, 0);
+			
+			glBindVertexArray(0);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+			
+			draw->shaders->stopUsing();
+			
+			if(draw->wireframe)
+			{
+				draw->shaders->use();
+				
+				// set the "camera" uniform
+				as.programPl->setUniform("camera", camera.matrix());
+				
+				as.programPl->setUniform("wire", 1.0f);
+				
+				// set the "model" uniform in the vertex shader, based on the gDegreesRotated global
+				as.programPl->setUniform("model", glm::rotate(glm::mat4(), env.gDegreesRotated, glm::vec3(0,1,0)));
+				
+				glBindVertexArray(draw->vao);
+				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, draw->vio);
+				
+				glDrawElements(GL_LINE_LOOP, draw->drawCount, GL_UNSIGNED_INT, 0);
+
+				glBindVertexArray(0);
+				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+				
+				draw->shaders->stopUsing();
+			}
 			
 			continue;
 			

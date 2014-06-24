@@ -82,9 +82,18 @@ asset* Assets::loadUiAsset(glm::vec2 orig, GLfloat h, GLfloat w)
 	return tmp;
 }
 
-void Assets::loadGalaxy(std::vector<float>* verts)
+void Assets::loadGalaxy(std::vector<glm::vec4>& v, std::vector<unsigned int>& inds)
 {
+	std::vector<float>* verts = new std::vector<float>();
 	asset* tmp = new asset();
+	
+	for (auto var : v)
+	{
+		verts->push_back(var.x);
+		verts->push_back(var.y);
+		verts->push_back(var.z);
+		verts->push_back(var.w);
+	}
 	
 	tmp->shaders = program;
 	tmp->drawType = GL_POINTS;
@@ -96,6 +105,10 @@ void Assets::loadGalaxy(std::vector<float>* verts)
     // make and bind the VBO
     glGenBuffers(1, &(tmp->vbo));
     glBindBuffer(GL_ARRAY_BUFFER, tmp->vbo);
+	
+	glGenBuffers(1, &(tmp->vio));
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tmp->vio);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, inds.size() * sizeof(unsigned int), &inds[0], GL_STATIC_DRAW);
 
 	tmp->drawCount = (GLint)(verts->size()/3);
 	
@@ -114,7 +127,7 @@ void Assets::loadGalaxy(std::vector<float>* verts)
     glBindVertexArray(0);
 	
 	addAsset(tmp);
-	
+	delete verts;
 }
 
 void Assets::loadOctree(std::vector<glm::vec3>& v, std::vector<unsigned int>& inds)
@@ -158,3 +171,57 @@ void Assets::loadOctree(std::vector<glm::vec3>& v, std::vector<unsigned int>& in
 	addAsset(tmp);
 	delete verts;
 }
+
+void Assets::loadSphere()
+{
+	std::vector<float>* verts = new std::vector<float>();
+	asset* tmp = new asset();
+	
+	std::vector<glm::vec3> vectors;
+	std::vector<unsigned int> inds;
+	/*
+	GeometryProvider::initialize_sphere(vectors, 2);  // where DEPTH should be the subdivision depth
+	for(auto point : vectors)
+		glm::vec3 point_tmp = point * 2.0f;
+	*/
+	GeometryProvider::Icosahedron(vectors, inds);
+	
+	GeometryProvider::rec(vectors, inds, 3);
+	for (auto var : vectors)
+	{
+		verts->push_back(var.x);
+		verts->push_back(var.y);
+		verts->push_back(var.z);
+	}
+	
+	tmp->shaders = programPl;
+	tmp->drawType = GL_TRIANGLES;
+	
+	// make and bind the VAO
+	glGenVertexArrays(1, &(tmp->vao));
+	glBindVertexArray((tmp->vao));
+	
+	// make and bind the VBO
+	glGenBuffers(1, &(tmp->vbo));
+	glBindBuffer(GL_ARRAY_BUFFER, tmp->vbo);
+	
+	glGenBuffers(1, &(tmp->vio));
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tmp->vio);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, inds.size() * sizeof(unsigned int), &inds[0], GL_STATIC_DRAW);
+	
+	tmp->drawCount = (GLint)(inds.size());
+	
+	glBufferData(GL_ARRAY_BUFFER, verts->size() * sizeof(float), &(*verts)[0], GL_STATIC_DRAW);
+	
+	// connect the xyz to the "vert" attribute of the vertex shader
+	glEnableVertexAttribArray(tmp->shaders->attrib("vert"));
+	glVertexAttribPointer(tmp->shaders->attrib("vert"), 3, GL_FLOAT, GL_FALSE, 3*sizeof(GLfloat), NULL);
+	
+	// unbind the VAO
+	glBindVertexArray(0);
+	
+	addAsset(tmp);
+	delete verts;
+}
+
+

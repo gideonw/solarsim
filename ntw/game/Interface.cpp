@@ -49,6 +49,8 @@ bool Interface::handleCursor(double x, double y)
 			win->view->InjectMouseMove( std::floor(x-win->reg.origin.x) , std::floor(y-win->reg.origin.y) );
 			win->view->Focus();
 			lastFocus = win->view;
+			//BitmapSurface* s = ((BitmapSurface*)(lastFocus->surface()));
+			//s->set_is_dirty(true);
 			return true;
 		}
 	}
@@ -66,7 +68,8 @@ bool Interface::passKeyToFocus( int key, int scanCode, int action, int mods )
 		
 		e.type = WebKeyboardEvent::kTypeChar;
 		lastFocus->InjectKeyboardEvent(e);
-		
+		//BitmapSurface* s = ((BitmapSurface*)(lastFocus->surface()));
+		//s->set_is_dirty(true);
 		//e.type = WebKeyboardEvent::kTypeKeyUp;
 		//lastFocus->InjectKeyboardEvent(e);
 		return true;
@@ -82,7 +85,8 @@ bool Interface::passMouseButtonToFocus( int button, int action, int mods )
 			lastFocus->InjectMouseDown(Awesomium::MouseButton::kMouseButton_Left);
 		else
 			lastFocus->InjectMouseUp(Awesomium::MouseButton::kMouseButton_Left);
-
+		//BitmapSurface* s = ((BitmapSurface*)(lastFocus->surface()));
+		//s->set_is_dirty(true);
 		return true;
 	}
 	return false;
@@ -92,17 +96,19 @@ void Interface::update()
 {
 	for(auto uiw : windows)
 	{
-		JSValue v = uiw->view->ExecuteJavascriptWithResult(WSLit("rotateClicked"), WSLit(""));
-		//std::cout << v.ToBoolean() << std::endl;
-		
-		BitmapSurface* surf = (BitmapSurface*)uiw->getSurface();
+		BitmapSurface* surf = uiw->getSurface();
 		if(surf == 0)
 			continue;
 		
 		//if(surf->is_dirty())
 		//{
+			//JSValue v = uiw->view->ExecuteJavascriptWithResult(WSLit("rotateClicked"), WSLit(""));
+			//std::cout << v.ToBoolean() << std::endl;
+			
+		//std::cout << "up" << std::endl;
 			core->Update();
 			uiw->reloadTexture();
+			//surf->set_is_dirty(false);
 		//}
 	}
 }

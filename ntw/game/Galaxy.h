@@ -29,7 +29,6 @@
 class Galaxy {
 public: //temp
 	std::vector<GalacticObject*> systems;
-	std::vector<float>* verts;
 
 private:
 	unsigned int seed;
@@ -39,7 +38,7 @@ public:
 	Galaxy();
 	void gen();
 	void gen2();
-	std::vector<float>* getGalaxyVerticies();
+	void getGalaxyVerticies(std::vector<glm::vec4>& v, std::vector<unsigned int>& inds);
 	
 	void printGalaxyStats();
 	void makeGraph();

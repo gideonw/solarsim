@@ -37,10 +37,10 @@ public:
 	bool is_leaf() const;
 	void set_data(Obj*);
 	void insert(Obj*);
-	void get_points_inside_box(const glm::vec3& bmin, const glm::vec3& bmax, std::deque<Obj*>& results);
+	void get_points_inside_box(const glm::vec3& bmin, const glm::vec3& bmax, std::vector<Obj*>& results);
 	//bad algo, there is a real one out there taht will be faster
 	Obj* nearest_neighbor( Obj* o );
-	void nearest_neighbors(Obj* o, int minCount, std::deque<Obj*>& results);
+	void nearest_neighbors(Obj* o, int minCount, std::vector<Obj*>& results);
 	void node_count(int& count);
 	void leaf_count(int& count);
 	void accum_verts(std::vector<glm::vec3>& v, std::vector<unsigned int>& inds );

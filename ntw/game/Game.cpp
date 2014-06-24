@@ -88,11 +88,20 @@ void Game::start()
 	
 	print_step(instep, "Load Galaxy");
     // Load Assets
-	inst->as.loadGalaxy(inst->env.galaxy.getGalaxyVerticies());
+	 
+	std::vector<glm::vec4> v1;
+	std::vector<unsigned int> inds1;
+	inst->env.galaxy.getGalaxyVerticies(v1, inds1);
+	inst->as.loadGalaxy(v1, inds1);
+	
+	print_step(instep, "Load Octree Debug");
 	std::vector<glm::vec3> v;
 	std::vector<unsigned int> inds;
 	inst->env.galaxy.oct->root->accum_verts(v, inds);
 	inst->as.loadOctree(v, inds);
+	
+	print_step(instep, "Load Planet");
+	inst->as.loadSphere();
 	
 	print_step(instep, "Load UI Windows");
 	inst->ui.loadUiWindows(inst->as);
@@ -160,6 +169,20 @@ void Game::setupEvents()
 
 void Game::gameLoop()
 {
+	////////////////////////////////
+	typedef std::chrono::steady_clock::time_point time_p;
+	typedef std::chrono::duration<int,std::milli> millisecs_t ;
+	typedef std::chrono::duration<int,std::micro> microsecs_t ;
+	namespace chro = std::chrono;
+	
+	time_p start1, start2, start3, start4;
+	time_p end1, end2, end3, end4;
+	
+    millisecs_t duration( 0 ) ;
+	//duration = chro::duration_cast<millisecs_t>(end-start);
+	//////////////////////////////////////
+	
+	int loop = 0;
 	
 	std::random_device rnd;
 	std::mt19937 eng(rnd());
@@ -170,12 +193,18 @@ void Game::gameLoop()
 	// run while the window is open
 	double lastTime = glfwGetTime();
     while(!glfwWindowShouldClose(wind)){
+		
+			start1 = chro::steady_clock::now();
         // update the scene based on the time elapsed since last update
         double thisTime = glfwGetTime();
 		
 		secondsElapsed = thisTime - lastTime;
 		
+			start2 = chro::steady_clock::now();
+		
         update();
+		
+			end2 = chro::steady_clock::now();
 		
         lastTime = thisTime;
 		
@@ -185,9 +214,14 @@ void Game::gameLoop()
         if(error != GL_NO_ERROR)
             std::cerr << "OpenGL Error Update " << error << ": " << (const char*)gluErrorString(error) << std::endl;
 		
+			start3 = chro::steady_clock::now();
+		
         // draw one frame
 		graphics.render(env, as);
 		
+			end3 = chro::steady_clock::now();
+		
+			start4 = chro::steady_clock::now();
         glfwPollEvents();
 		
         // check for errors
@@ -198,13 +232,46 @@ void Game::gameLoop()
         //exit program if escape key is pressed
         if(glfwGetKey(wind, GLFW_KEY_ESCAPE))
             glfwSetWindowShouldClose(wind, GL_TRUE);
+			end4 = chro::steady_clock::now();
+		end1 = chro::steady_clock::now();
+		
+		if(loop > 60)
+		{
+			loop = 0;
+			std::cout <<
+			"Full loop: \t" << chro::duration_cast<millisecs_t>(end1-start1).count() << std::endl <<
+			"Update: \t"	<< chro::duration_cast<millisecs_t>(end2-start2).count() << std::endl <<
+			"Render: \t"	<< chro::duration_cast<millisecs_t>(end3-start3).count() << std::endl <<
+			"Poll&Close:\t" << chro::duration_cast<millisecs_t>(end4-start4).count() << std::endl <<
+			std::endl;
+		}else
+			loop++;
+		
     }
 	glfwDestroyWindow(wind);
 }
 
 void Game::update()
 {
+	typedef std::chrono::steady_clock::time_point time_p;
+	typedef std::chrono::duration<int,std::milli> millisecs_t ;
+	typedef std::chrono::duration<int,std::micro> microsecs_t ;
+	namespace chro = std::chrono;
+	
+	time_p start1, end1;
+
+	static int loop = 0;
+	start1 = chro::steady_clock::now();
 	ui.update();
+	end1 = chro::steady_clock::now();
+	if(loop > 60)
+	{
+		loop = 0;
+		std::cout <<
+		"Ui Update:\t" << chro::duration_cast<millisecs_t>(end1-start1).count() << std::endl;
+	} else
+		loop++;
+	
 	
 	env.gDegreesRotated += secondsElapsed * env.degreesPerSecond;
     while(env.gDegreesRotated > 360.0f) env.gDegreesRotated -= 360.0f;
@@ -255,6 +322,7 @@ void Game::update()
 
 void Game::enableCamLook( )
 {
+	inp->setCursorPos(0, 0);
 	env.camLook = true;
 	inp->disableCursor();
 }

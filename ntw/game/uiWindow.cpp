@@ -20,6 +20,8 @@ uiWindow::uiWindow(WebURL _url, Assets& _asset, WebCore* core, region& r):
 	view->LoadURL(url);
 	while (view->IsLoading())
 		core->Update();
+	
+	dirty = false;
 }
 
 void uiWindow::loadViewIntoAsset()

@@ -55,6 +55,8 @@ public:
 	WebView* view;
 	WebURL url;
 	
+	bool dirty;
+	
 	uiWindow(WebURL url, Assets& ui_asset, WebCore* core, region& r);
 	
 	void loadViewIntoAsset();
