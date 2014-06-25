@@ -26,6 +26,7 @@ struct asset {
     tdogl::Program* shaders;
 	GLuint texture;
     GLuint vbo;
+	GLuint pos_vbo;
     GLuint vao;
 	GLuint vio;
     GLenum drawType;
@@ -37,6 +38,7 @@ struct asset {
 		shaders(nullptr),
 		texture(0),
 		vbo(0),
+		pos_vbo(0),
 		vao(0),
 		vio(0),
 		drawType(GL_POINTS),

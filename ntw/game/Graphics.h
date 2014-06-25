@@ -49,6 +49,7 @@ public:
 	void setUpCamera();
 	
 	void render(Env& env, Assets& as);
+	void renderGalaxy(Env& env, Assets& as);
 	
 };
 

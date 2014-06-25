@@ -4,10 +4,10 @@ uniform mat4 camera;
 uniform mat4 model;
 
 uniform float wire;
-
 out float wireo;
 
 in vec3 vert;
+in vec3 pos;
 
 void main() {
 	
@@ -22,6 +22,7 @@ void main() {
 							 );
 	
     // Apply all matrix transformations to vert
-    gl_Position = camera * model * vec4(vert, 1);
+	vec3 nPos = vert.xyz + pos.xyz;
+    gl_Position = camera * model * vec4(nPos, 1);
 	//gl_Position = camera * window_scale * model * vec4(vert, 1);
 }

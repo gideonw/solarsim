@@ -142,38 +142,34 @@ void Graphics::render(Env& env, Assets& as) {
 	
 	std::list<asset*>* drawUs = as.getAssetList();
 	
+	renderGalaxy(env, as);
+	
 	for (auto draw : *drawUs)
 	{
-		draw->shaders->use();
-		
 		////////// Shader specific attributes
-		if (as.program == draw->shaders) {
-
-			// set the "camera" uniform
-			as.program->setUniform("camera", camera.matrix());
-			
-			// set the "model" uniform in the vertex shader, based on the gDegreesRotated global
-			as.program->setUniform("model", glm::rotate(glm::mat4(), env.gDegreesRotated, glm::vec3(0,1,0)));
-			
-			glBindVertexArray(draw->vao);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, draw->vio);
-			
-			glDrawElements(draw->drawType, draw->drawCount, GL_UNSIGNED_INT, 0);
-			
-			glBindVertexArray(0);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-			
-			draw->shaders->stopUsing();
-			
-			continue;
-
-		} else if (as.programUi == draw->shaders)
+		if (as.programUi == draw->shaders)
 		{
+			draw->shaders->use();
+			
 			glActiveTexture(GL_TEXTURE0);
 			glBindTexture(GL_TEXTURE_2D, draw->texture);
 			draw->shaders->setUniform("tex", 0);
+			
+			glBindVertexArray(draw->vao);
+			
+			glDrawArrays(draw->drawType, draw->drawStart, draw->drawCount);
+			
+			glBindVertexArray(0);
+			
+			glBindTexture(GL_TEXTURE_2D, 0);
+			
+			draw->shaders->stopUsing();
+			
 		} else if (as.programOt == draw->shaders)
 		{
+			
+			draw->shaders->use();
+			
 			// set the "camera" uniform
 			as.programOt->setUniform("camera", camera.matrix());
 			
@@ -190,53 +186,6 @@ void Graphics::render(Env& env, Assets& as) {
 			
 			draw->shaders->stopUsing();
 			
-			continue;
-			
-		} else if (as.programPl == draw->shaders)
-		{
-			// set the "camera" uniform
-			as.programPl->setUniform("camera", camera.matrix());
-			
-			as.programPl->setUniform("wire", 0.0f);
-			
-			// set the "model" uniform in the vertex shader, based on the gDegreesRotated global
-			as.programPl->setUniform("model", glm::rotate(glm::mat4(), env.gDegreesRotated, glm::vec3(0,1,0)));
-			
-			glBindVertexArray(draw->vao);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, draw->vio);
-			
-			glDrawElements(draw->drawType, draw->drawCount, GL_UNSIGNED_INT, 0);
-			
-			glBindVertexArray(0);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-			
-			draw->shaders->stopUsing();
-			
-			if(draw->wireframe)
-			{
-				draw->shaders->use();
-				
-				// set the "camera" uniform
-				as.programPl->setUniform("camera", camera.matrix());
-				
-				as.programPl->setUniform("wire", 1.0f);
-				
-				// set the "model" uniform in the vertex shader, based on the gDegreesRotated global
-				as.programPl->setUniform("model", glm::rotate(glm::mat4(), env.gDegreesRotated, glm::vec3(0,1,0)));
-				
-				glBindVertexArray(draw->vao);
-				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, draw->vio);
-				
-				glDrawElements(GL_LINE_LOOP, draw->drawCount, GL_UNSIGNED_INT, 0);
-
-				glBindVertexArray(0);
-				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-				
-				draw->shaders->stopUsing();
-			}
-			
-			continue;
-			
 		}
 		
 		//use instanced drawing for the stars, then gather a list of the indicies of the ones to draw as stars and the ones to draw as spheres, only change it if the number of stars within a certain distance changes.
@@ -247,18 +196,123 @@ void Graphics::render(Env& env, Assets& as) {
 		
 		////////// Shader Generic operations
 		
-		glBindVertexArray(draw->vao);
-		
-		glDrawArrays(draw->drawType, draw->drawStart, draw->drawCount);
-		
-		glBindVertexArray(0);
-		
-		glBindTexture(GL_TEXTURE_2D, 0);
-		
-		draw->shaders->stopUsing();
 	}
 	
     // swap the display buffers (displays what was just drawn)
     glfwSwapBuffers(wind);
 }
+
+void Graphics::renderGalaxy(Env& env, Assets& as) {
+	///////////////////////////////////////////////////////
+
+	asset* drawGl;
+	asset* draw;
+	
+	std::list<asset*>* drawUs = as.getAssetList();
+	
+	for (auto d : *drawUs)
+	{
+		if (as.programPl == d->shaders) {
+			draw = d;
+		}
+		if (as.program == d->shaders) {
+			drawGl = d;
+		}
+	}
+	
+	drawGl->shaders->use();
+	
+	////////// Point stars
+	
+	
+	// set the "camera" uniform
+	as.program->setUniform("camera", camera.matrix());
+	
+	// set the "model" uniform in the vertex shader, based on the gDegreesRotated global
+	as.program->setUniform("model", glm::rotate(glm::mat4(), env.gDegreesRotated, glm::vec3(0,1,0)));
+	
+	glBindVertexArray(drawGl->vao);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, drawGl->vio);
+	
+	glDrawElements(drawGl->drawType, drawGl->drawCount, GL_UNSIGNED_INT, 0);
+	
+	glBindVertexArray(0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	
+	drawGl->shaders->stopUsing();
+	
+	
+	//Solarsystems
+	std::vector<Obj *> results;
+	env.galaxy.oct->root->get_points_inside_box(camera.position()+glm::vec3(0,0,0), camera.position()+glm::vec3(100,100,100), results);
+	
+	std::vector<float> pos;
+	
+	for (auto var : results)
+	{
+		pos.push_back(var->position.x);
+		pos.push_back(var->position.y);
+		pos.push_back(var->position.z);
+	}
+	
+	draw->shaders->use();
+	
+	// set the "camera" uniform
+	as.programPl->setUniform("camera", camera.matrix());
+	
+	as.programPl->setUniform("wire", 0.0f);
+	
+	// set the "model" uniform in the vertex shader, based on the gDegreesRotated global
+	as.programPl->setUniform("model", glm::rotate(glm::mat4(), env.gDegreesRotated, glm::vec3(0,1,0)));
+	
+	glBindVertexArray(draw->vao);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, draw->vio);
+	
+	glBindBuffer(GL_ARRAY_BUFFER, draw->pos_vbo);
+	glBufferData(GL_ARRAY_BUFFER, 3*sizeof( float ) * pos.size(), &pos[0], GL_DYNAMIC_DRAW );
+	
+	glDrawElementsInstanced(GL_TRIANGLES, draw->drawCount, GL_UNSIGNED_INT, 0, results.size());
+	
+	glBindVertexArray(0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	
+	draw->shaders->stopUsing();
+	
+	if(draw->wireframe)
+	{
+		draw->shaders->use();
+		
+		// set the "camera" uniform
+		as.programPl->setUniform("camera", camera.matrix());
+		
+		as.programPl->setUniform("wire", 1.0f);
+		
+		// set the "model" uniform in the vertex shader, based on the gDegreesRotated global
+		as.programPl->setUniform("model", glm::rotate(glm::mat4(), env.gDegreesRotated, glm::vec3(0,1,0)));
+		
+		glBindVertexArray(draw->vao);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, draw->vio);
+		
+		glBindBuffer(GL_ARRAY_BUFFER, draw->pos_vbo);
+		glBufferData(GL_ARRAY_BUFFER, 4*sizeof( float ) * pos.size(), &pos[0], GL_DYNAMIC_DRAW );
+		
+		glDrawElementsInstanced(GL_LINE_LOOP, draw->drawCount, GL_UNSIGNED_INT, 0, results.size());
+		
+		glBindVertexArray(0);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+		
+		draw->shaders->stopUsing();
+	}
+	
+	
+	//use instanced drawing for the stars, then gather a list of the indicies of the ones to draw as stars and the ones to draw as spheres, only change it if the number of stars within a certain distance changes.
+	
+	//draw stars:: 1, 3, 5
+	//draw sphere: 2, 4, 6, 7
+	//move, use a range cube in front of the camera location. (look into frustrum culling method from videos)
+
+	// swap the display buffers (displays what was just drawn)
+
+}
+
 

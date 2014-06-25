@@ -200,22 +200,32 @@ void Assets::loadSphere()
 	// make and bind the VAO
 	glGenVertexArrays(1, &(tmp->vao));
 	glBindVertexArray((tmp->vao));
-	
+		
 	// make and bind the VBO
 	glGenBuffers(1, &(tmp->vbo));
 	glBindBuffer(GL_ARRAY_BUFFER, tmp->vbo);
+	glBufferData(GL_ARRAY_BUFFER, verts->size() * sizeof(float), &(*verts)[0], GL_STATIC_DRAW);
 	
+	glEnableVertexAttribArray(tmp->shaders->attrib("vert"));
+	glVertexAttribPointer(tmp->shaders->attrib("vert"), 3, GL_FLOAT, GL_FALSE, 3*sizeof(GLfloat), NULL);
+
 	glGenBuffers(1, &(tmp->vio));
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tmp->vio);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, inds.size() * sizeof(unsigned int), &inds[0], GL_STATIC_DRAW);
 	
+	glGenBuffers(1, &(tmp->pos_vbo));
+	glBindBuffer(GL_ARRAY_BUFFER, tmp->pos_vbo);
+	glBufferData(GL_ARRAY_BUFFER, 3*sizeof( float ) * 10, 0, GL_DYNAMIC_DRAW );
+	
+	glEnableVertexAttribArray(tmp->shaders->attrib("pos"));
+	glVertexAttribPointer(tmp->shaders->attrib("pos"), 3, GL_FLOAT, GL_FALSE, 3*sizeof(GLfloat), NULL);
+	glVertexAttribDivisor(tmp->shaders->attrib("pos"), 1);
+
 	tmp->drawCount = (GLint)(inds.size());
 	
-	glBufferData(GL_ARRAY_BUFFER, verts->size() * sizeof(float), &(*verts)[0], GL_STATIC_DRAW);
-	
 	// connect the xyz to the "vert" attribute of the vertex shader
-	glEnableVertexAttribArray(tmp->shaders->attrib("vert"));
-	glVertexAttribPointer(tmp->shaders->attrib("vert"), 3, GL_FLOAT, GL_FALSE, 3*sizeof(GLfloat), NULL);
+
+
 	
 	// unbind the VAO
 	glBindVertexArray(0);
