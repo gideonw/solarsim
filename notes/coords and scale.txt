@@ -1,0 +1,5 @@
+If I make the coords scale to AU, I will get depth artifacts and have to scale everything down, but I will be able to zoom completely into a solar system
+
+If I make the coords scale to ly then i will have no resolution when it comes to drawing a  solar system. The work around being that I can just draw a system once it is selected.
+
+Leaning towards AU and scaling down so that I can later on scale zoom.

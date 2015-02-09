@@ -168,7 +168,7 @@ void Assets::loadOctree(std::vector<glm::vec3>& v, std::vector<unsigned int>& in
     // unbind the VAO
     glBindVertexArray(0);
 	
-	addAsset(tmp);
+	//addAsset(tmp);
 	delete verts;
 }
 

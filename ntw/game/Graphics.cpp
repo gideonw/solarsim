@@ -138,7 +138,7 @@ void Graphics::render(Env& env, Assets& as) {
 	std::vector<Obj *> results;
 	env.galaxy.oct->root->get_points_inside_box(camera.position()+glm::vec3(0,0,0), camera.position()+glm::vec3(100,100,100), results);
 	
-	std::cout << results.size() << std::endl;
+	//std::cout << results.size() << std::endl;
 	
 	std::list<asset*>* drawUs = as.getAssetList();
 	

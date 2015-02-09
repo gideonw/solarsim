@@ -1,0 +1,19 @@
+June 9.
+
+I am at a position on the game now where I have so many paths to go down. I want to work in UI stuff so that I can start displaying things in game and start building game play features. What I need to focus on is the back end features, I need to build the trade mechanisms and the market mechanisms. I need to build the player structures and start to make it so that the world can be changed. I need to make the solar systems display once I get close, I need to fix the camera so that it zooms properly to coordinates. (OH! Gotta make a skybox somehow….
+
+My current plan of action:
+-Build the player structures.
+	-system ownership.
+-Build the trade and market.
+	-Includes (temp) network generator (solar system connections, these will be build by players later)
+—Make the camera mouse look toggle.
+-Make clickable buttons, WITHOUT text.
+-Expand the UI, includes text.
+-Improve the Input handling 
+
+This plan will give me a check list and prevent the lingering “I don’t know what to do first” freak out I inevitably end up running into. I need to make clear goals and make sire that I just attack one piece at a time. These blogs are helping me keep my thoughts focused and helps prevent me from going glazed over in the eyes while trying to solve everything in my head.
+
+On a more happy note, I am really satisfied with how that galaxy looks, I might even just leave it like this…. well after I fix the colors, but I really like the square stars. It is unique and looks a lot better than I would expect.
+
+-Gids

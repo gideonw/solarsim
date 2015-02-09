@@ -1,0 +1,19 @@
+After a very long hiatus on ntw, i have returned to it.
+
+This is the beginning of a game that I have tried to build for years, a game that I have been feature creeping for years while I made no progress. When I initially started I made loads of progress, I learned a great deal of math in-order to generate the look I wanted from random functions, I had learned OpenGL rather fast. Then it all came crashing down over the smallest thing.
+
+For a long time I let little things stop me from doing what I truly love. In this case I let something as small as not seeing anything on a screen because of not binding a VAO properly stop me from learning a ton and creating something I have had the desire to make for a long time.
+
+I found a guide by Tom Dalling (http://tomdalling.com/blog/category/modern-opengl/) about modern OpenGl programming in C++. It is the perfect guide for me. It details all of the important quick details you need to get started with OpenGl and gives you very clear examples and sure code. From this I was able to rewrite all that I had done previously on this idea and then some in the short span of 10-15 hours. It has single handedly reinvigorated me and that I am thankful for.
+
+And so I am calling this Version 1. I had trouble in the past creation an OOP design when using the C libs, but I finally solved that. For some reason trying to think about all the static and none static stuff made my brain freeze, but that is all over. I finally get to see all of my math rendered on screen by a procedural galaxy generator.
+
+[14_06_01 picture1]
+
+[14_06_01 picture2]
+
+I am so satisfied that I cannot even understand how I could have stopped before reaching this point… if that makes sense…
+
+Next things to do, get the UI displaying. for some reason it isn’t showing. Then off to building the galaxy data structures, and remember reference certs in the vbo by an array position start and end. [also verify that it will generate the something with the same seed]
+
+Anyways off to bed, since I have work tomorrow.

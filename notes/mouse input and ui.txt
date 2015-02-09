@@ -1,0 +1,8 @@
+if mouse is in an interface region
+	inject mouse into UI
+else
+	inject mouse into world handler
+
+————
+Copy the pattern from awesomonium regarding mouse input.
+Whatever handles the world mouse coords will have to do the transformation of the coordinates to apply it into the world space(correct term?).

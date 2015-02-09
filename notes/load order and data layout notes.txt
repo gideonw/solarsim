@@ -1,0 +1,25 @@
+setup screen size
+
+init glfw
+
+open window
+
+init glfw mouse
+
+init glew
+
+set OpenGL settings
+
+load shaders
+
+load assets
+
+setup camera
+
+game loop
+
+—————————
+
+Graphics needs to be completely data driven, using the ENV(and Assets) object as the data carrier.
+
+Game will change Env(and Assets) as the game demands and Graphics will indiscriminately draw it.

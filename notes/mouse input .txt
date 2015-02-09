@@ -1,0 +1,12 @@
+if the mouse is in the interface it gets focus
+otherwise the cursor goes to the game world
+
+always apes it to the interface and if it is going to use it then I will have it return true thus we can prevent it from going to the world
+
+if( look key pressed)
+	send mouse to camera
+
+else if(interface-injectMouse)
+	//interface used it
+else
+	game gets the cursor
